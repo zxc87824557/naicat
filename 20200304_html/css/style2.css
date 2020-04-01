@@ -1,0 +1,10 @@
+# navbar{
+    width: 100%;
+    background: black;
+    line-height: 3.5rem;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5) ;
+    /* overflow: hidden; */
+    position: fixed;
+    top: 0;
+    left: 0;
+}

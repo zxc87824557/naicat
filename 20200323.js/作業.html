@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let array = []
+        const rand = (min, max) => {
+            return Math.round(Math.random() * (max - min)) + min
+        }
+        // 解法1
+        document.write("a區<br>")
+        for (let i = 0; i < 6; i++) {
+            let random = rand(1, 38)
+            while (array.includes(random)) {
+                random = rand(1, 38)
+            }
+            array.push(random)
+        }
+        document.write(array)
+        document.write(`b區: ${rand(1, 8)}<br>`)
+        // 解法2
+        document.write(`a區:<br>`)
+
+        for (let i = 0; i < 6; i++) {
+            let random = rand(1, 38)
+            if (array.includes(random)) {
+                i--;
+                continue;
+            }
+            array.push(random)
+            document.write(random + ",")
+        }
+
+        document.write("<br>")
+        document.write(`b區: ${rand(1, 8)}<br>`)
+        // 解法3
+        let num = []
+        document.write(`a區:<br>`)
+        for (let i = 1; i <= 38; i++) {
+            num.push(i);
+        }
+        for (let i = 0; i < 6; i++) {
+            let random = rand(0, 37 - i);
+            document.write(num[random] + ",");
+            num.splice(random, 1);
+        }
+        document.write("<br>")
+        document.write(`b區: ${rand(1, 8)}<br>`)
+
+    </script>
+</body>
+
+</html>

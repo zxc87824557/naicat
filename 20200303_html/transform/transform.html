@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-family: 微軟正黑體;
+            position: relative;
+        }
+
+        section {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dashed {
+            display: inline-block;
+            width: 200px;
+            height: 200px;
+            border: 5px dashed #000;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .translate {
+            /* 第一個數值為x軸移動，第二個數值為y軸移動。 */
+            /* 若使用%，實際長度會以元素本身尺寸來計算，ex:width 300px=>50%(150px) */
+            transform: translate(50px, 100px);
+            /* 設定單軸x移動 */
+            transform: translateX(50px);
+            /* 設定單軸y移動 */
+            transform: translateY(100px);
+        }
+
+        .scale {
+            /* 數值是以倍數顯示 */
+            transform: scale(2);
+            /* 負數會呈現倒影 */
+            /* transform: scale(-2); */
+
+            /* 改變原點 */
+            /* 預設是center center = 50% 50%，box的中心點 */
+            /* 數值可以是em、px、% */
+            transform-origin: center center;
+        }
+
+        section:nth-child(odd) {
+            background-color: skyblue;
+        }
+
+        section:nth-child(even) {
+            background-color: tan;
+        }
+
+        .ratate {
+            /* 角度單位+deg */
+            transform: rotate(45deg);
+            transform-origin: left bottom;
+        }
+
+        .skew {
+            /* 角度單位+deg，第一個數值為x歪斜角。第二個數值為y的歪斜角 */
+            transform: skew(30deg, 20deg);
+            transform-origin: center 30px;
+        }
+
+        .more {
+            /* 屬性之間不需要+逗號 */
+            /* 屬性由左至右套用，作用順序十分重要，改變順序會產生不同結果 */
+            transform: translatey(100px) rotate(30deg) skew(30deg, 10deg) scale(-2);
+            /* transform: rotate(30deg) translate(100px); */
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <h1>translate(移動)</h1>
+        <div class="dashed">
+            <div class="box translate">translate(移動)</div>
+        </div>
+    </section>
+
+    <section>
+        <h1>scale(縮放)</h1>
+        <div class="dashed">
+            <div class="box scale">scale(縮放)</div>
+        </div>
+    </section>
+
+    <section>
+        <h1>Rotate(旋轉)</h1>
+        <div class="dashed">
+            <div class="box ratate">Rotate(旋轉)</div>
+        </div>
+    </section>
+
+    <section>
+        <h1>Skew(傾斜)</h1>
+        <div class="dashed">
+            <div class="box skew">Skew(傾斜)</div>
+        </div>
+    </section>
+
+    <section>
+        <h1>設定多屬性</h1>
+        <div class="dashed">
+            <div class="box more">設定多屬性</div>
+        </div>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // .join("")將陣列接成文字
+        // 如果()沒東西就是用,連接
+        let arr1 = ["a", "b", "c", "d"]
+        let join = arr1.join("")
+        console.log(join)
+
+        // .push()在陣列中新增值
+        let arr2 = [1, 2, 3, 4]
+        arr2.push(5, 6, "我")
+        console.log(arr2)
+
+        // .splice(開始位置，刪除數量，插入新值1、插入新值2...)
+        let arr3 = ["蘋果", "香蕉", "葡萄"]
+        arr3.splice(1, 1, "西瓜")
+        console.log(arr3)
+
+        // .concat()陣列連接
+        let arr4 = ["a", "b", "c", "d"]
+        let arr5 = ["e", "f", "g", "h"]
+        let arr6 = arr4.concat(arr5)
+        console.log(arr6)
+
+        // .reverse()顛倒陣列
+        let arr7 = ["a", "b", "c"]
+        let arr8 = arr7.reverse()
+        console.log(arr8)
+
+        // .includes(文字) 陣列中找文字
+        // indexOf.(文字) 陣列中找文字，回傳索引值，找不到回傳-1
+        // 要完全符合才能找到
+        let arr9 = ["蘋果", "香蕉", "葡萄"]
+        let includes = arr9.includes("蘋果")
+        console.log(includes)
+        let index = arr9.indexOf("葡萄")
+        console.log(index)
+
+        // .map()迴圈陣列後產生新陣列
+        // 一定要return
+        let arr10 = [1, 2, 3, 4]
+        arr10 = arr10.map((number) => {
+            return number * 2
+        })
+        console.log(arr10)
+
+        // filter()過濾
+        let arr11 = [100, 200, 300, 400, 500]
+        arr11 = arr11.filter((number) => {
+            return number > 300
+        })
+        console.log(arr11)
+
+        // .sort()排序，預設是小到大
+        let arr12 = [100, 300, 870, 140, 450]
+        arr12 = arr12.sort()
+        console.log(arr12)
+        // 英文預設A-Z
+        let arr13 = ["apple", "banana", "dog", "cat",]
+        arr13 = arr13.sort()
+        console.log(arr13)
+        // 預設排序不支援中文
+        let arr14 = ["九", "六", "一", "七", "四"]
+        arr14 = arr14.sort()
+        console.log(arr14)
+        // 數字小到大
+        let arr15 = [100, 300, 870, 140, 450, 1080]
+        let ascnum = arr15.sort((a, b) => {
+            return a - b
+        })
+        console.log(ascnum)
+        // 數字大到小
+        let descnum = arr15.sort((a, b) => {
+            return b - a
+        })
+        console.log(descnum)
+        // 如果cn1在cn2前為-1
+        // 如果cn2在cn1前為 1
+        // 如果cn2在cn1一樣 0
+        let cn1 = "三"
+        let cn2 = "五"
+        let compare = cn1.localeCompare(cn2, "zh-Hant-TW")
+        console.log(compare)
+
+        let arr16 = ["九", "六", "一", "七", "四"]
+        arr16 = arr16.sort((a, b) => {
+            return a.localeCompare(b, "zh-TW")
+        })
+        console.log(arr16)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // trim把前後空白拿掉,中間不會
+        let str = "  我是  文字     "
+        let strtrim = str.trim()
+        console.log(strtrim)
+
+        // 轉大寫     
+        let str2 = "sjdndfkjnfdljn"
+        let up = str2.toUpperCase()
+        console.log(up)
+
+        // 轉小寫
+        let str3 = "DFGJNDFLKJA"
+        let low = str3.toLowerCase
+        console.log(low)
+
+        // .includes()是否包含指定文字，會回傳true或false
+        let str4 = "fklghdf JAVASCRIPT df;igjf"
+        let isIncludes = str4.includes("JAVASCRIPT")
+        console.log(isIncludes)
+        // .match()是否符合 regex規則，會回傳所有符合的文字陣列
+        let isMatch = str4.match(/JAVASCRIPT/g)
+        console.log(isMatch)
+
+        // .replace()取代文字
+        // 如果()裡面放文字的話只會取代一筆      
+        let str5 = "XMAS XMAS XMAS"
+        let replace1 = str5.replace("XMAS", "Christmas")
+        console.log(replace1)
+        // 放regex可以多筆取代 ig的i是不分大小寫
+        let replace2 = str5.replace(/xmas/ig, "Christmas")
+        console.log(replace2)
+
+        // .substr(開始位置, 長度(幾個字))
+        let str6 = "hello 4563218"
+        let sub = str6.substr(2, 5)
+        console.log(sub)
+        // .substring(開始位置, 結尾位置
+        let sub2 = str6.substring(2, 5)
+        console.log(sub2)
+        // .slice(開始位置, 結尾位置(可以放負數，代表倒數))
+        let sub3 = str6.slice(0, -5)
+        console.log(sub3)
+
+        let str7 = "fsdf56432sd"
+        let num = parseInt(str7)
+        console.log(num)
+        // 要isNaN才會true 要不然或顯示NaN
+        console.log(isNaN(num))
+
+        // 轉陣列文字切割
+        let str8 = "1,2,3,4,5,6,a,b,c,d,"
+        let split = str8.split(",")
+        let split2 = str8.split("")
+        console.log(split)
+        console.log(split2)
+
+    </script>
+</body>
+
+</html>

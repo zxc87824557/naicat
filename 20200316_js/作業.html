@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let data = [
+            {
+                time: "時段一",
+                氣溫: [18.2, 17.3, 15.0, 13.4],
+            },
+            {
+                time: "時段二",
+                氣溫: [23.8, 25.1, 20.6, 17.8],
+            },
+            {
+                time: "時段三",
+                氣溫: [20.6, 21.5, 18.4, 15.7],
+            }
+
+
+        ]
+        document.write(`
+            <table border="1">
+                <tr>
+                    <td></td>
+                    <td>星期一</td>
+                    <td>星期二</td>
+                    <td>星期三</td>
+                    <td>星期四</td>
+                </tr>
+        `)
+
+        for (let d of data) {
+            document.write(`
+            <tr>
+                <td>${d.time}</td>
+                <td>${d.氣溫[0]}</td>
+                <td>${d.氣溫[1]}</td>
+                <td>${d.氣溫[2]}</td>
+                <td>${d.氣溫[3]}</td>
+            </tr>
+            `)
+        }
+        document.write('</table>');
+
+        document.write("<hr>")
+
+        let w1 = 0, w2 = 0, w3 = 0, w4 = 0
+        for (let i = 0; i < data.length; i++) {
+            w1 += data[i].氣溫[0];
+            w2 += data[i].氣溫[1];
+            w3 += data[i].氣溫[2];
+            w4 += data[i].氣溫[3];
+        }
+        document.write(`星期一的平均溫度是${(w1 / data.length).toFixed(2)}度<br>`)
+        document.write(`星期二的平均溫度是${(w2 / data.length).toFixed(2)}度<br>`)
+        document.write(`星期三的平均溫度是${(w3 / data.length).toFixed(2)}度<br>`)
+        document.write(`星期四的平均溫度是${(w4 / data.length).toFixed(2)}度<br>`)
+
+        document.write("<hr>")
+
+        let t1 = 0, t2 = 0, t3 = 0;
+        for (let j = 0; j < 4; j++) {
+            t1 += data[0].氣溫[j];
+            t2 += data[1].氣溫[j];
+            t3 += data[2].氣溫[j];
+
+        }
+        document.write(`時段一的平均溫度是${(t1 / 4).toFixed(2)}度<br>`)
+        document.write(`時段二的平均溫度是${(t2 / 4).toFixed(2)}度<br>`)
+        document.write(`時段三的平均溫度是${(t3 / 4).toFixed(2)}度<br>`)
+
+        document.write("<hr>")
+
+        let max = 0;
+        for (let i of data) {
+            for (let k = 0; k < i.氣溫.length; k++) {
+                if (i.氣溫[k] > max) {
+                    max = i.氣溫[k]
+                }
+            }
+        }
+        document.write(max)
+        // data[1].氣溫[1]
+
+        // let x = 0
+        // let y = 0
+
+        // if (max != data[x].氣溫[y]) {
+        //     x++; y++
+        //     document.write(x, y)
+        // }
+
+
+    </script>
+</body>
+
+</html>

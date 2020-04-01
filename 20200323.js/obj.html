@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class person {
+            constructor(name, gender, id) {
+                this.name = name
+                this.gender = gender
+                this.id = id
+            }
+            Introduce() {
+                alert(`名字叫${this.name}，性別是 ${this.gender}，身分證是${this.id}`)
+            }
+            changeName(name) {
+                this.name = name
+            }
+        }
+        let Wang = new person("王曉明", "男", "A123456789")
+        Wang.introduce()
+        Wang.changeName("王大明")
+        Wang.introduce
+
+        let Mei = new person("王小美", "女", "A223456789")
+        Mei.introduce()
+    </script>
+</body>
+
+</html>

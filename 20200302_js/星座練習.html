@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let name = prompt("名字");
+    let month = prompt("月份");
+    let day = prompt("日期");
+    let constellation = "";
+
+    if ((month == 1 && day >= 22) || (month == 2 && day <= 19)) {
+      constellation = "水瓶座"
+    }
+    else if ((month == 2 && day >= 20) || (month == 3 && day <= 20)) {
+      constellation = "雙魚座"
+    }
+    else if ((month == 3 && day >= 21) || (month == 4 && day <= 20)) {
+      constellation = "牡羊座"
+    }
+
+    alert(`${name} 你好，你的星座是 ${constellation}`);
+
+  </script>
+</body>
+
+</html>

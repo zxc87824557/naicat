@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let num1 = 10;
+
+        // 如果數字小於等於 10
+        if(num1 <= 10) {
+            document.write("數字小於等於 10");
+        } 
+        else {
+            document.write("數字大於 10");
+        }
+
+        // 兩個等於會忽略資料型態
+        let str = "10";
+        if(num1 == str) {
+            document.write("==");
+        } 
+
+        // 三個等於會判斷資料型態是否一樣
+        if(num1 === str) {
+            document.write("===");
+        } 
+
+        // confirm 是確認訊息，點確定就是 true，取消是 false
+        // let answer = confirm('今天天氣好嗎');
+        // if (answer === true) {
+        //     alert('天氣好');
+        // }
+        // else {
+        //     alert('出門記得帶傘');
+        // }
+        
+        // 三元運算是簡寫
+        // answer === true ? alert('天氣好') : alert('出門記得帶傘')
+        
+        // let isRich = false;
+        // let isFat = true;
+        // let isGoodAtCoding = true;
+        // if( (isGoodAtCoding && !isFat) || isRich) {
+        //     alert('交到男/女朋友');
+        // }
+
+        // let answer = prompt('引清兵入關的叫誰? \n 1.吳三桂 \n 2.吳四桂 \n 3.吳五桂 \n 4.吳六桂')
+        // if(answer === "1") {
+        //     alert("答對了");
+        // }
+        // else if(answer === "2" || answer === "3" || answer === "4"){
+        //     alert("答錯了");
+        // }
+        // else {
+        //     alert("沒有這個選項");
+        // }
+        
+        // let drink = "abcd";
+        // switch(drink) {
+        //     case "可樂":
+        //         alert("你喜歡喝可樂");
+        //         break;
+        //     case "果汁":
+        //         alert("你很健康");
+        //         break;
+        //     case "水":
+        //         alert("沒事多喝水");
+        //         break;
+        //     default:
+        //         alert("飲料");
+        //         break;
+        // }
+
+        let weather = "rain";
+        let hasUmbrella = false;
+        if(weather === 'rain') {
+            if(hasUmbrella){
+                alert("我有帶傘，不怕下雨");
+            }
+            else {
+                alert("我沒有帶傘，要去買");
+            }
+        }
+        else {
+            alert("出太陽")
+        }
+
+    </script>
+</body>
+</html>

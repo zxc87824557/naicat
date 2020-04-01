@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        section {
+            background-color: black;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            line-height: 200px;
+        }
+
+        /* 
+        transition
+        1.需要觸發條件(:hover)，兩種狀態之間漸進改變。
+        2.無法在網頁載入時自動發生，而且是一次性，必須重新再觸發一次。
+
+        animation
+        1.產生更複雜的動畫，可以勝定關鍵影格(keyframes)控制動畫進度。
+        2.網頁仔入時自動撥放，且可以重複來回撥放。
+         */
+
+        /* 建立動畫 animation */
+        /* 1.必須建立一組關鍵影格(keyframes)，並設立動畫名稱(自訂義)*/
+        .animation {
+            /* 動畫名稱 */
+            animation-name: animation;
+            /* 持續時間 */
+            animation-duration: 3s;
+            /* 設定播放次數 */
+            animation-iteration-count: infinite;
+            /* 播放速率 預設ease、linear、ease-in、ease-out、easein-out */
+            animation-timing-function: ease;
+            /* alternate 來回撥放，奇數正向撥放，偶數反向撥放 */
+            /* 
+            撥放方向 
+            nomal正向撥放(預設)
+            reverse反向撥放
+            alternate-reverse交替撥放 奇數反向撥放 偶數正向撥放
+            */
+            animation-direction: alternate;
+            /* 延遲時間 */
+            animation-delay: 0s;
+            /*
+             撥放結束後的狀態
+             forwards 保留動畫結束時的樣式，ex:顏色位置。
+             backwards 返回動畫一開始的樣式 
+            */
+            animation-fill-mode: forwards;
+
+            /* 縮寫  1.動畫名稱 2.持續時間3.撥放次數 4.延遲時間 5.撥放速率 6.正向或反向撥放*/
+            animation: animation 3s infinite ease alternate;
+        }
+
+
+
+        @keyframes animation {
+            from {
+                background: rgb(255, 0, 85);
+                font-size: 1rem;
+                color: rosybrown;
+                transform: scale(1) rotate(0deg);
+                position: absolute;
+                top: 0;
+
+            }
+
+            30% {
+                background: rgb(0, 255, 128);
+                font-size: 2rem;
+                color: yellow;
+                top: 30%;
+            }
+
+            70% {
+                background: rgb(0, 60, 255);
+                font-size: 3rem;
+                color: white;
+                bottom: 10%;
+
+            }
+
+            to {
+                background: rgb(255, 0, 234);
+                font-size: 4rem;
+                color: tomato;
+                transform: scale(2) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="box animation"></div>
+    </section>
+
+    <section>
+        <div class="box animation"><img src="456.jpg" style="width: 300px;"></div>
+    </section>
+
+</body>
+
+</html>

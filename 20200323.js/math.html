@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Math.round()四捨五入到整數
+        console.log(Math.round(6.5))
+        // Math.ceil()無條件進位到整數
+        console.log(Math.ceil(6.5))
+        // Math.floor()無條件捨去到整數
+        console.log(Math.floor(6.5))
+        // Math.pow(a,b)a的b次方
+        console.log(Math.pow(10, 2))
+        // Math.sqrt()平方根
+        console.log(Math.sqrt(4))
+        // Math.sign()正負判斷
+        console.log(Math.sign(-95))
+        // Math.min()最小值
+        console.log(Math.min(0, 5, 9, 10, 65, 40, -54))
+        // Math.max()最大值
+        console.log(Math.max(0, 5, 9, 10, 65, 40, -54))
+        //  如果是陣列的話，要加解構值語法
+        let arr = [1, 5, 8, 6, -10, -41]
+        console.log(Math.min(...arr))
+        console.log(Math.max(...arr))
+        // Math.random()從0到1隨機取小數
+        console.log(Math.random())
+        // 讓random()從0-100
+        console.log(Math.round(Math.random() * 100))
+        // 在min 跟 max之間取數字
+
+        const rand = (min, max) => {
+            return Math.round(Math.random() * (max - min)) + min
+        }
+        for (let i = 0; i < 100; i++) {
+            console.log(rand(30, 99))
+        }
+    </script>
+</body>
+
+</html>

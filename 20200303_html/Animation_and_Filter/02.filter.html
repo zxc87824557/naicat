@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        section {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        section:nth-child(odd) {
+            background-color: black;
+        }
+
+        .box {
+            width: 400px;
+            height: 400px;
+            border: 5px solid #777;
+        }
+
+        .blur {
+            animation: blur 5s infinite;
+            background: url("https://picsum.photos/300/300/?random=1");
+        }
+
+        @keyframes blur {
+            from {
+                filter: blur(0px);
+            }
+
+            to {
+                filter: blur(10px);
+            }
+        }
+
+        .brightnees {
+            animation: brightnees 5s infinite;
+            background: url("https://picsum.photos/300/300/?random=1");
+        }
+
+        @keyframes brightnees {
+            from {
+                filter: brightness(20%);
+            }
+
+            to {
+                filter: brightness(200%);
+            }
+        }
+
+        .contrast {
+            animation: contrast 5s infinite;
+            background: url("https://picsum.photos/300/300/?random=1");
+        }
+
+        @keyframes contrast {
+            from {
+                filter: contrast(0%)
+            }
+
+            to {
+                filter: contrast(200%);
+            }
+        }
+
+        .drop-shadow {
+            animation: drop-shadow 5s infinite;
+        }
+
+        @keyframes drop-shadow {
+            from {
+                filter: drop-shadow(0px 0px 5px #f00);
+            }
+
+            35% {
+                filter: drop-shadow(0px 0px 5px rgb(0, 255, 128));
+            }
+
+            70% {
+                filter: drop-shadow(0px 0px 5px rgb(55, 0, 255));
+            }
+
+            to {
+                filter: drop-shadow(0 0 0 5px rgb(255, 0, 106));
+            }
+        }
+
+        .box-shadow {
+            animation: box-shadow 5s infinite;
+        }
+
+        @keyframes box-shadow {
+            from {
+                box-shadow: 0 0 15px #aaa;
+            }
+
+            35% {
+                box-shadow: 0 0 15px rgb(204, 13, 13);
+            }
+
+            70% {
+                box-shadow: 0 0 15px rgb(0, 15, 83);
+            }
+
+            to {
+                box-shadow: 0 0 15px rgb(0, 255, 76);
+            }
+        }
+
+        .grayscale {
+            animation: grayscale 5s infinite;
+            background: url("https://picsum.photos/300/300/?random=1");
+        }
+
+        @keyframes grayscale {
+            from {
+                filter: grayscale(0%);
+            }
+
+            to {
+                filter: grayscale(100%);
+            }
+        }
+
+        .hue-rotate {
+            animation: hue-rotate 5s infinite;
+
+        }
+
+        @keyframes hue-rotate {
+            from {
+                filter: hue-rotate(0deg);
+            }
+
+            to {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        .invert {
+            background: url("https://picsum.photos/300/300/?random=1");
+            animation: invert 5s infinite;
+        }
+
+        @keyframes invert {
+            from {
+                filter: invert(0%);
+            }
+
+            to {
+                filter: invert(200%);
+            }
+        }
+
+        .opacity {
+            background: url("https://picsum.photos/300/300/?random=1");
+            animation: opacity 5s infinite;
+        }
+
+        @keyframes opacity {
+            from {
+                filter: opacity(0%);
+            }
+
+            to {
+                filter: opacity(200%);
+            }
+        }
+
+        .saturate {
+            background: url("https://picsum.photos/300/300/?random=1");
+            animation: saturate 5s infinite;
+        }
+
+        @keyframes saturate {
+            from {
+                filter: saturate(0%);
+            }
+
+            to {
+                filter: saturate(200%);
+            }
+        }
+
+        .sepia {
+            background: url("https://picsum.photos/300/300/?random=1");
+            animation: saturate 5s infinite;
+        }
+
+        @keyframes sepia {
+            from {
+                filter: sepia(0%);
+            }
+
+            to {
+                filter: sepia(200%);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="box blur"></div>
+    </section>
+    <section>
+        <div class="box brightnees"></div>
+    </section>
+    <section>
+        <div class="box contrast"></div>
+    </section>
+    <section>
+        <div class="box drop-shadow" style="margin-right: 100px;">
+            <span class="drop-shadow">drop-shadow</span>
+        </div>
+        <div class="box box-shadow">
+            <span class="box-shadow">box-shadow</span>
+        </div>
+    </section>
+    <section>
+        <div class="box grayscale"></div>
+    </section>
+    <section>
+        <div class="box hue-rotate"
+            style="background: url('https://picsum.photos/400/400/?random=1'); margin-right: 50px;"></div>
+        <div class="box hue-rotate" style="color: wheat; font-size: 36px;">色相轉換</div>
+    </section>
+    <section>
+        <div class="box invert"></div>
+    </section>
+    <section>
+        <div class="box opacity"></div>
+    </section>
+    <section>
+        <div class="box saturate"></div>
+    </section>
+    <section>
+        <div class="box sepia"></div>
+    </section>
+</body>
+
+</html>

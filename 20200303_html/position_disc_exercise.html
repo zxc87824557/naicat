@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .container {
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+        }
+
+        .dice {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+            border-radius: 1rem;
+            display: inline-block;
+            background-image: linear-gradient(45deg, #ccc, #fff);
+            box-shadow: 0.2rem 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .point-red {
+            width: 40px;
+            height: 40px;
+            background-color: red;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .point-black {
+            width: 40px;
+            height: 40px;
+            background-color: black;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .center {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .left-top {
+            top: 10%;
+            left: 10%;
+        }
+
+        .left-bot {
+            bottom: 10%;
+            left: 10%;
+        }
+
+        .right-top {
+            top: 10%;
+            right: 10%;
+        }
+
+        .right-bot {
+            bottom: 10%;
+            right: 10%;
+        }
+
+        .right-top {
+            top: 10%;
+            right: 10%;
+        }
+
+        .center-left {
+            top: 50%;
+            left: 10%;
+            transform: translateY(-50%);
+        }
+
+        .center-right {
+            top: 50%;
+            right: 10%;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container ">
+        <div class="dice">
+            <div class="point-red center"></div>
+        </div>
+        <div class="dice">
+            <div class="point-black left-top"></div>
+            <div class="point-black right-bot"></div>
+        </div>
+        <div class="dice">
+            <div class="point-black left-top"></div>
+            <div class="point-black center"></div>
+            <div class="point-black right-bot"></div>
+        </div>
+        <div class="dice">
+            <div class="point-red left-top"></div>
+            <div class="point-red right-top"></div>
+            <div class="point-red left-bot"></div>
+            <div class="point-red right-bot"></div>
+        </div>
+        <div class="dice">
+            <div class="point-black left-top"></div>
+            <div class="point-black right-top"></div>
+            <div class="point-black center"></div>
+            <div class="point-black left-bot"></div>
+            <div class="point-black right-bot"></div>
+        </div>
+        <div class="dice">
+            <div class="point-black left-top"></div>
+            <div class="point-black right-top"></div>
+            <div class="point-black center-left"></div>
+            <div class="point-black center-right"></div>
+            <div class="point-black left-bot"></div>
+            <div class="point-black right-bot"></div>
+        </div>
+    </div>
+</body>
+
+</html>

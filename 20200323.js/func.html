@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function sayHello(name) {
+        //     let text = "Hello " + name;
+        //     return text;
+        // }
+
+        // let hi = sayHello("小寶");
+        // let hi1 = sayHello("小王");
+        // let hi2 = sayHello("小其");
+        // document.write(hi + hi1 + hi2)
+
+        // const sayHello = (name) => {
+        //     let text = "Hello " + name
+        //     return text;
+        // }
+        // let hi = sayHello("小寶");
+        // let hi1 = sayHello("小王");
+        // let hi2 = sayHello("小其");
+        // document.write(hi + hi1 + hi2)
+
+        // 方法一 用函數判斷偶數true
+        let ans = prompt("請輸入數字")
+        function math(num) {
+            if (num % 2 == 0) {
+                alert("true")
+            } else {
+                alert("false")
+            }
+        }
+
+        math(ans)
+        // 方法二 用函數判斷偶數true
+        const isEven = (num) => {
+            return (num % 2 == 0) ? true : false
+        }
+
+        document.write(isEven(57))
+    </script>
+</body>
+
+</html>

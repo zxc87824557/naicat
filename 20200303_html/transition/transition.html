@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* transition 轉場 */
+        /* 1.兩個樣式之間漸進式的轉換過程 */
+        /* 2.一個起始樣式，另一個是結束樣式，瀏覽器會將兩個樣式間的變化形成補間動畫(tween)*/
+        /* 3.必須要有觸發動作，最常見是:hover */
+
+        .box {
+            width: 200px;
+            height: 200px;
+            background: #000;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transform: scale(1) rotate(0deg);
+            border-radius: 50%;
+            /* 設定 */
+            /* 轉場屬性 */
+            /* transition-property: background; */
+            /* 持續時間 */
+            /* transition-duration: 0.3s; */
+            /* 轉場速率 ease、linear、ease-in、ease-out、ease=in-out */
+            /* transition-timing-function: ease;
+            transition-delay: 0.5s; */
+            transition:
+                /* background 0.5s,
+                width 1s,
+                height 0.5s,
+                top 0.5s,
+                left 0.5s */
+                1s
+        }
+
+        .box:hover {
+            background: red;
+            width: 300px;
+            height: 300px;
+            transform: scale(1) rotate(99999deg) skew(70deg);
+            top: 30%;
+            left: 60%;
+            border-radius: 0%;
+        }
+
+        /* 
+        transition 可控制屬性
+        [transform 變形]
+        translate
+        ratate
+        scale
+        skew
+
+        [color 顏色]
+        background-color
+        boder-color
+        color
+
+        [font 文字]
+        font-size
+        opacity
+        line-height
+        letter-spacing
+        word-spacing
+
+        [盒模型]
+        width
+        height
+        margin
+        padding
+        border
+
+        [定位]
+        top
+        right
+        bottom
+        left
+         */
+    </style>
+</head>
+
+<body>
+    <div class="box">
+
+    </div>
+</body>
+
+</html>

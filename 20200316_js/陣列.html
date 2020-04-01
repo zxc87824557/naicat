@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let restaurants = ["太師傅", "麥當勞", "迎客門", "烤肉飯"];
+        document.write(`數量: ${restaurants.length}，第一個是${restaurants[2]}`);
+
+        for (let i = 0; i < restaurants.length; i++) {
+            document.write(restaurants[i]);
+            document.write("<br\>")
+        }
+
+        let person = {
+            name: "王曉明",
+            age: 25,
+            number: 24
+        }
+        document.write(`名字叫${person["name"]}，${person.age}歲`)
+        document.write(Object.keys(person).length)
+        document.write("<hr>")
+        // for(變數 of 陣列)
+        // 變數代表陣列裡面的每個東西的值
+        for (let restaurant of restaurants) {
+            document.write(restaurant + "<br>")
+
+        }
+        document.write("<hr>")
+        // for(變數 in 陣列)
+        // 變數代表陣列裡面的每個東西的索引
+        // JSON 只能用這個迴圈
+        for (let index in person) {
+            document.write(`${index}的值是${person[index]}<br>`)
+
+        }
+
+    </script>
+</body>
+
+</html>

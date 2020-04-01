@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // setTimeout(function,毫秒)
+        // 延遲指定時間後執行 function
+        // 1000豪秒為1秒
+        setTimeout(() => {
+            alert("過五秒了")
+        }, 5000)
+
+        // 用定義好的function
+        const msg = (sec) => {
+            alert(`過 ${sec} 秒了`)
+        }
+        // setTimeout(function, 毫秒, 傳入function的第一個東西, 傳入function的第一個東西....)
+        setTimeout(msg, 5000, 5, "五")
+
+        // clearTimeout(計時器)
+        let delay = setTimeout(() => {
+            alert("過了五秒了")
+        }, 5000)
+        clearTimeout(delay)
+
+        // 從setTimeout看let跟var差別
+        for (let i = 0; i < 3; i++) {
+            setTimeout(() => {
+                console.log("let" + i)
+            }, 1000)
+        }
+        for (var j = 0; j < 3; j++) {
+            setTimeout(() => {
+                console.log("var" + j)
+            }, 1000)
+        }
+
+        // 正數1-10
+        let num = 10
+        let timer = setInterval(() => {
+            document.write(num + "<br>");
+            num++
+            if (num > 10) {
+                clearInterval(timer)
+            }
+        }, 1000);
+        // 倒數10-1
+        let num = 10
+        let timer = setInterval(() => {
+            document.write(num + "<br>");
+            num--
+            if (num < 0) {
+                clearInterval(timer)
+            }
+        }, 1000);
+
+
+        let num = parseInt(prompt("請輸入數字"))
+        if (isNaN(num) || num < 0) {
+            alert("錯誤")
+        } else {
+            let timer = setInterval(() => {
+                document.write(num + "<br>");
+                num--
+                if (num < 0) {
+                    clearInterval(timer)
+                }
+            }, 1000);
+        }
+
+
+    </script>
+</body>
+
+</html>
