@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        #loading {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            background-color: aquamarine;
+            display: table;
+            transition: opacity 1s;
+        }
+
+        #loading-inner {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+            color: aliceblue;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="loading">
+        <div id="loading-inner">
+            <img src="aa.svg" alt="">
+            <h1>載入中</h1>
+        </div>
+    </div>
+    <a href="https://google.com">google</a>
+    <img src="https://cdna.artstation.com/p/assets/images/images/022/833/576/large/viktor-titov-rakdos-showstopper-for-artstation.jpg?15768540780"
+        alt="">
+    <img src="https://cdna.artstation.com/p/assets/images/images/012/877/212/large/viktor-titov-artid-404178-verdant-force.jpg?1536954066"
+        alt="">
+    <img src="https://cdna.artstation.com/p/assets/images/images/015/679/692/large/viktor-titov-bloodmoon-pyke-final.jpg?1549227899"
+        alt="">
+    <img src="https://cdna.artstation.com/p/assets/images/images/022/833/576/large/viktor-titov-rakdos-showstopper-for-artstation.jpg?15768540780"
+        alt="">
+    <img src="https://cdna.artstation.com/p/assets/images/images/012/877/212/large/viktor-titov-artid-404178-verdant-force.jpg?1536954066"
+        alt="">
+    <img src="https://cdna.artstation.com/p/assets/images/images/015/679/692/large/viktor-titov-bloodmoon-pyke-final.jpg?1549227899"
+        alt="">
+    <script>
+        // 當載入狀態改變時
+        // document.onreadystatechange
+        // interactive:載入完html標籤時
+        // complete:整個網頁載入完時
+        // ---------------------------
+        // 當整個網頁載入完(連圖片都下載完)時
+        // window.onload
+        const loading = document.getElementById("loading")
+        document.onreadystatechange = () => {
+            console.log(document.readyState);
+        }
+        window.onload = () => {
+            console.log('window ok');
+            loading.style.opacity = 0;
+            setTimeout(() => {
+                loading.style.display = 'none';
+            }, 1000)
+        }
+    </script>
+</body>
+
+</html>

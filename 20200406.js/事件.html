@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="點我" onclick="alert('你好')">
+    <input type="button" value="點我看時間" onclick="this.value = new Date().toLocaleString('zh-tw')">
+    <input type="button" value="點我去google" onclick="goto('https://google.com.tw')">
+    <hr>
+    <input class="btn" type="button" value="點我">
+    <input class="btn" type="button" value="點我">
+    <input class="btn" type="button" value="點我">
+    <input class="btn" type="button" value="點我">
+    <input class="btn" type="button" value="點我">
+    <hr>
+    <a href="https://fb.com" id="fb">去facebook</a>
+    <hr>
+    <p id="keytext"></p>
+
+    <script>
+        const goto = (link) => {
+            location.href = link
+        }
+
+        const btns = document.getElementsByClassName("btn")
+        for (let btn of btns) {
+            btn.onclick = () => {
+                alert("點了按鈕")
+            }
+        }
+
+        const fb = document.getElementById("fb")
+        fb.onclick = (event) => {
+            const input = prompt("輸入密碼")
+            if (input != '1234') {
+                event.preventDefault();
+                alert("上課不要看")
+            }
+        }
+
+        const keytext = document.getElementById("keytext")
+        document.onkeydown = (event) => {
+            keytext.innerText += event.key
+        }
+    </script>
+</body>
+
+</html>
