@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input class="btn" type="button" value="剪刀">
+    <input class="btn" type="button" value="石頭">
+    <input class="btn" type="button" value="布">
+    <ul id="records"></ul>
+    <script>
+        const btns = document.getElementsByClassName("btn");
+        const records = document.getElementById("records");
+        const options = ["剪刀", "石頭", "布"];
+        for (let btn of btns) {
+            btn.onclick = () => {
+                const user = btn.value;
+                const rand = options[Math.round(Math.random() * 2)];
+                let result = "";
+
+                if (user == rand) {
+                    result = "平手";
+                }
+                else if ((user == "剪刀" && rand == "布") || (user == "石頭" && rand == "剪刀") || (user == "布" && rand == "石頭")) {
+                    result = "贏";
+                }
+                else {
+                    result = "輸"
+                }
+
+                const msg = `你出 ${user}，電腦出 ${rand}，${result}`;
+                alert(msg);
+                records.innerHTML += `<li>${msg}</li>`
+            }
+        }
+    </script>
+</body>
+
+</html>
