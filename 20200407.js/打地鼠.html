@@ -49,15 +49,18 @@
     玩家: <span id="text-highplayer">沒有人</span> <br>
     分數: <span id="text-highscore">0</span>
     <script>
+        // 宣告
         const holes = document.getElementsByClassName("hole");
         const btnStart = document.getElementById("btn-start");
         const textScore = document.getElementById("text-score");
         const textTime = document.getElementById("text-time");
         const textHighPlayer = document.getElementById("text-highplayer");
         const textHighScore = document.getElementById("text-highscore");
+        // 音訊 new Audio()
         const rihai = new Audio();
         rihai.src = "./rihai.mp3";
 
+        // 定變數
         // 分數
         let score = 0;
         // 是否在遊戲中
@@ -70,6 +73,7 @@
         let highscore = { name: '', score: 0 }
         // 將 localStorage 存的文字轉成可以使用的陣列
         let storage = JSON.parse(localStorage.getItem("highscore"));
+
         // 如果有分數紀錄
         if (storage != null) {
             // 將最高分記錄存入變數並修改網頁文字
@@ -78,7 +82,7 @@
             highscore.score = storage.score;
             textHighScore.innerText = highscore.score;
         }
-
+        // 當按下按鍵時執行的動作
         btnStart.onclick = () => {
             // 停用開始按鈕
             btnStart.disabled = true;
@@ -94,24 +98,21 @@
             timeleft = 10;
             textTime.innerText = timeleft;
         }
-
+        // 當遊戲開始時的動作
         const game = () => {
             // 清掉格子的 class
             for (let hole of holes) {
                 hole.classList.remove("red");
                 hole.classList.remove("blue");
             }
-
             // 隨機抽三格，變紅色
             for (let i = 0; i < 3; i++) {
                 const rand = Math.floor(Math.random() * 9);
                 holes[rand].classList.add("red");
             }
-
             // 時間減一
             timeleft--;
             textTime.innerText = timeleft;
-
             // 如果時間到了
             if (timeleft == 0) {
                 // 設定狀態為不在遊戲中
@@ -126,7 +127,6 @@
                 // 啟用開始按鈕
                 btnStart.disabled = false;
                 alert(`你得到 ${score} 分`);
-
                 // 如果沒有分數紀錄，或是大於目前分數
                 if (storage == null || score > highscore.score) {
                     rihai.play();
