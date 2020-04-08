@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main {
+            font-size: 24px;
+            font-family: "微軟正黑體";
+            width: 600px;
+            margin: auto;
+            padding: 10px;
+            text-align: center;
+            background-color: bisque;
+        }
+
+        .ruleimg {
+            width: 100px;
+            border: 1px solid #000;
+        }
+
+        table {
+            margin: auto;
+        }
+
+        td {
+            width: 50px;
+            text-align: center;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        .rule {
+            height: 30px;
+            border: 1px solid #000;
+        }
+
+        .game {
+            width: 180px;
+            height: 160px;
+            animation: Probe 1s linear forwards;
+        }
+
+        @keyframes Probe {
+            0% {
+                background-position: center 150px;
+            }
+
+            100% {
+                background-position: center 10px;
+            }
+        }
+
+        .gameout {
+            animation: Probe2 1s linear forwards;
+        }
+
+        @keyframes Probe2 {
+            0% {
+                background-position: center 10px;
+            }
+
+            100% {
+                background-position: center 320px;
+            }
+        }
+
+        .gameimg {
+            width: 180px;
+            position: absolute;
+            left: 0px;
+            bottom: -10px;
+        }
+
+        .normal {
+            background-image: url("./img/normal.png");
+        }
+
+        .angry {
+            background-image: url("./img/angry.png");
+        }
+
+        .happy {
+            background-image: url("./img/happy.png");
+        }
+
+        .daze {
+            background-image: url("./img/daze.png");
+        }
+
+        .cry {
+            background-image: url("./img/cry.png");
+        }
+
+        .but {
+            text-align: center;
+            margin: 5px;
+        }
+
+        input {
+            width: 130px;
+            height: 35px;
+            font-size: 16px;
+        }
+
+        * {
+            cursor: url(100.png) 25 25, auto;
+        }
+
+        #theWorld {
+            cursor: url(dio.png) 25 25, auto;
+        }
+
+        .invert {
+            filter: invert(1);
+        }
+    </style>
+
+<body>
+    <div class="main">
+        遊戲規則
+        <table>
+            <tbody>
+                <tr>
+                    <td class="rule">圖示</td>
+                    <td><img src="./img/normal.png" alt="" class="ruleimg"></td>
+                    <td><img src="./img/happy.png" alt="" class="ruleimg"></td>
+                    <td><img src="./img/daze.png" alt="" class="ruleimg"></td>
+                </tr>
+                <tr>
+                    <td class="rule">得分</td>
+                    <td class="rule">+1</td>
+                    <td class="rule">-1</td>
+                    <td class="rule">0</td>
+                </tr>
+            </tbody>
+        </table>
+
+        剩餘時間:<span id="timeleft">15</span>秒
+        分數:<span id="score">0</span>
+        <div class="but">
+            <input type="button" value="開始" id="start">
+            <input type="button" value="時間暫停" id="theWorld">
+        </div>
+        <table>
+            <tbody>
+                <tr>
+                    <td class="game"><img src="./img/hole.png" alt="" class="gameimg"></td>
+                    <td class="game"><img src="./img/hole.png" alt="" class="gameimg"></td>
+                    <td class="game"><img src="./img/hole.png" alt="" class="gameimg"></td>
+                </tr>
+                <tr>
+                    <td class="game"><img src="./img/hole.png" alt="" class="gameimg"></td>
+                    <td class="game"><img src="./img/hole.png" alt="" class="gameimg"></td>
+                    <td class="game"><img src="./img/hole.png" alt="" class="gameimg"></td>
+                </tr>
+                <tr>
+                    <td class="game"><img src="./img/hole.png" alt="" class="gameimg"></td>
+                    <td class="game"><img src="./img/hole.png" alt="" class="gameimg"></td>
+                    <td class="game"><img src="./img/hole.png" alt="" class="gameimg"></td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+    <script>
+        //start button
+        let start = document.getElementById("start");
+
+        let score = 0;
+        let scoreText = document.getElementById("score");
+        // all td
+        let tds = document.getElementsByClassName("game");
+        //換格time
+        let timer = 0;
+        //遊戲time計時器
+        let gameTimer = 0;
+
+        let timeleft = document.getElementById("timeleft");
+
+        let b = document.body;
+
+        let outtimer = [];
+
+        let time = 15;
+
+        start.onclick = function () {
+            timer = setInterval(game, 2500);
+            //立刻換格
+            game();
+            //停用按鈕
+            start.setAttribute("disabled", "true");
+
+            gameTimer = setInterval(gametime, 1000);
+            gametime();
+        }
+        let world = false;
+
+        theWorld.onclick = function () {
+            // alert("The World!");
+            world = true;
+            setTimeout(dio, 5000);
+            for (let i = 0; i < outtimer.length; i++) {
+                clearTimeout(outtimer[i]);
+            }
+
+            b.classList.add("invert");
+            setTimeout(inv, 2000);
+        }
+
+        function inv() {
+            b.classList.remove("invert");
+        }
+
+        function dio() {
+            world = false;
+            b.classList.remove("invert");
+            for (let i = 0; i < tds.length; i++) {
+                if (tds[i].classList.contains("game")) {
+                    tds[i].classList.add("gameout");
+                }
+            }
+        }
+
+        function gametime() {
+            if (!world) {
+                time--;
+            }
+
+            timeleft.innerText = time;
+            if (time == 0) {
+                // 停止遊戲倒數
+                clearInterval(gameTimer);
+                // 停止換格子
+                clearInterval(timer);
+                setTimeout(function () {
+                    alert(`時間到，你獲得了${score}分`);
+                    time = 15;
+                    score = 0;
+                    // 將開始按鈕啟用
+                    start.removeAttribute("disabled");
+                    // 改回時間文字
+                    timeleft.innerText = 15;
+                    // 改回分數文字
+                    scoreText.innerText = 0;
+                }, 100);
+
+                // 重置所有格子
+                for (let i = 0; i < tds.length; i++) {
+                    tds[i].classList.remove("normal");
+                    tds[i].classList.remove("angry");
+                    tds[i].classList.remove("daze");
+                    tds[i].classList.remove("happy");
+                    tds[i].classList.remove("cry");
+                }
+            }
+        }
+
+        // 換格子
+        function game() {
+            if (!world) {
+                for (let i = 0; i < tds.length; i++) {
+                    tds[i].classList.remove("normal");
+                    tds[i].classList.remove("angry");
+                    tds[i].classList.remove("daze");
+                    tds[i].classList.remove("happy");
+                    tds[i].classList.remove("cry");
+                    tds[i].classList.remove("gameout");
+                }
+
+
+                let rand = Math.floor(Math.random() * 9 + 1);
+                for (let i = 0; i < rand; i++) {
+                    let rand1 = Math.floor(Math.random() * 9);
+                    tds[rand1].classList.add("normal");
+
+                    let rand2 = Math.floor(Math.random() * 9);
+                    if (rand1 == rand2) {
+                        tds[rand2].classList.remove("normal");
+                        tds[rand2].classList.add("daze");
+                    }
+
+                    let rand3 = Math.floor(Math.random() * 9);
+                    if (rand1 == rand3) {
+                        tds[rand3].classList.remove("normal");
+                        tds[rand3].classList.add("happy");
+                    }
+
+                    outtimer[i] = setTimeout(function () {
+                        for (let i = 0; i < tds.length; i++) {
+                            if (tds[i].classList.contains("game")) {
+                                tds[i].classList.add("gameout");
+                            }
+                        }
+                    }, 2000);
+                }
+
+
+            }
+        }
+
+        function getRandomArray(minNum, maxNum, n) {	//隨機產生不重覆的n個數字
+            var rdmArray = [n];		//儲存產生的陣列
+
+            for (var i = 0; i < n; i++) {
+                var rdm = 0;		//暫存的亂數
+
+                do {
+                    var exist = false;			//此亂數是否已存在
+                    rdm = getRandom(minNum, maxNum);	//取得亂數
+
+                    //檢查亂數是否存在於陣列中，若存在則繼續回圈
+                    if (rdmArray.indexOf(rdm) != -1) exist = true;
+
+                } while (exist);	//產生沒出現過的亂數時離開迴圈
+
+                rdmArray[i] = rdm;
+            }
+            return rdmArray;
+        }
+
+        // 點格子時
+        for (let i = 0; i < tds.length; i++) {
+            tds[i].onclick = function () {
+                if (this.classList.contains("normal")) {
+                    this.classList.remove("normal");
+                    this.classList.add("angry");
+
+                    score++;
+                    scoreText.innerText = score;
+                }
+
+                if (this.classList.contains("happy")) {
+                    this.classList.remove("happy");
+                    this.classList.add("cry");
+
+                    score--;
+                    scoreText.innerText = score;
+                }
+            }
+        }
+    </script>
+
+    <body>
+
+    </body>
+
+</html>

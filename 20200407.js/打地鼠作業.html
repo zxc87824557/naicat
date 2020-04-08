@@ -6,150 +6,132 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        #game {
-            margin: 8% auto;
+        body {
+            background: url(./背景1.png);
+            background-size: cover;
+        }
+
+        #map {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+        }
+
+        #main {
+            position: absolute;
+            bottom: 10px;
+        }
+
+        h3 {
+            color: blanchedalmond;
+            opacity: 0.5;
+            font-size: 36px;
+            font-family: 微軟正黑體;
+            margin: 10px;
+        }
+
+        .w1 {
+            color: blanchedalmond;
+            font-size: 20px;
+            position: absolute;
+            left: 45%;
+        }
+
+        .w2 {
+            color: blanchedalmond;
+            font-size: 20px;
+            position: absolute;
+            left: 55%;
+        }
+
+        .ab_center {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .logo {
+            width: 250px;
+            height: 200px;
+            background: url(./logo1.png);
+            background-size: 250px 200px;
+            margin: auto;
+        }
+
+        .read {
+            color: blanchedalmond;
+            text-align: center;
+            font-family: 微軟正黑體;
+        }
+
+        .s1 {
+            width: 150px;
+            height: 150px;
 
         }
 
         .hole {
-            width: 200px;
-            height: 100px;
-            background: black;
-            cursor: url(./cursor.png) 50 50, auto;
-            border-radius: 50%;
-
-        }
-
-        .red {
-            background: red;
-        }
-
-        .blue {
-            background: blue;
+            width: 150px;
+            height: 150px;
+            background-image: url(箱子.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            cursor: url(./日輪刀.png) 50 50, auto;
         }
     </style>
 </head>
 
 <body>
-    <table id="game">
-        <tr>
-            <td class="hole" id="hole7"></td>
-            <td class="hole" id="hole8"></td>
-            <td class="hole" id="hole9"></td>
-        </tr>
-        <tr>
-            <td class="hole" id="hole4"></td>
-            <td class="hole" id="hole5"></td>
-            <td class="hole" id="hole6"></td>
-        </tr>
-        <tr>
-            <td class="hole" id="hole1"></td>
-            <td class="hole" id="hole2"></td>
-            <td class="hole" id="hole3"></td>
-        </tr>
-    </table>
-    <input type="button" value="START" id="btn-start"> <br>
-    目前分數: <span id="text-score">0</span>
-    剩餘時間: <span id="text-time">10</span>
-    <hr>
-    最高分: <br>
-    玩家: <span id="text-highplayer">沒有人</span> <br>
-    分數: <span id="text-highscore">0</span>
+    <div id="map">
+        <div class="logo"></div>
+        <br>
+        <br>
+        <span class="w1">時間:<span id="text-time">30</span></span>
+        <span class="w2">分數:<span id="score">0</span></span>
+        <div id="main">
+            <table border="1" class="read">
+                <tr>
+                    <td style="width: 100px;">圖示</td>
+                    <td style="text-align: center;"><img src="鬼.png" alt="" class="s1"></td>
+                    <td style="text-align: center;"><img src="迷豆子.png" alt="" class="s1"></td>
+                </tr>
+                <tr>
+                    <td style="width: 100px;">得分</td>
+                    <td>+1</td>
+                    <td>-1</td>
+                </tr>
+            </table>
+            <h3 id="start">開始遊戲:S</h3>
+            <h3 id="re">重新開始:R</h3>
+
+        </div>
+        <table id="game" class="ab_center">
+            <tr>
+                <td class="hole"></td>
+                <td class="hole"></td>
+                <td class="hole"></td>
+            </tr>
+            <tr>
+                <td class="hole"></td>
+                <td class="hole"></td>
+                <td class="hole"></td>
+            </tr>
+            <tr>
+                <td class="hole"></td>
+                <td class="hole"></td>
+                <td class="hole"></td>
+            </tr>
+        </table>
+    </div>
     <script>
-        // 宣告
-        const holes = document.getElementsByClassName("hole");
-        const btnStart = document.getElementById("btn-start");
-        const textScore = document.getElementById("text-score");
-        const textTime = document.getElementById("text-time");
-        const textHighPlayer = document.getElementById("text-highplayer");
-        const textHighScore = document.getElementById("text-highscore");
-        // 音訊 new Audio()
-        const rihai = new Audio();
-        rihai.src = "./rihai.mp3";
+        const holes = document.getElementsByClassName("hole")
+        const textTime = document.getElementById("text-time")
+        const start = document.getElementById("start")
+        const re = document.getElementById("re")
 
-        // 定變數
-        let score = 0;
-        // 是否在遊戲中
-        let inGame = false;
-        // 剩餘秒數
-        let timeleft = 10;
-        // 計時器
-        let timer = 0;
-        // 最高分
-        let highscore = { name: '', score: 0 }
-        // 將 localStorage 存的文字轉成可以使用的陣列
-        let storage = JSON.parse(localStorage.getItem("highscore"));
+        start.onclick = () => {
 
-        // 如果有分數紀錄
-        if (storage != null) {
-            highscore.name = storage.name;
-            textHighPlayer.innerText = highscore.name;
-            highscore.score = storage.score;
-            textHighScore.innerText = highscore.score;
-        }
-        // 按鈕動作
-        btnStart.onclick = () => {
-            btnStart.disabled = true;
-            timer = setInterval(game, 1000);
-            game();
-            score = 0;
-            textScore.innerText = score;
-            inGame = true;
-            timeleft = 10;
-            textTime.innerText = timeleft;
-        }
-        // 當遊戲開始時的動作
-        const game = () => {
-            for (let hole of holes) {
-                hole.classList.remove("red");
-                hole.classList.remove("blue");
-            }
-            for (let i = 0; i < 3; i++) {
-                const rand = Math.floor(Math.random() * 9);
-                holes[rand].classList.add("red");
-            }
-            timeleft--;
-            textTime.innerText = timeleft;
-            if (timeleft == 0) {
-                inGame = false;
-                clearInterval(timer);
-                for (let hole of holes) {
-                    hole.classList.remove("red");
-                    hole.classList.remove("blue");
-                }
-                btnStart.disabled = false;
-                alert(`你得到 ${score} 分`);
-                if (storage == null || score > highscore.score) {
-                    rihai.play();
-                    const input = prompt("恭喜最高分，請輸入名字");
-                    if (input != null && input.trim() != '') {
-                        highscore.score = score;
-                        highscore.name = input;
-                        textHighPlayer.innerText = highscore.name;
-                        textHighScore.innerText = highscore.score;
-                        localStorage.setItem("highscore", JSON.stringify(highscore));
-                    }
-                }
-            }
-        }
-        // 滑鼠設定
-        for (let hole of holes) {
-            hole.onclick = () => {
-                if (inGame && hole.classList.contains("red")) {
-                    hole.classList.add("blue");
-                    hole.classList.remove("red");
-                    score++;
-                    textScore.innerText = score;
-                }
-            }
-        }
-        // 鍵盤設定
-        document.onkeydown = (event) => {
-            const key = event.key;
-            if (!isNaN(key) && inGame && key > 0 && key < 10) {
-                const target = document.getElementById(`hole${key}`);
-                target.click();
-            }
         }
     </script>
 </body>
