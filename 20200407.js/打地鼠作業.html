@@ -74,10 +74,59 @@
         .hole {
             width: 150px;
             height: 150px;
+            cursor: url(./日輪刀.png) 50 50, auto;
+            overflow: hidden;
+        }
+
+        .door {
+            width: 150px;
+            height: 150px;
             background-image: url(箱子.jpg);
             background-repeat: no-repeat;
             background-size: cover;
-            cursor: url(./日輪刀.png) 50 50, auto;
+        }
+
+        .open {
+            animation: open 0.5s;
+        }
+
+        .close {
+            animation: clsoe 0.5s;
+        }
+
+        .good {
+            background: url(迷豆子.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            transition: 0.5s;
+        }
+
+        .bad {
+            background: url(鬼.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            transition: 0.5s;
+        }
+
+
+        @keyframes open {
+            form {
+                transform: translateX(0px);
+            }
+
+            to {
+                transform: translateX(-150px);
+            }
+        }
+
+        @keyframes close {
+            form {
+                transform: translateX(-150px);
+            }
+
+            to {
+                transform: translateX(0px);
+            }
         }
     </style>
 </head>
@@ -108,20 +157,39 @@
         </div>
         <table id="game" class="ab_center">
             <tr>
-                <td class="hole"></td>
-                <td class="hole"></td>
-                <td class="hole"></td>
+                <td class="hole">
+                    <div class="door"></div>
+                </td>
+                <td class="hole">
+                    <div class="door"></div>
+                </td>
+                <td class="hole">
+                    <div class="door"></div>
+                </td>
             </tr>
             <tr>
-                <td class="hole"></td>
-                <td class="hole"></td>
-                <td class="hole"></td>
+                <td class="hole">
+                    <div class="door"></div>
+                </td>
+                <td class="hole">
+                    <div class="door"></div>
+                </td>
+                <td class="hole">
+                    <div class="door"></div>
+                </td>
             </tr>
             <tr>
-                <td class="hole"></td>
-                <td class="hole"></td>
-                <td class="hole"></td>
+                <td class="hole">
+                    <div class="door"></div>
+                </td>
+                <td class="hole">
+                    <div class="door"></div>
+                </td>
+                <td class="hole">
+                    <div class="door"></div>
+                </td>
             </tr>
+
         </table>
     </div>
     <script>
@@ -129,10 +197,40 @@
         const textTime = document.getElementById("text-time")
         const start = document.getElementById("start")
         const re = document.getElementById("re")
+        const door = document.getElementsByClassName("door")
 
-        start.onclick = () => {
+        let ingame = false
+        let score = 0
+        let timeleft = 30
+        let timer = 0
 
+        document.onkeydown = (eve) => {
+            const key = eve.key;
+            if (key == "s") {
+                ingame = true;
+                game();
+            }
         }
+        const game = () => {
+            for (let i of holes) {
+                i.classList.remove("good")
+                i.classList.remove("bad")
+            }
+            timeleft--;
+            for (let i = 0; i < 2; i++) {
+                const rand = Math.floor(Math.random() * 9)
+                const rand2 = Math.floor(Math.random() * 9)
+                holes[rand].classList.add('good')
+                door[rand].classList.add('open')
+                if (holes[rand2].classList.contains('good') == false) {
+                    holes[rand2].classList.add('bad')
+
+                }
+
+            }
+        }
+
+
     </script>
 </body>
 
