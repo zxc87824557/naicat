@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>待辦清單</h1>
+    <input type="text" name="1" id="text" value="">
+    <input type="button" name="1" value="新增" id="btn">
+
+    <ul id="ul1">
+    </ul>
+    <script src="jquery-3.5.0.min.js"></script>
+    <script>
+        $(function () {
+            $("#btn").click(function () {
+                $("#ul1").append("<li>" + $("#text").val() + "<input type='button'value='x' class='del'>" + "</li>")
+                $("#text").val("")
+            })
+            // jq的事件不需要像js寫for
+            // .on(事件, 過濾, function)
+            // 當點擊#ul1裡面的del時
+            // (this)會是.del
+            $("#ul1").on("click", ".del", function () {
+                $(this).parent().remove()
+            })
+        })
+    </script>
+</body>
+
+</html>
