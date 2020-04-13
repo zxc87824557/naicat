@@ -87,11 +87,11 @@
         }
 
         .open {
-            animation: open 1s alternate;
+            animation: open 2s alternate;
         }
 
         .close {
-            animation: close 1s alternate;
+            animation: close 1s forwards;
         }
 
         .good {
@@ -126,8 +126,12 @@
                 transform: translateX(0px);
             }
 
-            to {
+            50% {
                 transform: translateX(-150px);
+            }
+
+            to {
+                transform: translateX(0px);
             }
         }
 
@@ -148,7 +152,7 @@
         <div class="logo"></div>
         <br>
         <br>
-        <span class="w1">時間:<span id="text-time">10</span></span>
+        <span class="w1">時間:<span id="text-time">30</span></span>
         <span class="w2">分數:<span id="text-score">0</span></span>
         <div id="main">
             <table border="1" class="read">
@@ -214,54 +218,73 @@
 
         let ingame = false
         let score = 0
-        let timeleft = 10
+        let timeleft = 30
         let timer = 0
+
 
         document.onkeydown = (eve) => {
             let key = eve.key;
             if (key == "s") {
+                timeleft = 30
                 ingame = true;
                 timer = setInterval(game, 1000);
+                dooropen = setInterval(opens, 2000)
                 game();
+                opens();
                 score = 0;
+            }
+            else if (key == "r") {
+                ingame = false;
+                score = 0;
+                textScore.innerText = score
+                timeleft = 30
+                textTime.innerText = timeleft
+                clearInterval(timer);
+                clearInterval(dooropen);
+                for (let i of door) {
+                    i.classList.remove("opens")
+                }
 
             }
         }
-        // document.onkeydown = (eve) => {
-        //     let key = eve.key;
-        //     if (key == "r") {
-        //         ingame = false;
-        //         score = 0;
-        //         timer = setInterval(game, 1000);
-        //         game();
-        //     }
-        // }
+
+
         const game = () => {
+            timeleft--;
+            textTime.innerText = timeleft;
+            if (timeleft == 0) {
+                ingame = false;
+                clearInterval(timer);
+                clearInterval(dooropen);
+            }
+
+        }
+        const opens = () => {
             for (let i of holes) {
                 i.classList.remove("good")
                 i.classList.remove("bad")
+                i.classList.remove("good2")
+                i.classList.remove("bad2s")
             }
-            for (let i = 0; i < 2; i++) {
+            for (let i of door) {
+                i.classList.remove("open")
+            }
+            for (let i = 0; i < 4; i++) {
                 let rand = Math.floor(Math.random() * 9)
                 let rand2 = Math.floor(Math.random() * 9)
                 holes[rand].classList.add('good')
                 door[rand].classList.add('open')
-
                 if (holes[rand2].classList.contains('good') == false) {
                     holes[rand2].classList.add('bad')
                     door[rand2].classList.add('open')
                 }
             }
-            if (timeleft == 1) {
+            if (timeleft == 0) {
                 ingame = false;
-                clearInterval(timer);
-                for (let i of holes) {
-                    i.classList.remove("good")
-                    i.classList.remove("bad")
+                for (let i of door) {
+                    i.classList.remove("open")
                 }
             }
-            timeleft--;
-            textTime.innerText = timeleft;
         }
 
         for (let i of holes) {
