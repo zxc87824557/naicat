@@ -221,34 +221,36 @@
         let timeleft = 30
         let timer = 0
 
-
+        // 開始按鈕
         document.onkeydown = (eve) => {
             let key = eve.key;
             if (key == "s") {
                 timeleft = 30
                 ingame = true;
                 timer = setInterval(game, 1000);
-                dooropen = setInterval(opens, 2000)
+                dooropen = setInterval(dooropen, 2000)
                 game();
                 opens();
                 score = 0;
             }
             else if (key == "r") {
-                ingame = false;
-                score = 0;
-                textScore.innerText = score
-                timeleft = 30
-                textTime.innerText = timeleft
-                clearInterval(timer);
-                clearInterval(dooropen);
-                for (let i of door) {
-                    i.classList.remove("opens")
-                }
-
+                regame()
+            }
+        }
+        const regame = () => {
+            ingame = false;
+            score = 0;
+            textScore.innerText = score
+            timeleft = 30
+            textTime.innerText = timeleft
+            clearInterval(timer);
+            clearInterval(dooropen);
+            for (let i of door) {
+                i.classList.remove("opens")
             }
         }
 
-
+        // 遊戲開始動作
         const game = () => {
             timeleft--;
             textTime.innerText = timeleft;
@@ -259,12 +261,13 @@
             }
 
         }
-        const opens = () => {
+        // 開門動作
+        const dooropen = () => {
             for (let i of holes) {
                 i.classList.remove("good")
                 i.classList.remove("bad")
                 i.classList.remove("good2")
-                i.classList.remove("bad2s")
+                i.classList.remove("bad2")
             }
             for (let i of door) {
                 i.classList.remove("open")
@@ -286,7 +289,7 @@
                 }
             }
         }
-
+        // 換圖
         for (let i of holes) {
             i.onclick = () => {
                 if (ingame && i.classList.contains("bad")) {
@@ -303,6 +306,8 @@
                 }
             }
         }
+
+
 
     </script>
 </body>
