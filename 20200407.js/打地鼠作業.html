@@ -87,25 +87,37 @@
         }
 
         .open {
-            animation: open 0.5s;
+            animation: open 1s alternate;
         }
 
         .close {
-            animation: clsoe 0.5s;
+            animation: close 1s alternate;
         }
 
         .good {
             background: url(迷豆子.png);
             background-repeat: no-repeat;
             background-size: cover;
-            transition: 0.5s;
+
+        }
+
+        .good2 {
+            background: url(迷豆子2.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+
         }
 
         .bad {
             background: url(鬼.png);
             background-repeat: no-repeat;
             background-size: cover;
-            transition: 0.5s;
+        }
+
+        .bad2 {
+            background: url(鬼2.png);
+            background-repeat: no-repeat;
+            background-size: cover;
         }
 
 
@@ -136,8 +148,8 @@
         <div class="logo"></div>
         <br>
         <br>
-        <span class="w1">時間:<span id="text-time">30</span></span>
-        <span class="w2">分數:<span id="score">0</span></span>
+        <span class="w1">時間:<span id="text-time">10</span></span>
+        <span class="w2">分數:<span id="text-score">0</span></span>
         <div id="main">
             <table border="1" class="read">
                 <tr>
@@ -198,38 +210,76 @@
         const start = document.getElementById("start")
         const re = document.getElementById("re")
         const door = document.getElementsByClassName("door")
+        const textScore = document.getElementById("text-score")
 
         let ingame = false
         let score = 0
-        let timeleft = 30
+        let timeleft = 10
         let timer = 0
 
         document.onkeydown = (eve) => {
-            const key = eve.key;
+            let key = eve.key;
             if (key == "s") {
                 ingame = true;
+                timer = setInterval(game, 1000);
                 game();
+                score = 0;
+
             }
         }
+        // document.onkeydown = (eve) => {
+        //     let key = eve.key;
+        //     if (key == "r") {
+        //         ingame = false;
+        //         score = 0;
+        //         timer = setInterval(game, 1000);
+        //         game();
+        //     }
+        // }
         const game = () => {
             for (let i of holes) {
                 i.classList.remove("good")
                 i.classList.remove("bad")
             }
-            timeleft--;
             for (let i = 0; i < 2; i++) {
-                const rand = Math.floor(Math.random() * 9)
-                const rand2 = Math.floor(Math.random() * 9)
+                let rand = Math.floor(Math.random() * 9)
+                let rand2 = Math.floor(Math.random() * 9)
                 holes[rand].classList.add('good')
                 door[rand].classList.add('open')
+
                 if (holes[rand2].classList.contains('good') == false) {
                     holes[rand2].classList.add('bad')
-
+                    door[rand2].classList.add('open')
                 }
-
             }
+            if (timeleft == 1) {
+                ingame = false;
+                clearInterval(timer);
+                for (let i of holes) {
+                    i.classList.remove("good")
+                    i.classList.remove("bad")
+                }
+            }
+            timeleft--;
+            textTime.innerText = timeleft;
         }
 
+        for (let i of holes) {
+            i.onclick = () => {
+                if (ingame && i.classList.contains("bad")) {
+                    i.classList.add("bad2")
+                    i.classList.remove("bad")
+                    score++;
+                    textScore.innerText = score;
+                }
+                if (ingame && i.classList.contains("good")) {
+                    i.classList.add("good2")
+                    i.classList.remove("good")
+                    score--;
+                    textScore.innerText = score;
+                }
+            }
+        }
 
     </script>
 </body>
