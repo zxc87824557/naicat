@@ -78,6 +78,10 @@
             overflow: hidden;
         }
 
+        .hole:active {
+            cursor: url(./日輪刀2.png) 50 50, auto;
+        }
+
         .door {
             width: 150px;
             height: 150px;
@@ -90,9 +94,6 @@
             animation: open 2s alternate;
         }
 
-        .close {
-            animation: close 1s forwards;
-        }
 
         .good {
             background: url(迷豆子.png);
@@ -144,6 +145,16 @@
                 transform: translateX(0px);
             }
         }
+
+        @keyframes rotote {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(-50deg);
+            }
+        }
     </style>
 </head>
 
@@ -168,7 +179,7 @@
                 </tr>
             </table>
             <h3 id="start">開始遊戲:S</h3>
-            <h3 id="re">重新開始:R</h3>
+            <!-- <h3 id="re">重新開始:R</h3> -->
 
         </div>
         <table id="game" class="ab_center">
@@ -224,7 +235,7 @@
         // 開始按鈕
         document.onkeydown = (eve) => {
             let key = eve.key;
-            if (key == "s") {
+            if (key == "s" && !ingame) {
                 timeleft = 30
                 ingame = true;
                 timer = setInterval(game, 1000);
@@ -233,22 +244,22 @@
                 opens();
                 score = 0;
             }
-            else if (key == "r") {
-                regame()
-            }
+            // else if (key == "r") {
+            //     regame()
+            // }
         }
-        const regame = () => {
-            ingame = false;
-            score = 0;
-            textScore.innerText = score
-            timeleft = 30
-            textTime.innerText = timeleft
-            clearInterval(timer);
-            clearInterval(dooropen);
-            for (let i of door) {
-                i.classList.remove("opens")
-            }
-        }
+        // const regame = () => {
+        //     ingame = false;
+        //     score = 0;
+        //     textScore.innerText = score
+        //     timeleft = 30
+        //     textTime.innerText = timeleft
+        //     clearInterval(timer);
+        //     clearInterval(dooropen);
+        //     for (let i of door) {
+        //         i.classList.remove("opens")
+        //     }
+        // }
 
         // 遊戲開始動作
         const game = () => {
@@ -258,6 +269,9 @@
                 ingame = false;
                 clearInterval(timer);
                 clearInterval(dooropen);
+                setTimeout(() => {
+                    alert(`恭喜你得到${score}`);
+                }, 100);
             }
 
         }
