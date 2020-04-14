@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+        }
+
+        #game {
+            width: 100vw;
+            height: 100vh;
+            background: rgb(160, 204, 89);
+            cursor: url(./mouse1.png) 50 50, auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #game:active {
+            cursor: url(./mouse2.png) 50 50, auto;
+        }
+
+        #game>img {
+            position: absolute;
+            width: 160px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="game">
+        <p>分數: <span id="text-score">0</span></p>
+        <p>時間: <span id="text-time">10</span></p>
+        <input type="button" value="開始遊戲" id="btn-start">
+    </div>
+    <script src="../jquery-3.5.0.min.js"></script>
+    <script>
+        let score = 0
+        let timeleft = 10
+        let timer = 0
+        // 怪流水號
+        let monsterid = 0
+
+        const rand = (num) => {
+            return Math.floor(Math.random() * num)
+        }
+        const rand2 = (num2) => {
+            return Math.floor(Math.random() * num)
+        }
+        const rand3 = (num3) => {
+            return Math.floor(Math.random() * num)
+        }
+        // 怪位移
+        const movemonster = (monsterid) => {
+            $(`.mo${monsterid}`).animate({
+                top: rand(70) + "%",
+                left: rand(70) + "%"
+            }, 3000, function () {
+                movemonster(monsterid)
+            })
+        }
+        // 開始遊戲鍵
+        $("#btn-start").click(function () {
+            $(this).attr("disabled", true)
+            score = 0
+            $("#text-score").text(score)
+            timeleft = 10
+            $("#text-time").text(timeleft)
+            timer = setInterval(() => {
+                timeleft--
+                $("#text-time").text(timeleft)
+                if (timeleft == 0) {
+                    clearInterval(timer)
+                    $(this).attr("disabled", false)
+                    setTimeout(() => {
+                        alert(`恭喜你得到${score}分`)
+                    }, 100);
+                    $("#game img").remove()
+                }
+                else {
+                    // 隨機出現怪
+                    const num = rand(10)
+                    const num2 = rand(10)
+                    const num3 = rand(10)
+                    if (num > 3) {
+                        $("#game").append(`<img src="./monster1.gif" class = "mo${monsterid}">`)
+                        $(`.mo${monsterid}`).css({
+                            top: rand(70) + "%",
+                            left: rand(70) + "%"
+                        })
+                        movemonster(monsterid)
+                        monsterid++
+                    } else if (num2 > 4) {
+                        $("#game").append(`<img src="./monster2.gif" class = "mo${monsterid}">`)
+                        $(`.mo${monsterid}`).css({
+                            top: rand2(70) + "%",
+                            left: rand2(70) + "%"
+                        })
+                        movemonster(monsterid)
+                        monsterid++
+                    }
+                }
+            }, 1000);
+            // 怪點擊後變得圖片
+            $("#game").on("click", "img", function () {
+                $(this).attr("src", "./blood.png");
+                $(this).stop();
+                $(this).css("pointer-events", "none");
+                score++;
+                $("#text-score").text(score);
+            })
+        })
+    </script>
+</body>
+
+</html>

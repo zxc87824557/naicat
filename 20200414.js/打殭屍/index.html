@@ -95,14 +95,13 @@
         }
 
       }, 1000)
-
-      $("#game").on("click", "img", function () {
-        $(this).attr("src", "./blood.png");
-        $(this).stop();
-        $(this).css("pointer-events", "none");
-        score++;
-        $("#text-score").text(score);
-      })
+    })
+    $("#game").on("click", "img", function () {
+      $(this).attr("src", "./blood.png");
+      $(this).stop();
+      $(this).css("pointer-events", "none");
+      score++;
+      $("#text-score").text(score);
     })
   </script>
 </body>
