@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="動畫" id="btn1">
+    <input type="button" value="停止" id="btn2">
+    <input type="button" value="淡入" id="btn3">
+    <input type="button" value="淡出" id="btn4">
+    <input type="button" value="半透明" id="btn5">
+    <input type="button" value="滑入" id="btn6">
+    <input type="button" value="滑出" id="btn7">
+    <br>
+    <img src="迷豆子.png" alt="" id="sister">
+    <script src="jquery-3.5.0.min.js"></script>
+    <script>
+        $(function () {
+            $("#btn1").click(function () {
+                // .animate(改變的css,秒數,動畫結束時的function)
+                // .animate({},1000,function())
+                // 只能修改值為數字的css
+                // .animate()可以連接好幾個
+                $("#sister").animate({
+                    width: "500px",
+                    height: "+=200px"
+                }, 2000, function () {
+                    console.log("變大了")
+                }).animate({
+                    width: "300px",
+                    height: "-=200px"
+                }, 2000, function () {
+                    console.log("變大了")
+                })
+            })
+
+            $("#btn2").click(function () {
+                // .stop(是否連之後的動畫也停止，是否跳到動畫結束的狀態)
+                // 如果要的話要設定為true
+                $("#sister").stop(true, true)
+            })
+
+            $("#btn3").click(function () {
+                // .fadeIN(slow/fast/毫秒,動畫結束的function)
+                // 淡出到透明度0時會display:none，可能會影響其他東西位置
+                $("#sister").fadeIn(2000, function () {
+                    console.log("淡入了")
+                })
+            })
+
+            $("#btn4").click(function () {
+                // .fadeOut(slow/fast/毫秒,動畫結束的function)
+                // 淡出到透明度0時會display:none，可能會影響其他東西位置
+                $("#sister").fadeOut(2000, function () {
+                    console.log("淡出了")
+                })
+            })
+
+            $("#btn5").click(function () {
+                // .fadeTo(slow/fast/毫秒,透明度,動畫結束的function)
+                $("#sister").fadeTo(2000, 0.5, function () {
+                    console.log("半透明")
+                })
+            })
+
+            $("#btn6").click(function () {
+                // .slidDown(slow/fast/毫秒,動畫結束的function)
+                $("#sister").slideDown(2000, function () {
+                    console.log("滑入了")
+                })
+            })
+
+            $("#btn7").click(function () {
+                // .slidUp(slow/fast/毫秒,動畫結束的function)
+                $("#sister").slideUp(2000, function () {
+                    console.log("滑出了")
+                })
+            })
+        })
+    </script>
+</body>
+
+</html>

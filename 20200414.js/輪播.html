@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #gallery {
+        width: 400px;
+        height: 300px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    #imgs {
+        position: absolute;
+        height: 300px;
+    }
+
+    /* imgs>img只影響下一個的img imgs img是影響全部的img*/
+    #imgs>img {
+        width: 400px;
+        height: 300px;
+        float: left;
+    }
+</style>
+
+<body>
+    <div id="gallery">
+        <div id="imgs">
+            <img src="0511.jpg" alt="">
+            <img src="0521.jpg" alt="">
+            <img src="0531.jpg" alt="">
+            <img src="0541.jpg" alt="">
+            <img src="0551.jpg" alt="">
+        </div>
+    </div>
+    <input type="button" value="&lt;" id="left">
+    <input type="button" value="&gt;" id="right">
+    <script src="jquery-3.5.0.min.js"></script>
+    <script>
+        $(function () {
+            let now = 0
+            const total = $("#imgs img").length
+            $("#imgs").css("width", total * 400)
+            $("#right").click(function () {
+                if (now < total - 1) {
+                    now++;
+                    const move = now * 400;
+                    $("#imgs").animate({ left: `-${move}px` }, 1000)
+                }
+            })
+            $("#left").click(function () {
+                if (now > 0) {
+                    now--;
+                    const move = now * 400;
+                    $("#imgs").animate({ left: `-${move}px` }, 1000)
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>
