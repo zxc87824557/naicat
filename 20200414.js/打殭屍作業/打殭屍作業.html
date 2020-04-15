@@ -33,25 +33,26 @@
 <body>
     <div id="game">
         <p>分數: <span id="text-score">0</span></p>
-        <p>時間: <span id="text-time">10</span></p>
+        <p>時間: <span id="text-time">30</span></p>
         <input type="button" value="開始遊戲" id="btn-start">
     </div>
     <script src="../jquery-3.5.0.min.js"></script>
     <script>
         let score = 0
-        let timeleft = 10
+        let timeleft = 30
         let timer = 0
         // 怪流水號
         let monsterid = 0
+        let monsterid2 = 0
 
         const rand = (num) => {
             return Math.floor(Math.random() * num)
         }
         const rand2 = (num2) => {
-            return Math.floor(Math.random() * num)
+            return Math.floor(Math.random() * num2)
         }
         const rand3 = (num3) => {
-            return Math.floor(Math.random() * num)
+            return Math.floor(Math.random() * num3)
         }
         // 怪位移
         const movemonster = (monsterid) => {
@@ -62,12 +63,21 @@
                 movemonster(monsterid)
             })
         }
+        const movemonster2 = (monsterid2) => {
+            $(`.mo2${monsterid2}`).animate({
+                top: rand(70) + "%",
+                left: rand(70) + "%",
+                width: rand(70) + "%"
+            }, 3000, function () {
+                movemonster2(monsterid2)
+            })
+        }
         // 開始遊戲鍵
         $("#btn-start").click(function () {
             $(this).attr("disabled", true)
             score = 0
             $("#text-score").text(score)
-            timeleft = 10
+            timeleft = 30
             $("#text-time").text(timeleft)
             timer = setInterval(() => {
                 timeleft--
@@ -93,20 +103,22 @@
                         })
                         movemonster(monsterid)
                         monsterid++
-                    } else if (num2 > 4) {
-                        $("#game").append(`<img src="./monster2.gif" class = "mo${monsterid}">`)
-                        $(`.mo${monsterid}`).css({
+                    }
+                    if (num2 > 4) {
+                        $("#game").append(`<img src="./monster2.gif" class = "mo2${monsterid2}">`)
+                        $(`.mo2${monsterid2}`).css({
                             top: rand2(70) + "%",
                             left: rand2(70) + "%"
                         })
-                        movemonster(monsterid)
-                        monsterid++
+                        movemonster2(monsterid2)
+                        monsterid2++
                     }
                 }
             }, 1000);
             // 怪點擊後變得圖片
             $("#game").on("click", "img", function () {
                 $(this).attr("src", "./blood.png");
+                $(this).fadeOut(2500)
                 $(this).stop();
                 $(this).css("pointer-events", "none");
                 score++;
