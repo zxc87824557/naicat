@@ -13,7 +13,8 @@
         #game {
             width: 100vw;
             height: 100vh;
-            background: rgb(160, 204, 89);
+            background: url(./456.jpg);
+            background-size: cover;
             cursor: url(./mouse1.png) 50 50, auto;
             overflow: hidden;
             position: relative;
@@ -27,14 +28,48 @@
             position: absolute;
             width: 160px;
         }
+
+        #btn-start {
+            position: absolute;
+            left: 50%;
+            bottom: 1%;
+            transform: translate(-50%);
+            width: 120px;
+            height: 110px;
+            outline: none;
+            /* background: url(./start.png); */
+            background-size: cover;
+        }
+
+
+        #btn-start:active {
+            bottom: 0%;
+        }
+
+        .ab_center {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 36px;
+            font-weight: bold;
+            position: absolute;
+            color: rgb(255, 255, 255);
+            left: 50.1%;
+            top: 2.5%;
+            transform: translate(-50.1%);
+            text-shadow: 0px 0px 3px #333;
+
+
+        }
     </style>
 </head>
 
 <body>
     <div id="game">
-        <p>分數: <span id="text-score">0</span></p>
-        <p>時間: <span id="text-time">30</span></p>
-        <input type="button" value="開始遊戲" id="btn-start">
+        <div class="ab_center">
+            <p>Score: <span id="text-score">0</span></p>
+            <p>Time: <span id="text-time">30</span></p>
+        </div>
+        <input type="image" img src="./start.png" value="" id="btn-start">
+        <!-- <div id="btn-start"></div> -->
     </div>
     <script src="../jquery-3.5.0.min.js"></script>
     <script>
@@ -44,6 +79,7 @@
         // 怪流水號
         let monsterid = 0
         let monsterid2 = 0
+        let monsterid3 = 0
 
         const rand = (num) => {
             return Math.floor(Math.random() * num)
@@ -58,7 +94,8 @@
         const movemonster = (monsterid) => {
             $(`.mo${monsterid}`).animate({
                 top: rand(70) + "%",
-                left: rand(70) + "%"
+                left: rand(70) + "%",
+                width: rand(50) + "%"
             }, 3000, function () {
                 movemonster(monsterid)
             })
@@ -67,9 +104,18 @@
             $(`.mo2${monsterid2}`).animate({
                 top: rand(70) + "%",
                 left: rand(70) + "%",
-                width: rand(70) + "%"
+                width: rand(50) + "%"
             }, 3000, function () {
                 movemonster2(monsterid2)
+            })
+        }
+        const movemonster3 = (monsterid3) => {
+            $(`.mo3${monsterid3}`).animate({
+                top: rand(70) + "%",
+                left: rand(70) + "%",
+                width: rand(50) + "%"
+            }, 3000, function () {
+                movemonster3(monsterid3)
             })
         }
         // 開始遊戲鍵
@@ -95,7 +141,7 @@
                     const num = rand(10)
                     const num2 = rand(10)
                     const num3 = rand(10)
-                    if (num > 3) {
+                    if (num > 5) {
                         $("#game").append(`<img src="./monster1.gif" class = "mo${monsterid}">`)
                         $(`.mo${monsterid}`).css({
                             top: rand(70) + "%",
@@ -104,7 +150,7 @@
                         movemonster(monsterid)
                         monsterid++
                     }
-                    if (num2 > 4) {
+                    if (num2 > 5) {
                         $("#game").append(`<img src="./monster2.gif" class = "mo2${monsterid2}">`)
                         $(`.mo2${monsterid2}`).css({
                             top: rand2(70) + "%",
@@ -112,6 +158,15 @@
                         })
                         movemonster2(monsterid2)
                         monsterid2++
+                    }
+                    if (num3 > 5) {
+                        $("#game").append(`<img src="./monster3.gif" class = "mo3${monsterid3}">`)
+                        $(`.mo3${monsterid3}`).css({
+                            top: rand2(70) + "%",
+                            left: rand2(70) + "%"
+                        })
+                        movemonster3(monsterid3)
+                        monsterid3++
                     }
                 }
             }, 1000);
