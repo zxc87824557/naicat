@@ -56,8 +56,35 @@
             top: 2.5%;
             transform: translate(-50.1%);
             text-shadow: 0px 0px 3px #333;
+        }
 
+        #read {
+            color: rgb(9, 255, 0);
+            text-align: center;
+            text-shadow: 0 0 0 3px brown;
+            font-family: 微軟正黑體;
+            font-size: 18px;
+        }
 
+        .m1 {
+            width: 150px;
+            height: 150px;
+            background: url(./monster1.png);
+            background-size: cover;
+        }
+
+        .m2 {
+            width: 150px;
+            height: 150px;
+            background: url(./monster2.png);
+            background-size: cover;
+        }
+
+        .m3 {
+            width: 150px;
+            height: 150px;
+            background: url(./monster3.png);
+            background-size: cover;
         }
     </style>
 </head>
@@ -69,7 +96,20 @@
             <p>Time: <span id="text-time">30</span></p>
         </div>
         <input type="image" img src="./start.png" value="" id="btn-start">
-        <!-- <div id="btn-start"></div> -->
+        <table border="1" id="read">
+            <tr class="hole">
+                <td>圖示</td>
+                <td class="m1"></td>
+                <td class="m2"></td>
+                <td class="m3"></td>
+            </tr>
+            <tr class="hole">
+                <td>分數</td>
+                <td>+1</td>
+                <td>+2</td>
+                <td>-1</td>
+            </tr>
+        </table>
     </div>
     <script src="../jquery-3.5.0.min.js"></script>
     <script>
@@ -92,28 +132,28 @@
         }
         // 怪位移
         const movemonster = (monsterid) => {
-            $(`.mo${monsterid}`).animate({
-                top: rand(70) + "%",
-                left: rand(70) + "%",
-                width: rand(50) + "%"
+            $(`#mo${monsterid}`).animate({
+                top: rand(60) + "%",
+                left: rand(60) + "%",
+                width: rand(30) + "%"
             }, 3000, function () {
                 movemonster(monsterid)
             })
         }
         const movemonster2 = (monsterid2) => {
-            $(`.mo2${monsterid2}`).animate({
-                top: rand(70) + "%",
-                left: rand(70) + "%",
-                width: rand(50) + "%"
+            $(`#mo2${monsterid2}`).animate({
+                top: rand(60) + "%",
+                left: rand(60) + "%",
+                width: rand(30) + "%"
             }, 3000, function () {
                 movemonster2(monsterid2)
             })
         }
         const movemonster3 = (monsterid3) => {
-            $(`.mo3${monsterid3}`).animate({
-                top: rand(70) + "%",
-                left: rand(70) + "%",
-                width: rand(50) + "%"
+            $(`#mo3${monsterid3}`).animate({
+                top: rand(60) + "%",
+                left: rand(60) + "%",
+                width: rand(30) + "%"
             }, 3000, function () {
                 movemonster3(monsterid3)
             })
@@ -121,10 +161,10 @@
         // 開始遊戲鍵
         $("#btn-start").click(function () {
             $(this).attr("disabled", true)
-            score = 0
-            $("#text-score").text(score)
-            timeleft = 30
-            $("#text-time").text(timeleft)
+            // score = 0
+            // $("#text-score").text(score)
+            // timeleft = 30
+            // $("#text-time").text(timeleft)
             timer = setInterval(() => {
                 timeleft--
                 $("#text-time").text(timeleft)
@@ -141,9 +181,9 @@
                     const num = rand(10)
                     const num2 = rand(10)
                     const num3 = rand(10)
-                    if (num > 5) {
-                        $("#game").append(`<img src="./monster1.gif" class = "mo${monsterid}">`)
-                        $(`.mo${monsterid}`).css({
+                    if (num > 4) {
+                        $("#game").append(`<img src="./monster1.gif" class = "mo" id = "mo${monsterid}">`)
+                        $(`#mo${monsterid}`).css({
                             top: rand(70) + "%",
                             left: rand(70) + "%"
                         })
@@ -151,17 +191,17 @@
                         monsterid++
                     }
                     if (num2 > 5) {
-                        $("#game").append(`<img src="./monster2.gif" class = "mo2${monsterid2}">`)
-                        $(`.mo2${monsterid2}`).css({
+                        $("#game").append(`<img src="./monster2.gif" class = "mo2" id = "mo2${monsterid2}">`)
+                        $(`#mo2${monsterid2}`).css({
                             top: rand2(70) + "%",
                             left: rand2(70) + "%"
                         })
                         movemonster2(monsterid2)
                         monsterid2++
                     }
-                    if (num3 > 5) {
-                        $("#game").append(`<img src="./monster3.gif" class = "mo3${monsterid3}">`)
-                        $(`.mo3${monsterid3}`).css({
+                    if (num3 > 7) {
+                        $("#game").append(`<img src="./monster3.gif" class = "mo3" id = "mo3${monsterid3}">`)
+                        $(`#mo3${monsterid3}`).css({
                             top: rand2(70) + "%",
                             left: rand2(70) + "%"
                         })
@@ -171,12 +211,28 @@
                 }
             }, 1000);
             // 怪點擊後變得圖片
-            $("#game").on("click", "img", function () {
+            $("#game").on("click", ".mo", function () {
                 $(this).attr("src", "./blood.png");
                 $(this).fadeOut(2500)
                 $(this).stop();
                 $(this).css("pointer-events", "none");
                 score++;
+                $("#text-score").text(score);
+            })
+            $("#game").on("click", ".mo2", function () {
+                $(this).attr("src", "./blood.png");
+                $(this).fadeOut(2500)
+                $(this).stop();
+                $(this).css("pointer-events", "none");
+                score += 2;
+                $("#text-score").text(score);
+            })
+            $("#game").on("click", ".mo3", function () {
+                $(this).attr("src", "./blood.png");
+                $(this).fadeOut(2500)
+                $(this).stop();
+                $(this).css("pointer-events", "none");
+                score--;
                 $("#text-score").text(score);
             })
         })
