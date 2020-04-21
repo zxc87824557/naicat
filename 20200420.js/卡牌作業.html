@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .card {
+            width: 100px;
+            height: 200px;
+            transform-style: preserve-3d;
+            position: relative;
+            transform: rotateY(180deg);
+            transition: transform .5s;
+            float: left;
+            margin: 5px;
+        }
+
+        .front {
+            width: 100%;
+            height: 100%;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: absolute;
+        }
+
+        .back {
+            width: 100%;
+            height: 100%;
+            background-image: url(./blackgold.jpg);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: absolute;
+            transform: rotateY(180deg);
+            backface-visibility: hidden;
+        }
+
+        #game {
+            width: 900px;
+            margin: auto;
+        }
+
+        .open {
+            transform: rotateY(0deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="game"></div>
+    <script src="./jquery-3.5.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script>
+        $(function () {
+            // 產生24張牌
+            for (let i = 0; i < 24; i++) {
+                $("#game").append(`<div class = "card">
+                <div class = "front"></div>
+                <div class = "back"></div>
+            </div>`)
+            }
+            // 給卡
+            for (let i = 0; i < $(".card").length; i++) {
+                let num = i % ($(".card").length / 2) + 1;
+                $(".card").eq(i).find(".front").css("background-image", `url(./${num}r.jpg)`)
+            }
+            // 打亂
+            for (let i = 0; i < 12; i++) {
+                let target = Math.floor(Math.random() * $(".card").length)
+                let dist = Math.floor(Math.random() * $(".card").length)
+                $(".card").eq(target).insertAfter($(".card").eq(dist));
+            }
+            $(".card").on("click", function () {
+                if ($(".open").length < 2 && !$(this).hasClass("open")) {
+                    $(this).addClass("open")
+                }
+                if ($(".open").length == 2) {
+                    setTimeout(() => {
+                        $(".open").removeClass("open")
+                    }, 1000);
+                }
+                if ($(".open").eq(0).find(".front").css("background-image") == $(".open").eq(1).find(".front").css("background-image")) {
+                    $(".open").fadeTo(1000, 0).addClass("ok")
+                }
+                if ($(".ok").length == $(".card").length) {
+                    setTimeout(() => {
+                        Swal.fire({
+                            icon: 'success',
+                            title: '恭喜',
+                            text: '恭喜過關'
+                        })
+                    }, 1000);
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>
