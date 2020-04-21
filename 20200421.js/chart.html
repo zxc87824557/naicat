@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .chart {
+      width: 800px;
+      height: 500px;
+    }
+  </style>
+</head>
+<body>
+  <div class="chart">
+    <canvas id="bar"></canvas>
+  </div>
+  <div class="chart">
+    <canvas id="line"></canvas>
+  </div>
+  <div class="chart">
+    <canvas id="pie"></canvas>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+  <script>
+    // .getContext("2d") 取得 canvas 的 2d 繪圖參數
+    const barCanvas = document.getElementById("bar").getContext("2d");
+    const barChart = new Chart(barCanvas, {
+      type: 'bar',
+      data: {
+        // 資料區間名稱
+        labels:["一月", "二月", "三月", "四月"],
+        // 資料組
+        datasets: [
+          {
+            // 名稱
+            label: '台北',
+            // 資料
+            data: [100, 200, 300, 400],
+            // 邊框顏色
+            borderColor: '#f00',
+            // 背景顏色
+            backgroundColor: "#0f0",
+            // 邊框粗細
+            borderWidth: 5
+          }
+        ]
+      },
+      options: {
+        title: {
+          text: '圖表標題',
+          display: true
+        },
+        scales: {
+          yAxes:[{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+    })
+    
+    const lineCanvas = $("#line")
+    const lineChart = new Chart(lineCanvas, {
+      type: 'line',
+      data: {
+        // 資料區間名稱
+        labels:["一月", "二月", "三月", "四月"],
+        // 資料組
+        datasets: [
+          {
+            // 名稱
+            label: '台北',
+            // 資料
+            data: [100, 300, 900, 200],
+            // 邊框顏色
+            borderColor: '#f00',
+            // 背景顏色
+            backgroundColor: "#0f0",
+            // 邊框粗細
+            borderWidth: 5,
+            // 是否填滿
+            fill: false,
+            // 彎曲程度，0是直線
+            lineTension: 0.3
+          }
+        ]
+      },
+      options: {
+        title: {
+          text: '圖表標題',
+          display: true
+        },
+        scales: {
+          yAxes:[{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+    })
+    
+    const pieCanvas = $("#pie")
+    const pieChart = new Chart(pieCanvas, {
+      type: 'pie',
+      data: {
+        labels:["一月", "二月", "三月", "四月"],
+        // 資料組
+        datasets: [
+          {
+            data: [10, 20, 30, 40],
+            backgroundColor: ["#f00", "#0f0", "#00f", "#f0f"],
+            borderColor: "#000",
+            borderWidth: 5
+          }
+        ]
+      }
+    })
+  </script>
+</body>
+</html>

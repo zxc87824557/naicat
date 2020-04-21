@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="title"></h1>
+    <p id="update"></p>
+    <table id="table" border="1"></table>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        // jq用法
+        $.get("https://kktix.com/events.json", function (response) {
+            $("#title").text(response.title)
+            $("#update").text(new Date(response.update).toLocaleString("zh-tw"))
+            for (let i of response.entry) {
+                $("#table").append(`<tr>
+                    <td>${i.title}</td>
+                    <td>${i.summary}</td>
+                    <td><a href = "${i.url}">訂票</a></td>
+                    </tr>`)
+            }
+
+        })
+
+        // axios用法
+        // axios.get("https://kktix.com/events.json")
+        //     .then(response => {
+        //         document.write(`<table border = 1><tr>
+        //         <td>title</td>
+        //         <td>summary</td>
+        //         <td>content</td>
+        //         </tr>`)
+        //         for (let i of response.data.entry) {
+        //             document.write(`<tr>
+        //                 <td>${i.title}</td>
+        //                 <td>${i.summary}</td>
+        //                 <td>${i.content}</td>
+        //                 </tr>`)
+        //         }
+        //     })
+    </script>
+</body>
+
+</html>

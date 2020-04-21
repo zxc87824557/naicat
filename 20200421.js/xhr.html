@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 建立 XHR
+    let xhr = new XMLHttpRequest();
+    // 設定請求方式與網址
+    xhr.open("get", "https://kktix.com/events.json");
+    // 設定成功時執行的 function
+    xhr.onload = () => {
+      let json = JSON.parse(xhr.responseText);
+      console.log(json.entry[0].title);
+    }
+    // 設定失敗時執行的 function
+    xhr.onerror = (error) => {
+      console.log(error);
+    }
+    // 送出請求
+    xhr.send();
+    /*********************************************************/
+    // 建立 XHR
+    let xhr2 = new XMLHttpRequest();
+    // 設定請求方式與網址
+    xhr2.open("post", "https://jsonplaceholder.typicode.com/posts");
+    // 設定送出的資料格式為 json
+    xhr2.setRequestHeader("Content-type", "application/json")
+    // 設定成功時執行的 function
+    xhr2.onload = () => {
+      let json = JSON.parse(xhr2.responseText);
+      console.log(json);
+    }
+    // 設定失敗時執行的 function
+    xhr2.onerror = (error) => {
+      console.log(error);
+    }
+    // 送出請求
+    // JSON.stringify，將陣列轉文字
+    xhr2.send(JSON.stringify({
+      "title": "aaa",
+      "body": "bbbbb",
+      "userId": 1
+    }));
+  </script>
+</body>
+</html>

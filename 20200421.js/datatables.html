@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+</head>
+<body>
+  <!-- 必須要有一個 table、thead、tbody -->
+  <table id="table">
+    <thead>
+      <tr>
+        <th>標題</th>
+        <th>時間</th>
+        <th>主辦</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+  <script>
+    const table = $("#table").DataTable({
+      // 語言，繁體中文不知道為啥不行
+      "language": {
+        "url": '//cdn.datatables.net/plug-ins/1.10.20/i18n/Chinese.json'
+      },
+      // 控制顯示數量選單的選項
+      lengthMenu: [
+        // 數值
+        [30, 50, -1],
+        // 顯示文字
+        [30, 50, "全部"]
+      ],
+      // 欄位設定
+      columnDefs: [
+        {
+          // 目標欄位
+          targets: 1,
+          // 是否可排序
+          orderable: false,
+          // 是否可搜尋
+          searchable: false
+        }
+      ]
+    })
+
+    $.get("https://kktix.com/events.json", function(response) {
+      for(let event of response.entry) {
+        table.row.add([event.title, event.content, event.author.name]).draw().node()
+      }
+    }, 'json')
+  </script>
+</body>
+</html>
