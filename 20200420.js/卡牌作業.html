@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        body {
+            background-image: url(./123.png);
+            background-size: cover;
+        }
+
         .card {
             width: 100px;
             height: 200px;
@@ -15,6 +20,7 @@
             transition: transform .5s;
             float: left;
             margin: 5px;
+            opacity: 0;
         }
 
         .front {
@@ -46,16 +52,61 @@
         .open {
             transform: rotateY(0deg);
         }
+
+        #btn-start {
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+        }
     </style>
 </head>
 
 <body>
+    <p style="text-align: center; font-size: 24px;">Time: <span id="text-time">0</span></p>
     <div id="game"></div>
+
+    <input type="image" img src="./start.png" value="" id="btn-start">
     <script src="./jquery-3.5.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script>
-        $(function () {
-            // 產生24張牌
+        let ingame = false
+        let timer = 0
+        // 開始按鈕
+        $("#btn-start").click(function () {
+            ingame = true
+            if (ingame) {
+                timer = 0
+                $(this).attr("disabled", true)
+                $(this).fadeOut()
+
+
+                game()
+                $(".card").css("opacity", "1")
+
+                timer2 = setInterval(() => {
+                    timer++
+                    $("#text-time").text(timer)
+                    if ($(".ok").length == $(".card").length) {
+                        clearInterval(timer2)
+                        $(this).attr("disabled", false)
+                        console.log(timer)
+                        $(this).fadeIn()
+                        ingame = false
+                        setTimeout(() => {
+                            $('.card').remove()
+                        }, 1000);
+
+                    }
+                }, 1000);
+            }
+
+        })
+        // 產生24張牌
+        const game = () => {
             for (let i = 0; i < 24; i++) {
                 $("#game").append(`<div class = "card">
                 <div class = "front"></div>
@@ -68,34 +119,36 @@
                 $(".card").eq(i).find(".front").css("background-image", `url(./${num}r.jpg)`)
             }
             // 打亂
-            for (let i = 0; i < 12; i++) {
+            for (let i = 0; i < 18; i++) {
                 let target = Math.floor(Math.random() * $(".card").length)
                 let dist = Math.floor(Math.random() * $(".card").length)
                 $(".card").eq(target).insertAfter($(".card").eq(dist));
             }
-            $(".card").on("click", function () {
-                if ($(".open").length < 2 && !$(this).hasClass("open")) {
-                    $(this).addClass("open")
-                }
-                if ($(".open").length == 2) {
-                    setTimeout(() => {
-                        $(".open").removeClass("open")
-                    }, 1000);
-                }
-                if ($(".open").eq(0).find(".front").css("background-image") == $(".open").eq(1).find(".front").css("background-image")) {
-                    $(".open").fadeTo(1000, 0).addClass("ok")
-                }
-                if ($(".ok").length == $(".card").length) {
-                    setTimeout(() => {
-                        Swal.fire({
-                            icon: 'success',
-                            title: '恭喜',
-                            text: '恭喜過關'
-                        })
-                    }, 1000);
-                }
-            })
+        }
+
+        $("#game").on("click", ".card", function () {
+            if ($(".open").length < 2 && !$(this).hasClass("open")) {
+                $(this).addClass("open")
+            }
+            if ($(".open").length == 2) {
+                setTimeout(() => {
+                    $(".open").removeClass("open")
+                }, 1000);
+            }
+            if ($(".open").eq(0).find(".front").css("background-image") == $(".open").eq(1).find(".front").css("background-image")) {
+                $(".open").fadeTo(1000, 0).addClass("ok")
+            }
+            if ($(".ok").length == $(".card").length) {
+                setTimeout(() => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: '恭喜',
+                        text: `通關時間${timer}`
+                    })
+                }, 1000);
+            }
         })
+
     </script>
 </body>
 
