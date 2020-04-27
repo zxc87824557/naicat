@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="ul"></ul>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const asyncaxios = async () => {
+            try {
+                const result = await axios.get('https://jsonplaceholder.typicode.com/users')
+                const result2 = await axios.get('https://jsonplaceholder.typicode.com/posts')
+
+                let user = 'Leanne Graham'
+                for (let i = 0; i < result.data.length; i++) {
+                    if (result.data[i].name == user) {
+                        userid = result.data[i].id
+                    }
+                }
+                for (let j = 0; j < result2.data.length; j++) {
+                    if (userid == result2.data[j].userId) {
+                        $("#ul").append(`<li>${result2.data[j].title}</li>`)
+                    }
+                }
+            } catch (error) {
+                console.log(error.message);
+            }
+        }
+        asyncaxios()
+
+
+
+
+        const getData = async () => {
+            let users = axios.get('https://jsonplaceholder.typicode.com/users')
+            let posts = axios.get('https://jsonplaceholder.typicode.com/posts')
+            users = await users
+            posts = await posts
+
+            let userId = 0
+            for (let user of users.data) {
+                if (user.name == 'Leanne Graham') {
+                    userId = user.id
+                    break
+                }
+            }
+
+            if (userId > 0) {
+                posts = posts.data.filter(post => {
+                    return post.userId === userId
+                })
+
+                for (let post of posts) {
+                    $("#list").append(`<li>${post.title}</li>`)
+                }
+            }
+            else {
+                $("#list").append(`<li>找不到使用者</li>`)
+            }
+        }
+
+        getData()
+    </script>
+</body>
+
+</html>
