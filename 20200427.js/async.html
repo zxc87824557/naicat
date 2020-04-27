@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const wait = (duration) => {
+            return new Promise((resolve, reject) => {
+                if (isNaN(duration)) {
+                    // reject 使用Error，保持catch接到東西格式一致
+                    reject(new Error('不是數字'))
+                }
+                setTimeout(() => {
+                    resolve(`過了 ${duration} 毫秒`)
+                }, duration);
+            })
+        }
+        const wait2 = (aa) => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve()
+                }, aa);
+            })
+        }
+        // await可以讓程式暫停，等執行完後才繼續
+        // await後面只能接受Promise
+        // await只能在async裡面使用
+        const asyncFunction = async () => {
+            try {
+                // Promise 的 resolve 可以直接進變數
+                const result = await wait(1000)
+                // alertt('aaa')
+                console.log(result);
+                await wait2(3000)
+                console.log('bbb');
+            }
+            // Promise 的 reject 要用 try catch 接 
+            catch (error) {
+                console.log('錯誤:' + error.message);
+            }
+        }
+        asyncFunction()
+    </script>
+</body>
+
+</html>
