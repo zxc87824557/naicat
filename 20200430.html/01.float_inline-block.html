@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        /* 用inline-block要用font-size: 0 把中間的間距拿掉 */
+        .container1 {
+            width: 1200px;
+            margin: auto;
+            border: 1px solid #333;
+            font-size: 0;
+        }
+
+        /* 之後再font-size把字大小叫出來 */
+        .col1 {
+            width: 30%;
+            margin: 0 1.6666%;
+            display: inline-block;
+            font-size: 1rem;
+        }
+
+        .container2 {
+            width: 1200px;
+            background: #ffa;
+            margin: auto;
+            border: 1px solid #333;
+            overflow: hidden;
+        }
+
+        .col2 {
+            width: 30%;
+            margin: 0 1.6666%;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>inline-block 排版</h1>
+    <p>必須處理inline-block之間幾px的空白問題</p>
+    <div class="container1">
+        <div class="col1">
+            <h3>title</h3>
+            <img src="https://picsum.photos/300/200/?random=1">
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam nulla consectetur labore
+                sed
+                natus
+                voluptatibus corporis ea ducimus maiores recusandae ipsum, vitae harum hic facilis eaque nesciunt fugit
+                eius
+                asperiores.</p>
+        </div>
+        <div class="col1">
+            <h3>title</h3>
+            <img src="https://picsum.photos/300/200/?random=1">
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam nulla consectetur labore
+                sed
+                natus
+                voluptatibus corporis ea ducimus maiores recusandae ipsum, vitae harum hic facilis eaque nesciunt fugit
+                eius
+                asperiores.</p>
+        </div>
+        <div class="col1">
+            <h3>title</h3>
+            <img src="https://picsum.photos/300/200/?random=1">
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam nulla consectetur labore
+                sed
+                natus
+                voluptatibus corporis ea ducimus maiores recusandae ipsum, vitae harum hic facilis eaque nesciunt fugit
+                eius
+                asperiores.</p>
+        </div>
+    </div>
+    <h1>float 排版</h1>
+    <p>如果子元素全部float，沒有內容稱起父元素高度，必須處理父元素高度崩塌的問題</p>
+    <div class="container2">
+        <div class="col2">
+            <h3>title</h3>
+            <img src="https://picsum.photos/300/200/?random=1">
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam nulla consectetur labore
+                sed
+                natus
+                voluptatibus corporis ea ducimus maiores recusandae ipsum, vitae harum hic facilis eaque nesciunt fugit
+                eius
+                asperiores.</p>
+        </div>
+        <div class="col2">
+            <h3>title</h3>
+            <img src="https://picsum.photos/300/200/?random=1">
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam nulla consectetur labore
+                sed
+                natus
+                voluptatibus corporis ea ducimus maiores recusandae ipsum, vitae harum hic facilis eaque nesciunt fugit
+                eius
+                asperiores.</p>
+        </div>
+        <div class="col2">
+            <h3>title</h3>
+            <img src="https://picsum.photos/300/200/?random=1">
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam nulla consectetur labore
+                sed
+                natus
+                voluptatibus corporis ea ducimus maiores recusandae ipsum, vitae harum hic facilis eaque nesciunt fugit
+                eius
+                asperiores.</p>
+        </div>
+    </div>
+</body>
+
+</html>
