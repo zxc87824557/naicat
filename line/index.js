@@ -13,14 +13,35 @@ const bot = linebot({
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN
 })
 
+const getMonth = async (month, img) => {
+  let arr = []
+  let msg = ''
+  try {
+    const data = await rp({ uri: 'https://bangumi.bilibili.com/web_api/timeline_global', json: true })
+    for (const d of data.result) {
+      const mon = d.date.split('-')[0]
+      if (mon === month) {
+        for (const s of d.seasons) {
+          if (!arr.includes(s.title)) arr.push(s.title)
+        }
+      }
+    }
+    msg = arr.join('\n')
+  } catch (error) {
+    msg = '發生錯誤'
+  }
+
+  return msg
+}
+
 // 當收到訊息時
 bot.on('message', async (event) => {
   let msg = ''
-  try {
-    const data = await rp({ uri: 'https://kktix.com/events.json', json: true })
-    msg = data.entry[0].title
-  } catch (error) {
-    msg = '發生錯誤'
+  if (event.message.type === 'text') {
+    const text = event.message.text
+    if (text.includes('月')) {
+      msg = await getMonth(text.substr(0, 1))
+    }
   }
   event.reply(msg)
 })
