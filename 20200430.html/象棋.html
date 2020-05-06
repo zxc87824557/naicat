@@ -11,75 +11,231 @@
             padding: 0;
             list-style: none;
             box-sizing: border-box;
-            font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
-        }
-
-        html,
-        body {
-            height: 100vh;
+            font-family: 'Noto Sans TC', '標楷體', sans-serif;
         }
 
         .container {
-            width: 100%;
-            margin: auto;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .row {
+            width: 800px;
+            height: 880px;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: center;
+            justify-content: center;
+            border: 1px solid black;
+            padding: 78px;
+            position: relative;
         }
 
         .box {
+            border: 1px solid #000;
+            width: 80px;
+            height: 80px;
+        }
+
+        .rotate45deg {
+            background: linear-gradient(45deg, transparent 49%, black 49%, black 50%, transparent 51%);
+        }
+
+        .rotate-45deg {
+            background: linear-gradient(-45deg, transparent 49%, black 49%, black 50%, transparent 51%);
+        }
+
+        .river {
+            width: 640px;
+            height: 80px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            font-size: 50px;
+        }
+
+        .river::before {
+            content: '楚河';
+        }
+
+        .river::after {
+            content: '漢界';
+        }
+
+        .chessbox {
+            height: 800px;
+            position: absolute;
+            top: 40px;
+            display: flex;
+            flex-flow: column wrap;
+            justify-content: space-between;
+        }
+
+        .chessbox :nth-child(2),
+        .chessbox :nth-child(3) {
+            justify-content: space-between;
+        }
+
+        .line {
             display: flex;
         }
 
-        .col {
+        .chess {
+            width: 70px;
+            height: 70px;
             border: 1px solid #000;
-            width: 60px;
-            height: 60px;
+            background-color: blanchedalmond;
+            border-radius: 50%;
+            margin: 5px;
+            position: relative;
+            font-size: 2.5rem;
+            text-align: center;
+            line-height: 70px;
+        }
+
+        .back1::before {
+            content: '包';
+            width: 70px;
+            height: 70px;
+            border: 1px solid #000;
+            background-color: blanchedalmond;
+            border-radius: 50%;
+            position: absolute;
+            top: -80px;
+            left: 0;
+            font-size: 2.5rem;
+            text-align: center;
+            line-height: 70px;
+
+        }
+
+        .back2::before {
+            content: '砲';
+            width: 70px;
+            height: 70px;
+            border: 1px solid #000;
+            background-color: blanchedalmond;
+            border-radius: 50%;
+            position: absolute;
+            top: 80px;
+            left: 0;
+        }
+
+        .red {
+            color: red;
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <div class="box">
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col"></div>
+        <div class="row">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box rotate45deg"></div>
+            <div class="box rotate-45deg"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box rotate-45deg"></div>
+            <div class="box rotate45deg"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box river"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box rotate45deg"></div>
+            <div class="box rotate-45deg"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box rotate-45deg"></div>
+            <div class="box rotate45deg"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="chessbox">
+                <div class="line">
+                    <div class="chess">車</div>
+                    <div class="chess">馬</div>
+                    <div class="chess">象</div>
+                    <div class="chess">士</div>
+                    <div class="chess">將</div>
+                    <div class="chess">士</div>
+                    <div class="chess">象</div>
+                    <div class="chess">馬</div>
+                    <div class="chess">車</div>
+                </div>
+                <div class="line">
+                    <div class="chess">卒</div>
+                    <div class="chess back1">卒</div>
+                    <div class="chess">卒</div>
+                    <div class="chess back1">卒</div>
+                    <div class="chess">卒</div>
+                </div>
+                <div class="line">
+                    <div class="chess red">兵</div>
+                    <div class="chess back2 red">兵</div>
+                    <div class="chess red">兵</div>
+                    <div class="chess back2 red">兵</div>
+                    <div class="chess red">兵</div>
+                </div>
+                <div class="line">
+                    <div class="chess red">俥</div>
+                    <div class="chess red">傌</div>
+                    <div class="chess red">相</div>
+                    <div class="chess red">仕</div>
+                    <div class="chess red">帥</div>
+                    <div class="chess red">仕</div>
+                    <div class="chess red">相</div>
+                    <div class="chess red">傌</div>
+                    <div class="chess red">俥</div>
+                </div>
+            </div>
         </div>
-        <div class="box">
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col"></div>
-        </div>
-        <div class="box">
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col"></div>
-        </div>
-        <div class="box">
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col"></div>
-        </div>
-
-    </div>
     </div>
 </body>
 
