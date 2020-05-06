@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css選擇優先權</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            box-sizing: border-box;
+            font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+        }
+
+        /* 
+            黑桃 > 紅心 > 方塊 > 梅花
+              1     1      1      1
+            css選擇器權重
+            1.inline style 黑桃:1000
+            2.id選擇器 愛心:0100
+            3.class選擇器 屬性選擇器 虛擬類別 方塊:0010
+            4.元素(標籤) 虛擬元素 梅花:0001
+         */
+        /* 第一組 */
+        /* 0101 */
+        #container p {
+            color: red;
+        }
+
+        /* 0011 */
+        .container p {
+            color: green;
+        }
+
+        /* 第二組 */
+        /* 0111 */
+        #container2 .box p {
+            color: blue;
+        }
+
+        /* 0101 */
+        #container2 p {
+            color: red;
+        }
+
+        /* 第三組 */
+        /* 0022 */
+        .container3 .box h1+p {
+            color: red;
+        }
+
+        /* 0021  如果+了!important優先權最大*/
+        .container3 .box p {
+            color: blue !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container" class="container">
+        <div class="box">
+            <h1>Lorem ipsum dolor sit amet.</h1>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur error asperiores, harum, libero
+                commodi ab, explicabo inventore tempore est excepturi minima placeat perspiciatis velit vitae quod quia
+                expedita doloribus fugiat.
+            </p>
+        </div>
+    </div>
+    <div id="container2" class="container2">
+        <div class="box">
+            <h1>Lorem ipsum dolor sit amet.</h1>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur error asperiores, harum, libero
+                commodi ab, explicabo inventore tempore est excepturi minima placeat perspiciatis velit vitae quod quia
+                expedita doloribus fugiat.
+            </p>
+        </div>
+    </div>
+    <div id="container3" class="container3">
+        <div class="box">
+            <h1>Lorem ipsum dolor sit amet.</h1>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur error asperiores, harum, libero
+                commodi ab, explicabo inventore tempore est excepturi minima placeat perspiciatis velit vitae quod quia
+                expedita doloribus fugiat.
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>

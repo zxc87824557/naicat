@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>媒體查詢</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            box-sizing: border-box;
+            font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+        }
+
+        img {
+            max-width: 100%;
+            vertical-align: middle;
+        }
+
+        /* media type => all、print、screen、speech */
+        /* min-width 以上 */
+        /* max-width 以下 */
+        @media all and (min-width:500px) {}
+
+        /* media type 為all時可以省略 */
+        @media (min-width:500px) {}
+
+        /* 575px以下 */
+        @media (max-width:575px) {
+            .container {
+                width: 95%;
+                margin: 1rem auto;
+                border: 1px solid #000;
+                padding: 10px;
+            }
+
+            h1 {
+                color: yellow;
+                background: #66ee50;
+            }
+
+            p {
+                font-size: 2rem;
+            }
+        }
+
+        /* 576px-767px之間 */
+        @media(min-width:576px) and (max-width:767px) {
+            .container {
+                width: 50%;
+                margin: 2rem auto;
+                border: 5px solid #000;
+                padding: 15px;
+            }
+
+            h1 {
+                color: rgb(255, 213, 173);
+                background: #248016;
+            }
+
+            p {
+                font-size: 2rem;
+            }
+        }
+
+        /* 768px以上 */
+        @media (min-width:768px) {
+            .container {
+                width: 70%;
+                margin: 1.5rem auto;
+                border: 3px solid rgb(173, 29, 29);
+                padding: 5px;
+            }
+
+            h1 {
+                color: rgb(255, 65, 65);
+                background: #31b869;
+            }
+
+            p {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>樂隊傳統。</h1>
+        <img src="https://picsum.photos/1920/600/?random=1">
+        <p>
+            開放官員其中，品牌採訪政策圖書刺激不滿，重大聯繫電話革命騎士創建設施智慧，英語的錢環保溫州我去預計，精品武器經過速度也會一副就有四個，速度感到呵呵計劃接下來四周場所愛情很多加工幾次在於職位，思維排行榜直到信心法國主機能學到便宜，新技術記錄夏天較大明星，生。
+        </p>
+    </div>
+</body>
+
+</html>
