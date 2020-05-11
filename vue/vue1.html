@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .red {
+            color: red;
+        }
+
+        .big {
+            font-size: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{msg}}</p>
+        <p v-text='msg'></p>
+        <p v-html='msg2'></p>
+        <!-- 符合條件才出現在DOM -->
+        <p v-if='number === 1'>數字是1</p>
+        <p v-else-if='number === 2'>數字是2</p>
+        <p v-else>數字是其他</p>
+        <!-- 符合條件顯示，不符合是display:none -->
+        <p v-show='number === 1'>數字是1(v-show)</p>
+
+        <ul>
+            <li v-for="fruit in fruits">{{fruit}}</li>
+        </ul>
+        <ul>
+            <li v-for="(fruit, index) in fruits">{{index+1 + "-" + fruit}}</li>
+        </ul>
+        <ul>
+            <li v-for="(web, key, index) in webs">{{web + "." +key + "." +(index+1)}}</li>
+        </ul>
+
+        <img :src="img" width="200px">
+        <img v-for='image in images' :src="image" width="100px">
+        <h1 :style='style'>aaa</h1>
+        <h1 :style="{backgroundColor: color,fontSize: '50px'}">aaa</h1>
+        <h1 :class="myclass">bbb</h1>
+        <h1 :class="{red:isRed, big:true}">vv</h1>
+        <input type="text" v-model="text" @keydown.enter="add">{{text}}
+        <input type="button" value="按鈕" v-on:click="add">
+        <input type="button" value="按鈕" @click="add">
+
+        <a href="https://fb.com" @click.prevent="click">fb</a>
+
+        <p>我有{{count}}個水果</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            name: 'app',
+            data: {
+                msg: 'Hello Vue',
+                msg2: '<a href="http://google.com">連結</a>',
+                number: 1,
+                fruits: ['蘋果', '香蕉', '西瓜', '芭樂', '芒果'],
+                webs: {
+                    fb: 'facebook',
+                    yt: 'youtube'
+                },
+                img: 'https://cdna.artstation.com/p/assets/images/images/023/436/694/medium/arc-noir-carmilla.jpg?1579194929',
+                images: [
+                    'https://cdnb.artstation.com/p/assets/images/images/024/704/369/medium/jihun-lee-shadow-assassin.jpg?1583263446',
+                    'https://cdnb.artstation.com/p/assets/images/images/025/175/857/medium/leon-johnson-01.jpg?1584904188',
+                    'https://cdnb.artstation.com/p/assets/images/images/024/860/565/medium/angel-ganev-2020-2-21.jpg?1583775939'
+                ],
+                // 裡面是打全部css改成駝峰式命名
+                style: {
+                    backgroundColor: 'red',
+                    fontSize: '50px'
+                },
+                // 裡面是打.css的名字然後再style裡面設定css
+                myclass: {
+                    red: true,
+                    big: true
+                },
+                color: 'blue',
+                isRed: true,
+                text: ''
+            },
+            methods: {
+                // 綁定事件要用function
+                add() {
+                    if (this.text.length > 0) {
+                        this.fruits.push(this.text)
+                        this.text = ''
+                    }
+
+                },
+                click(event) {
+                    alert(event.target.tagName)
+                }
+            },
+            // computed裡面的function要放return
+            computed: {
+                count() {
+                    return this.fruits.length
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

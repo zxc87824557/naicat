@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" placeholder="新增事項" v-model="newitem" @keydown.enter="add"
+            :style="{border:'3px solid ' + borderColor}">
+        <input type="button" value="新增" @click="add">
+        <hr>
+        <input type="button" value="全部標記為已完成">
+        <input type="button" value="全部標記為未完成"><br>
+        <input type="button" value="顯示全部">
+        <input type="button" value="顯示已完成">
+        <input type="button" value="顯示未完成"><br>
+        <input type="button" value="清除全部">
+        <input type="button" value="清除已完成">
+        <input type="button" value="清除未完成">
+        <hr>
+        <p>目前顯示:全部，共{{count}}個</p>
+        <ul>
+            <li v-for="(item, index) in items">
+                <input type="checkbox" :checked="item.done" @change="item.done = !item.done">
+                <span :class="{del: item.done}">{{item.text}}</span>
+                <input type="button" value="x" @click="items.splice(index, 1)">
+            </li>
+        </ul>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            name: 'app',
+            data: {
+                newitem: '',
+                items: []
+            },
+            methods: {
+                add() {
+                    if (this.newitem.length > 2) {
+                        this.items.push({ done: false, text: this.newitem })
+                    }
+                }
+            },
+            computed: {
+                borderColor() {
+                    return (this.newitem.length == 0) ? 'black' : (this.newitem.length > 2) ? 'blue' : 'red'
+                },
+                count() {
+                    return this.items.length
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
