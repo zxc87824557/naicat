@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .del {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="newitem" @keydown.enter="add" :style="{border: '5px solid ' + borderColor}">
+        <ul>
+            <li v-for="(item, index) in items">
+                <input type="checkbox" :checked="item.done" @change="item.done = !item.done">
+                <span :class="{del: item.done}">{{ item.text}}</span>
+                <input type="button" value="x" @click="items.splice(index, 1)">
+            </li>
+        </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            name: 'app',
+            el: '#app',
+            data: {
+                newitem: '',
+                items: []
+            },
+            methods: {
+                add() {
+                    if (this.newitem.length >= 2) {
+                        this.items.push({ done: false, text: this.newitem })
+                    }
+                }
+            },
+            computed: {
+                borderColor() {
+                    return (this.newitem.length == 0) ? 'black' : (this.newitem.length >= 2) ? 'green' : 'red'
+                }
+            },
+            watch: {
+                items: {
+                    deep: true,
+                    handler() {
+                        localStorage.setItem('asd', JSON.stringify(this.items))
+                    }
+                }
+            },
+            mounted() {
+                const data = localStorage.getItem('asd')
+                if (data !== null) {
+                    this.items = JSON.parse(data)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
