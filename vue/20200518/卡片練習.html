@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #app {
+      text-align: center;
+    }
+
+    #cards {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      width: 25%;
+      height: 400px;
+      border-radius: 10px;
+      box-sizing: border-box;
+      border: 2px solid black;
+      margin: 5px;
+    }
+
+    .card-img {
+      width: 100%;
+      height: 200px;
+    }
+
+    .card-img img {
+      object-fit: cover;
+      object-position: center;
+      width: 100%;
+      height: 100%;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1>便當</h1>
+    <h3>總共 {{ goods }} 個讚</h3>
+    <div id="cards">
+      <card v-for="card in cards" :data="card" @good="handleGood"></card>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script type="text/x-template" id="card">
+    <div class="card">
+      <div class="card-img">
+        <img :src="data.img" alt="">
+      </div>
+      <h1>{{ data.title }}</h1>
+      <button @click="toggleGood"> {{ good ? '收回讚' : '讚' }}</button>
+    </div>
+  </script>
+  <script>
+    Vue.component('card', {
+      template: '#card',
+      data() {
+        return {
+          good: false
+        }
+      },
+      props: {
+        data: Object
+      },
+      methods: {
+        toggleGood() {
+          this.good = !this.good
+          this.$emit('good', this.good)
+        }
+      },
+    })
+
+    new Vue({
+      el: '#app',
+      data: {
+        goods: 0,
+        cards: [
+          {
+            img: 'https://dinbendon.kento520.tw/assets/img/res/pic/1.jpg',
+            title: '太師傅'
+          },
+          {
+            img: 'https://dinbendon.kento520.tw/assets/img/res/pic/2.jpg',
+            title: '吉野烤肉飯'
+          }
+        ]
+      },
+      methods: {
+        handleGood(good) {
+          if(good)  {
+            this.goods++
+          }
+          else {
+            this.goods--
+          }
+        }
+      }
+    })
+  </script>
+</body>
+</html>
