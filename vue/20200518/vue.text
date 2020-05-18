@@ -1,4 +1,5 @@
 npm install -g @vue/cli 下載vue的開發環境
 vue create (myvue自己取)
-Babel反易語法讓舊瀏覽器也能用
+Babelz0 翻譯語法讓舊瀏覽器也能用
 css pre-processors像是翻譯pug.sass
+npm install -D pug pug-plain-loader 安裝html的pug

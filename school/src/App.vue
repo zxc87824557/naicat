@@ -1,27 +1,32 @@
-<template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<template lang="pug">
+  #app
+    top
+    #left
+      Menu
+      Update
+    #right
+      Marquee
+      #content
+        Main
+    Footer
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import top from './components/top.vue'
+import Menu from './components/menu.vue'
+import Update from './components/update.vue'
+import Marquee from './components/marquee.vue'
+import Main from './components/main.vue'
+import Footer from './components/footer.vue'
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    top,
+    Menu,
+    Update,
+    Marquee,
+    Main,
+    Footer
   }
 }
 </script>
-
-<style lang="stylus">
-#app
-  font-family Avenir, Helvetica, Arial, sans-serif
-  -webkit-font-smoothing antialiased
-  -moz-osx-font-smoothing grayscale
-  text-align center
-  color #2c3e50
-  margin-top 60px
-</style>
