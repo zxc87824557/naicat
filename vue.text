@@ -3,3 +3,8 @@ vue create (myvue自己取)
 Babelz0 翻譯語法讓舊瀏覽器也能用
 css pre-processors像是翻譯pug.sass
 npm install -D pug pug-plain-loader 安裝html的pug
+npm run build 結束要上傳的檔案
+要建立一個vue.config.js的檔案
+module.exports = {
+  publicPath: './'
+}
