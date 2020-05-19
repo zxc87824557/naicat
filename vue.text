@@ -8,3 +8,9 @@ npm run build 結束要上傳的檔案
 module.exports = {
   publicPath: './'
 }
+
+要加vuebootstrap
+vue add bootstrap-vue
+
+要加axios
+npm install axios vue-axios
