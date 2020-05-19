@@ -1,0 +1,52 @@
+$font = '標楷體'
+$bg1 = url('../assets/0401.jpg')
+$bg2 = url('../assets/0402.jpg')
+#app
+  width 1024px
+  height 768px
+  margin auto
+
+#Top
+  width 1024px
+  height 120px
+  background-image $bg1
+  color #ffffff
+  text-align center
+  font-family $font
+  font-size 52px
+  text-shadow 10px 10px 15px #333333
+  line-height 120px
+  
+#Marquee
+  height 30px
+  width 100%
+  font-family $font
+  line-height 30px
+  background-image $bg2
+  color #0000ff
+  font-size 19px
+
+#Content
+  background-image $bg2
+  table
+    margin auto
+  tr
+    height 150px
+  td
+    vertical-align middle
+    text-align center
+    &:first-child
+      width 200px
+    &:not(:first-child)
+      width 300px
+    img 
+      height 150px
+
+#Footer
+  width 100%
+  height 78px
+  color #ffffff
+  font-family $font
+  line-height 200%
+  text-align left
+  background-color #660
