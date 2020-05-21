@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <style></style>
+    <title>Hello, world!</title>
+    <style>
+      h4 {
+        margin: 1rem 0;
+      }
+
+      body {
+        background: #eee;
+      }
+
+      .container {
+        margin-bottom: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h4>表單 (Forms)</h4>
+      <p>表單欄位會用 .form-group 區塊包住，label 的 for 屬性值對應到欄位的 id 屬性值。</p>
+      <div class="row">
+        <div class="col">
+          <form>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+            </div>
+            <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <h4>Range Inputs</h4>
+      <p>表單欄位會用 .form-group 區塊包住，label 的 for 屬性值對應到欄位的 id 屬性值。</p>
+      <div class="row">
+        <div class="col">
+          <form>
+            <div class="form-group">
+              <label for="formControlRange">Example Range input</label>
+              <input type="range" class="form-control-range" id="formControlRange" min="0" max="100" value="50" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <h4>readonly 與 disabled</h4>
+      <p>readonly 的 value，使用者只能唯讀不能修改，get 與 post 傳值可以將值丟出去，但只能作用在 input 與 textarea 上</p>
+      <p>disabled 的 value 完全禁止修改，也不會傳值，可作用於所有表單元素。(其他元素也可以，但 a 元素不行)</p>
+      <div class="row">
+        <div class="col">
+          <form>
+            <div class="form-group">
+              <label for="readonly">readonly</label>
+              <input id="readonly" class="form-control" type="text" placeholder="Readonly input here…" readonly />
+            </div>
+            <div class="form-group">
+              <label for="disabled">disabled</label>
+              <input id="disabled" class="form-control" type="text" placeholder="disabled input here…" disabled />
+            </div>
+            <input type="submit" value="送出" />
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <h4>驗證表單</h4>
+      <div class="row">
+        <div class="col">
+          <!-- 表單驗證，.needs-validation、novalidate 必須-->
+          <form class="needs-validation" novalidate>
+            <div class="form-row">
+              <div class="col-md-4 mb-3">
+                <label for="validationCustom01">First name</label>
+                <!-- 欄位 required 為必須填入 -->
+                <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="Mark" required />
+                <!-- .valid-feedback 表單內有內容時要回饋的訊息 -->
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+                <!-- .invalid-feedback 表單內沒有內容時要回饋的訊息 -->
+                <div class="invalid-feedback">
+                  請輸入 First name!
+                </div>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="validationCustom02">Last name</label>
+                <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="Otto" required />
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback">
+                  請輸入 Last name!
+                </div>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="validationCustomUsername">Username</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupPrepend">@</span>
+                  </div>
+                  <input type="text" class="form-control" id="validationCustomUsername" placeholder="Username" aria-describedby="inputGroupPrepend" required />
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                  <div class="invalid-feedback">
+                    Please choose a username.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-6 mb-3">
+                <label for="validationCustom03">City</label>
+                <input type="text" class="form-control" id="validationCustom03" placeholder="City" required />
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback">
+                  Please provide a valid city.
+                </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="validationCustom04">State</label>
+                <input type="text" class="form-control" id="validationCustom04" placeholder="State" required />
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback">
+                  Please provide a valid state.
+                </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="validationCustom05">Zip</label>
+                <input type="text" class="form-control" id="validationCustom05" placeholder="Zip" required />
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback">
+                  Please provide a valid zip.
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required />
+                <label class="form-check-label" for="invalidCheck">
+                  Agree to terms and conditions
+                </label>
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback">
+                  You must agree before submitting.
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-primary" type="submit">Submit form</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="customSwitch1" />
+            <label class="custom-control-label" for="customSwitch1">Toggle this switch element</label>
+          </div>
+          <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" disabled id="customSwitch2" />
+            <label class="custom-control-label" for="customSwitch2">Disabled switch element</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="customFile" />
+            <label class="custom-file-label" for="customFile" data-browse="上傳">請選擇檔案...</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/jquery-3.5.1.min.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function () {
+        'use strict';
+        window.addEventListener(
+          'load',
+          function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+              form.addEventListener(
+                'submit',
+                function (event) {
+                  if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                  }
+                  form.classList.add('was-validated');
+                },
+                false
+              );
+            });
+          },
+          false
+        );
+      })();
+    </script>
+  </body>
+</html>

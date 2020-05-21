@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <style></style>
+    <title>Hello, world!</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+      h4 {
+        margin: 1rem 0;
+      }
+
+      body {
+        background: #eee;
+      }
+
+      .container {
+        margin-bottom: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- dropdown 可以使用 button、a 去觸發下拉選單，兩元素都必須要有 data-toggle="dropdown" 才可以觸發下拉功能 -->
+    <div class="container-fluid d-flex justify-content-around align-items-center h-100 bg-dark">
+      <div class="dropdown">
+        <!-- .dropup、.dropright、.driopdown、.dropup 設定下拉方向 -->
+        <div class="btn-group dropdown">
+          <!-- 必須有 data-display="static"，才能使用響應式斷點的對齊 -->
+          <button class="btn btn-primary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" data-display="static" data-offset="-10,5" data-reference="parent">
+            Dropdown button
+          </button>
+          <!-- .dropdowm-menu 一開始隱藏起來，點選按鈕會在外層 .dropdown 增加 .show 顯示下拉選單 -->
+          <div class="dropdown-menu dropdown-menu-lg-right">
+            <!-- dropdown-item-text 分類項目 -->
+            <span class="dropdown-item-text">電腦</span>
+            <!-- dropdown-divider 分隔線 -->
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item active" href="#">主機板</a>
+            <a class="dropdown-item" href="#">硬碟</a>
+            <a class="dropdown-item disabled" href="#">記憶體</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- data-offset="-20,5" data-reference="parent" 設置下拉選單的位移對齊，不能與響應式斷點對齊一起設置 -->
+      <div class="dropdown">
+        <a class="btn btn-success btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" data-offset="-20,5" data-reference="parent">
+          Dropdown link
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <button type="button" class="btn btn-danger">Action</button>
+        <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Separated link</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/jquery-3.5.1.min.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script></script>
+  </body>
+</html>
