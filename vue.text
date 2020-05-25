@@ -1,9 +1,10 @@
-npm install -g @vue/cli 下載vue的開發環境
+下載vue的開發環境
+npm install -g @vue/cli
 vue create (myvue自己取)
-Babelz0 翻譯語法讓舊瀏覽器也能用
-css pre-processors像是翻譯pug.sass
-npm install -D pug pug-plain-loader 安裝html的pug
-npm run build 結束要上傳的檔案
+安裝html的pug
+npm install -D pug pug-plain-loader 
+結束要上傳的檔案
+npm run build 
 要建立一個vue.config.js的檔案
 module.exports = {
   publicPath: './'
@@ -14,3 +15,6 @@ vue add bootstrap-vue
 
 要加axios
 npm install axios vue-axios
+
+自動存東西進 Local Storage
+npm i vuex-persistedstate
