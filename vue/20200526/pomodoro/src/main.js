@@ -10,9 +10,9 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import draggable from 'vuedraggable'
 // 根據 icon 的種類引用
-import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import { faCheck, faPen, faTimes, faUndo, faSave, faPlay, faPause, faStepForward } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faCheck)
+library.add(faCheck, faPen, faTimes, faUndo, faSave, faPlay, faPause, faStepForward)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.component('draggable', draggable)
 Vue.config.productionTip = false
