@@ -1,21 +1,9 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/list">List</router-link> |
-      <router-link to="/settings">Settings</router-link> |
-      <router-link to="/NotFound">NotFound</router-link>
+      <router-link to="/list">清單</router-link> |
+      <router-link to="/settings">設定</router-link>
     </div>
     <router-view/>
   </div>
 </template>
-
-<style lang="stylus">
-#app
-  font-family Avenir, Helvetica, Arial, sans-serif
-  -webkit-font-smoothing antialiased
-  -moz-osx-font-smoothing grayscale
-  text-align center
-  color #2c3e50
-  margin-top 60px
-</style>
