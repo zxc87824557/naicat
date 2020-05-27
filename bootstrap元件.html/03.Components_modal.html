@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+
+    <link rel="stylesheet" href="./css/styles.css" />
+    <style></style>
+    <title>Hello, world!</title>
+    <style>
+      h4 {
+        margin: 1rem 0;
+      }
+
+      body {
+        background: #eee;
+      }
+
+      .container {
+        margin-bottom: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h4>互動視窗 (Modal)</h4>
+      <div class="row">
+        <div class="col">
+          <!--
+              需要 button 或 a 的 data-toggle="modal" 觸發 modal 視窗
+              使用 button 時 data-target 的值須為 modal 主體 id
+              使用 a 時，沒有 data-target，必須使用 href="#id"
+          -->
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#kaifu">
+            Launch demo modal
+          </button>
+
+          <a class="btn btn-primary" href="#kaifu" data-toggle="modal"> Launch demo modal</a>
+
+          <!-- 
+            Modal 主體
+            data-backdrop="static" 可鎖定背景，點擊背景時不會關閉 modal
+            .fade 淡入、淡出轉場效果
+          -->
+          <div class="modal fade" id="kaifu" data-backdrop="static">
+            <!-- 
+              .modal-dialog-centered 可垂直置中 modal 
+              調整 modal 視窗大小，.modal-xl(1140px)、modal-lg(800px)、modal-sm(300px)，沒寫是 500px
+            -->
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+              <!--  -->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                  <!-- data-dismiss="modal"  關閉modal-->
+                  <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>
+                    於是主要，轉帖等待文本筆記本本身給我們影視，尊重創新事件瀏覽引擎加強你有打印，都要權威一段時間，發佈日期法規業務歐美點擊預期春天我是一直下午還不，郵件加盟身上作者也要傳真怎樣，都不慢慢歲月壓力主動文章免費電影哈哈目光達到掌握高考，命運反應造型商機生日，人。
+                  </p>
+                </div>
+                <div class="modal-footer">
+                  <!-- data-dismiss="modal"  關閉modal-->
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/jquery-3.5.1.min.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script>
+      $('.modal').on('show.bs.modal', function () {
+        $('.modal .modal-dialog').attr('class', 'modal-dialog modal-dialog-centered modal-lg animate__animated animate__backInUp');
+      });
+      $('.modal').on('hide.bs.modal', function () {
+        $('.modal .modal-dialog').attr('class', 'modal-dialog modal-dialog-centered modal-lg animate__animated animate__backOutUp');
+      });
+    </script>
+  </body>
+</html>
