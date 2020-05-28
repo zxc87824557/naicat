@@ -2,189 +2,264 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            box-sizing: border-box;
-            font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      box-sizing: border-box;
+      font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+      transition: .5s;
+    }
 
-        img {
-            max-width: 100%;
-            margin: auto;
-        }
+    html,
+    body {
+      width: 100%;
+      position: relative;
+    }
 
-        .container {
-            width: 100vw;
-            height: 100vh;
-            padding: 0 1.5rem;
-            margin: auto;
-        }
+    img {
+      max-width: 100%;
+      margin: auto;
+    }
 
-        .row {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
+    .container {
+      width: 100vw;
+      height: 100vh;
+      padding: 0 1.5rem;
+      margin: auto;
+    }
 
-        .col {
-            width: 100%;
-            padding: 10px;
-        }
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
 
-        @media (min-width:600px) {
-            .container {
-                width: 95%;
-            }
+    .col {
+      width: 100%;
+      padding: 10px;
+      text-align: center;
+      border-bottom: 1px solid rgb(95, 95, 95);
+    }
 
-            .taizan {
-                position: absolute;
-                top: calc(50% + 300px);
-                left: 40%;
-            }
+    .p-m {
+      margin-bottom: 20px;
+    }
 
-            .html {
-                position: absolute;
-                top: 50px;
-                left: -50px;
+    @media(min-width: 1200px) {
+      .col {
+        width: 10%;
+        text-align: center;
+        border-style: none;
+      }
 
-            }
+      h1 {
+        font-size: 24px;
+      }
 
-            .css {
-                position: absolute;
-                top: 0px;
-                left: 300px;
+      p:not(.no) {
+        display: none;
+      }
 
-            }
+      .taizan {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 300px;
+      }
 
-            .js {
-                position: absolute;
-                top: 500px;
-                left: 50%;
-                transform: translate(-50%, -50%);
+      .html {
+        position: absolute;
+        top: 10%;
+        right: 80%;
+      }
 
-            }
+      .html::before {
+        content: '';
+        position: absolute;
+        top: 80%;
+        left: 100%;
+        width: 400px;
+        height: 1px;
+        transform: rotate(10deg);
+        background-color: rgb(95, 95, 95);
+      }
 
-            .jq {
-                position: absolute;
-                top: 800px;
-                left: 1100px;
-                transform: translate(-50%, -50%);
+      .css {
+        position: absolute;
+        top: 0%;
+        right: 65%;
+      }
 
-            }
+      .css::before {
+        content: '';
+        position: absolute;
+        top: 90%;
+        left: 90%;
+        width: 180px;
+        height: 1px;
+        transform: rotate(25deg);
+        background-color: rgb(95, 95, 95);
+      }
 
-            .bs {
-                position: absolute;
-                top: 50%;
-                left: 80%;
-                transform: translate(-50%, );
+      .js {
+        position: absolute;
+        top: 40%;
+        right: 75%;
+      }
 
-            }
+      .js::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 100%;
+        width: 300px;
+        height: 1px;
+        transform: rotate(-10deg);
+        background-color: rgb(95, 95, 95);
+      }
 
-            .vue {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
+      .jq {
+        position: absolute;
+        top: 65%;
+        right: 65%;
+      }
 
-            }
+      .jq::before {
+        content: '';
+        position: absolute;
+        top: 20%;
+        left: 100%;
+        width: 100px;
+        height: 1px;
+        transform: rotate(-20deg);
+        background-color: rgb(95, 95, 95);
+      }
 
-            .sass {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
+      .bs {
+        position: absolute;
+        top: 0%;
+        left: 65%;
+      }
 
-            }
+      .bs::before {
+        content: '';
+        position: absolute;
+        top: 110%;
+        right: 100%;
+        width: 200px;
+        height: 1px;
+        transform: rotate(-25deg);
+        background-color: rgb(95, 95, 95);
+      }
 
-            .col p:not(.no) {
-                display: none;
-            }
+      .sass {
+        position: absolute;
+        top: 30%;
+        left: 75%;
+      }
 
-            .col img {
-                width: 10%;
-            }
+      .sass::before {
+        content: '';
+        position: absolute;
+        top: 60%;
+        right: 110%;
+        width: 280px;
+        height: 1px;
+        transform: rotate(0deg);
+        background-color: rgb(95, 95, 95);
+      }
 
-            /* .col h1 {
-                width: 20%;
-            } */
-        }
-    </style>
+      .vue {
+        position: absolute;
+        top: 60%;
+        left: 70%;
+      }
+
+      .vue::before {
+        content: '';
+        position: absolute;
+        top: 10%;
+        right: 105%;
+        width: 250px;
+        height: 1px;
+        transform: rotate(15deg);
+        background-color: rgb(95, 95, 95);
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col taizan">
-                <img src="./images/wda.png" alt="">
-                <h1>泰山職訓局</h1>
-                <h3>從零開始的網頁設計課程</h3>
-                <p class="no">轉職網頁開發人員 掌握就業必備技能
-                    <br>由淺入深學習技術 強化職場競的爭力</p>
-            </div>
-            <div class="col html">
-                <img src="./images/html.png" alt="">
-                <h1>html</h1>
-                <p>超文本標記語言（英語：HyperText Markup Language，簡稱：HTML）是一種用於建立網頁的標準標記語言。
-                    HTML 是一種基礎技術，常與 CSS、JavaScript 一起被眾多網站用於設計賞心悅目的網頁、網頁應用程式以及行
-                    動應用程式的使用者介面。網頁瀏覽器可以讀取 HTML 檔案，並將其彩現成視覺化網頁。HTML 描述了一個網站
-                    的結構語意隨著線索的呈現，使之成為一種標記語言而非程式語言。
-                </p>
-            </div>
-            <div class="col css">
-                <img src="./images/css.png" alt="">
-                <h1>css3</h1>
-                <p>層疊樣式表（英語：Cascading Style Sheets，簡寫CSS），又稱串樣式列表、級聯樣式表、串接樣式表、階層式樣
-                    式表，一種用來為結構化文件（如 HTML 文件或 XML 應用）添加樣式（字型、間距和顏色等）的電腦語言，由
-                    W3C 定義和維護。目前最新版本是 CSS2.1，為 W3C 的推薦標準。CSS3 現在已被大部分現代瀏覽器支援，而下
-                    一版的 CSS4 仍在開發中。
-                </p>
-            </div>
-            <div class="col js">
-                <img src="./images/js.png" alt="">
-                <h1>javaScirpt</h1>
-                <p>JavaScript，通常縮寫為 JS，是一種進階直譯語言的程式語言。JavaScript 是一門基於原型、函式先行的語言，是
-                    一門多範式的語言，它支援物件導向編程，指令式程式設計，以及函式語言程式設計。
-                </p>
-            </div>
-            <div class="col jq">
-                <img src="./images/jq.png" alt="">
-                <h1>css3</h1>
-                <p>jQuery 是一套跨瀏覽器的 JavaScript 函式庫，簡化 HTML 與 JavaScript 之間的操作。全球前 10,000 個存取最高的
-                    網站中，有 65% 使用了jQuery，是目前最受歡迎的 JavaScript 函式庫。
-                </p>
-            </div>
-            <div class="col bs">
-                <img src="./images/bs.png" alt="">
-                <h1>Bootstrap</h1>
-                <p>Bootstrap 是一組用於網站和網路應用程式開發的開源前端（所謂「前端」，指的是展現給終端使用者的介面。與
-                    之對應的「後端」是在伺服器上面執行的程式碼）框架，包括 HTML、CSS及JavaScript 的框架，提供字體排印、
-                    表單、按鈕、導航及其他各種元件及 Javascript 擴充套件，旨在使動態網頁和 Web 應用的開發更加容易。
-                </p>
-            </div>
-            <div class="col vue">
-                <img src="./images/sass.png" alt="">
-                <h1>Sass</h1>
-                <p>有些時候Variables，這時候若能使用變數儲存重複使用的值可以增加重用性。 在Sass 中我們使用 $
-                    來表示變數，變數的資料型態可以是Numbers（可以有單位或無單位）、Strings、Booleans、null 值（視為空值），甚至可以使用Lists、Maps 來。
-                </p>
-            </div>
-            <div class="col vue">
-                <img src="./images/vue.png" alt="">
-                <h1>Vue.js</h1>
-                <p>有些時候Variables，這時候若能使用變數儲存重複使用的值可以增加重用性。 在Sass 中我們使用 $
-                    來表示變數，變數的資料型態可以是Numbers（可以有單位或無單位）、Strings、Booleans、null 值（視為空值），甚至可以使用Lists、Maps 來。
-                </p>
-            </div>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="col taizan">
+        <img src="./images/wda.png" alt="">
+        <h1>泰山職訓局</h1>
+        <h3>從零開始的網頁設計課程</h3>
+        <p class="no">轉職網頁開發人員&emsp;掌握就業必備職能</p>
+        <p class="no">由淺入深學習技術&emsp;強化職場的競爭力</p>
+      </div>
+      <div class="col html">
+        <img src="./images/html.png" alt="">
+        <h1>html</h1>
+        <p>超文本標記語言（英語：HyperText Markup Language，簡稱：HTML）是一種用於建立網頁的標準標記語言。
+          HTML 是一種基礎技術，常與 CSS、JavaScript 一起被眾多網站用於設計賞心悅目的網頁、網頁應用程式以及行
+          動應用程式的使用者介面。網頁瀏覽器可以讀取 HTML 檔案，並將其彩現成視覺化網頁。HTML 描述了一個網站
+          的結構語意隨著線索的呈現，使之成為一種標記語言而非程式語言。
+        </p>
+      </div>
+      <div class="col css">
+        <img src="./images/css.png" alt="">
+        <h1>css3</h1>
+        <p>層疊樣式表（英語：Cascading Style Sheets，簡寫CSS），又稱串樣式列表、級聯樣式表、串接樣式表、階層式樣
+          式表，一種用來為結構化文件（如 HTML 文件或 XML 應用）添加樣式（字型、間距和顏色等）的電腦語言，由
+          W3C 定義和維護。目前最新版本是 CSS2.1，為 W3C 的推薦標準。CSS3 現在已被大部分現代瀏覽器支援，而下
+          一版的 CSS4 仍在開發中。
+        </p>
+      </div>
+      <div class="col js">
+        <img src="./images/js.png" alt="">
+        <h1>javaScirpt</h1>
+        <p>JavaScript，通常縮寫為 JS，是一種進階直譯語言的程式語言。JavaScript 是一門基於原型、函式先行的語言，是
+          一門多範式的語言，它支援物件導向編程，指令式程式設計，以及函式語言程式設計。
+        </p>
+      </div>
+      <div class="col jq">
+        <img src="./images/jq.png" alt="">
+        <h1>css3</h1>
+        <p>jQuery 是一套跨瀏覽器的 JavaScript 函式庫，簡化 HTML 與 JavaScript 之間的操作。全球前 10,000 個存取最高的
+          網站中，有 65% 使用了jQuery，是目前最受歡迎的 JavaScript 函式庫。
+        </p>
+      </div>
+      <div class="col bs">
+        <img src="./images/bs.png" alt="">
+        <h1>Bootstrap</h1>
+        <p>Bootstrap 是一組用於網站和網路應用程式開發的開源前端（所謂「前端」，指的是展現給終端使用者的介面。與
+          之對應的「後端」是在伺服器上面執行的程式碼）框架，包括 HTML、CSS及JavaScript 的框架，提供字體排印、
+          表單、按鈕、導航及其他各種元件及 Javascript 擴充套件，旨在使動態網頁和 Web 應用的開發更加容易。
+        </p>
+      </div>
+      <div class="col sass">
+        <img src="./images/sass.png" alt="">
+        <h1>Sass</h1>
+        <p>有些時候Variables，這時候若能使用變數儲存重複使用的值可以增加重用性。 在Sass 中我們使用 $
+          來表示變數，變數的資料型態可以是Numbers（可以有單位或無單位）、Strings、Booleans、null 值（視為空值），甚至可以使用Lists、Maps 來。
+        </p>
+      </div>
+      <div class="col vue">
+        <img src="./images/vue.png" alt="">
+        <h1>Vue.js</h1>
+        <p>有些時候Variables，這時候若能使用變數儲存重複使用的值可以增加重用性。 在Sass 中我們使用 $
+          來表示變數，變數的資料型態可以是Numbers（可以有單位或無單位）、Strings、Booleans、null 值（視為空值），甚至可以使用Lists、Maps 來。
+        </p>
+      </div>
     </div>
+  </div>
 </body>
 
 </html>
