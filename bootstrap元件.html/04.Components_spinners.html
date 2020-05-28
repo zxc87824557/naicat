@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+
+    <link rel="stylesheet" href="./css/styles.css" />
+    <style></style>
+    <title>Hello, world!</title>
+    <style>
+      h4 {
+        margin: 1rem 0;
+      }
+
+      body {
+        background: #eee;
+      }
+
+      .container {
+        margin-bottom: 2rem;
+      }
+
+      .container:nth-child(3) .row > * {
+        border-left: 1px solid #333;
+        border-right: 1px solid #333;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h4>讀取圖示 (Spinners)</h4>
+      <p>
+        Bootstrap 讀取圖示可用於顯示專案的加載狀態。它們僅使用 HTML 和 CSS 建構，這代表您不需要任何 JavaScript 來創建它們。但是您需要自定義一些 JavaScript
+        來切換它們的顯示。讀取圖示的外觀、對齊和尺寸都可以透過強大的通用類別來制定。
+      </p>
+      <div class="row">
+        <div class="col-6">
+          <h5>邊框讀取圖示</h5>
+          <p>使用邊框讀取圖示（.spinner-border）來當作輕量的載入狀態顯示。</p>
+        </div>
+        <div class="col-6">
+          <h5>顏色</h5>
+          <p>邊框讀取圖示使用 text-* 來改變顏色</p>
+        </div>
+        <div class="col">
+          <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+        <div class="col">
+          <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <div class="spinner-border text-secondary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <div class="spinner-border text-success" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <div class="spinner-border text-danger" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <div class="spinner-border text-warning" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <div class="spinner-border text-info" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <div class="spinner-border text-light" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <div class="spinner-border text-dark" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+          <h5>漸變讀取圖示</h5>
+          <p>如果你不喜歡邊框讀取圖示，可以切換到漸變讀取圖示。雖然技術上來說，它不會旋轉，但它會反覆漸變顯示！</p>
+        </div>
+        <div class="col-6">
+          <h5>顏色</h5>
+          <p>一樣使用 text-* 來改變顏色</p>
+        </div>
+        <div class="col">
+          <div class="spinner-grow" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+        <div class="col">
+          <div class="spinner-grow text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <div class="spinner-grow text-secondary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <div class="spinner-grow text-success" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <div class="spinner-grow text-danger" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <div class="spinner-grow text-warning" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <div class="spinner-grow text-info" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <div class="spinner-grow text-light" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <div class="spinner-grow text-dark" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-3">
+          <h5>Margin</h5>
+          <p>使用 margin utilities 像是 .m-5 簡單地增加間隔</p>
+        </div>
+        <div class="col-3">
+          <h5>Flex</h5>
+          <p>使用 Flex</p>
+        </div>
+        <div class="col-3">
+          <h5>Floats</h5>
+          <p>使用浮動</p>
+        </div>
+        <div class="col-3">
+          <h5>文字排版對齊 text-center、text-right</h5>
+        </div>
+
+        <div class="col">
+          <div class="spinner-border m-5" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+        <div class="col">
+          <div class="d-flex justify-content-center">
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="clearfix">
+            <div class="spinner-border float-right" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="text-center">
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h5>尺寸</h5>
+        </div>
+        <div class="col-6">
+          <p>加入 .spinner-border-sm 和 .spinner-grow-sm 製作一個較小的讀取圖示，它可以在其他元件中快速地被使用。</p>
+        </div>
+        <div class="col-6">
+          <p>或者，使用自定義 CSS 或 inline 來根據需要更改尺寸。</p>
+        </div>
+        <div class="col">
+          <div class="spinner-border spinner-border-sm" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <div class="spinner-grow spinner-grow-sm" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+        <div class="col">
+          <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h5>按鈕</h5>
+          <p>在按鈕內使用讀取圖示是表示當前正在處理或正在進行操作。您也可以加入文本來更換讀取圖示，並根據需要使用按鈕。</p>
+        </div>
+        <div class="col-6">
+          <button class="btn btn-primary" type="button" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            <span class="sr-only">Loading...</span>
+          </button>
+          <button class="btn btn-primary" type="button" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Loading...
+          </button>
+        </div>
+        <div class="col-6">
+          <button class="btn btn-primary" type="button" disabled>
+            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+            <span class="sr-only">Loading...</span>
+          </button>
+          <button class="btn btn-primary" type="button" disabled>
+            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+            Loading...
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/jquery-3.5.1.min.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script></script>
+  </body>
+</html>

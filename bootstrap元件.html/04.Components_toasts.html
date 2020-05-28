@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+
+    <link rel="stylesheet" href="./css/styles.css" />
+    <style></style>
+    <title>Hello, world!</title>
+    <style>
+      h4 {
+        margin: 1rem 0;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        background: url('https://picsum.photos/1920/1080/?random=1') no-repeat center center/cover;
+      }
+
+      .container {
+        margin-bottom: 2rem;
+      }
+
+      .toast {
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+    <button id="btn1" type="button" class="btn btn-primary">Show Toast 1</button>
+    <button id="btn2" type="button" class="btn btn-primary">Show Toast 2</button>
+    <div class="row flex-column-reverse position-fixed" style="bottom: 0; right: 0; width: 300px;">
+      <div class="col">
+        <div id="toast1" class="toast">
+          <div class="toast-header">
+            <img src="https://picsum.photos/20/20/?random=1" class="rounded mr-2" alt="..." />
+            <strong class="mr-auto">Bootstrap</strong>
+            <small class="text-muted">11 mins ago</small>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="toast-body">
+            提示訊息競爭力這樣保持微軟禮品義務，這一點緊急大約還會萬華，啟動通用負責人，細節要去內存加速學歷家長有效警察失去經濟，一句一段時間組成看了自然工作和平人物，國內外管理小孩百姓就會我和，對付有關精品鄉民們明白可見領域對手本站小七自然，整合害怕字元一遍反對本公司均為，首頁是否交通把它宣傳是從，教師下載。
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div id="toast2" class="toast">
+          <div class="toast-header">
+            <img src="https://picsum.photos/20/20/?random=1" class="rounded mr-2" alt="..." />
+            <strong class="mr-auto">Bootstrap</strong>
+            <small class="text-muted">11 mins ago</small>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="toast-body">
+            開放禮物您的年齡有人下了證券發佈想要中文，一人你在年輕人運作情節人類，回憶犯罪瀏覽器等方面反應將會旁邊共享版空間具備似乎會在，考慮給我們手中深深宣佈試題至少，線路受到導致不住中心工具哪個轉貼上市一家那些出口不到裝飾，運動一面答案，網站定位一會兒，當年抱著，資料庫加盟感動一座具體藍色小遊戲這一點，尷。
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./js/jquery-3.5.1.min.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script>
+      $('#btn1').on('click', function () {
+        $('#toast1').toast({ delay: 3000 });
+        $('#toast1').toast('show');
+      });
+      $('#btn2').on('click', function () {
+        $('#toast2').toast({ delay: 3000 });
+        $('#toast2').toast('show');
+      });
+    </script>
+  </body>
+</html>

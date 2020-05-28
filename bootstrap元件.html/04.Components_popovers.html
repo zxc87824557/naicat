@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+
+    <link rel="stylesheet" href="./css/styles.css" />
+    <style></style>
+    <title>Hello, world!</title>
+    <style>
+      h4 {
+        margin: 1rem 0;
+      }
+
+      body {
+        background: #eee;
+      }
+
+      .container {
+        margin-bottom: 2rem;
+        margin-top: 5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 
+      需要設定 JS 啟動 
+      data-placement="top" 可以設定彈出方向 top、right、bottom、left
+      data-trigger="click" 預設 click，可更改為滑入 hover，或 foucs 在畫面上下一次點擊會關閉
+      data-content="彈出框的內容"
+      title="彈出框的標題"
+    -->
+    <div class="container">
+      <h4>彈出提示框 (Popovers)</h4>
+      <div class="row">
+        <div class="col">
+          <button
+            type="button"
+            class="btn btn-lg btn-danger"
+            data-toggle="popover"
+            data-placement="top"
+            data-trigger="foucs"
+            title="Popover title"
+            data-content="And here's some amazing content. It's very engaging. Right?"
+          >
+            Click to toggle popover
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/jquery-3.5.1.min.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script>
+      $(function () {
+        $('[data-toggle="popover"]').popover();
+      });
+    </script>
+  </body>
+</html>
