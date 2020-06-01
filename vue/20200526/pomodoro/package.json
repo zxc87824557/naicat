@@ -13,6 +13,7 @@
     "@fortawesome/vue-fontawesome": "^0.1.9",
     "bootstrap-vue": "^2.1.0",
     "core-js": "^3.6.4",
+    "noto-sans-tc": "^9.0.0",
     "register-service-worker": "^1.7.1",
     "vue": "^2.6.11",
     "vue-pwa-asset-generator": "^1.0.0",
