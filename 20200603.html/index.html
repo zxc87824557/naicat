@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="泰山咖啡園，提供完善前端、後端技術課程，由淺至進階學習，擁有明亮的學習空間及雙螢幕設備，強化職場競爭力。">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="./css/bootstrap.css" />
+  <!-- font awesome -->
+  <link rel="stylesheet" href="./css/font.min.css" />
+  <!-- style css -->
+  <link rel="stylesheet" href="./css/style.css" />
+  <!-- favicon -->
+  <link rel="shortcut icon" href="./images/favicon.ico" />
+
+  <title>泰山咖啡莊園</title>
+</head>
+
+<body>
+  <!-- 導覽列區 -->
+  <nav id="navbar" class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <a class="navbar-brand" href="#section01"><img src="images/logo.png" alt="泰山咖啡莊園" width="40"><span
+        class="ml-2 align-middle">泰山咖啡莊園</span></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#coffee-navbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="coffee-navbar" class="collapse navbar-collapse justify-content-lg-end">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="#section02"><i class="fas fa-hamburger"></i>菜單餐點</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#section03"><i class="fas fa-bus"></i>周邊景點</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#section04"><i class="fas fa-map-marked-alt"></i>莊園位置</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#section05"><i class="fas fa-envelope"></i>聯絡我們</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#section06"><i class="fas fa-coffee"></i>咖啡故事</a>
+        </li>
+      </ul>
+      <ul id="login_menu" class="navbar-nav">
+        <li class="nav-item">
+          <a id="btn-login" class="nav-link" href="#login" data-toggle="modal"><i class="fas fa-user"></i>登入</a>
+        </li>
+        <span class="text-secondary mx-1" style="line-height: 35px;">|</span>
+        <li class="nav-item">
+          <a id="btn-register" class="nav-link" href="#register" data-toggle="modal"><i
+              class="fas fa-address-book"></i>註冊</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- modal 登入 -->
+  <form>
+    <div class="modal fade" id="login">
+      <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">會員登入</h5>
+            <button type="button" class="close" data-dismiss="modal">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="col-form-label" for="login_id">帳號:</label>
+              <input id="login_id" type="text" class="form-control form-control-sm">
+            </div>
+            <div class="form-group">
+              <label class="col-form-label" for="login_pw">密碼:</label>
+              <input id="login_pw" type="password" class="form-control form-control-sm">
+            </div>
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button type="button" class="btn btn-coffee" data-dismiss="modal">關閉</button>
+            <button type="button" class="btn btn-coffee">送出</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <!-- modal 註冊 -->
+  <form>
+    <div class="modal fade" id="register">
+      <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">會員登入</h5>
+            <button type="button" class="close" data-dismiss="modal">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="col-form-label" for="reg_id">帳號:</label>
+              <input id="reg_id" type="text" class="form-control form-control-sm">
+            </div>
+            <div class="form-group">
+              <label class="col-form-label" for="reg_pw">密碼:</label>
+              <input id="reg_pw" type="password" class="form-control form-control-sm">
+            </div>
+            <div class="form-group">
+              <label class="col-form-label" for="reg_pw2">確認密碼:</label>
+              <input id="reg_pw2" type="password" class="form-control form-control-sm">
+            </div>
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button type="button" class="btn btn-coffee" data-dismiss="modal">關閉</button>
+            <button type="button" class="btn btn-coffee">送出</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <!-- section01輪播圖 -->
+  <section id="section01"></section>
+  <!-- section02菜單餐點 -->
+  <section id="section02"></section>
+  <!-- section03周邊景點 -->
+  <section id="section03"></section>
+  <!-- section04莊園位置 -->
+  <section id="section04"></section>
+  <!-- section05聯絡我們 -->
+  <section id="section05"></section>
+  <!-- section06咖啡故事 -->
+  <section id="section06"></section>
+
+  <script src="./js/jquery-3.5.1.min.js"></script>
+  <script src="./js/popper.min.js"></script>
+  <script src="./js/bootstrap.js"></script>
+  <!-- scrollpage -->
+  <script src="./js/jquery.easing.1.3.js"></script>
+  <script src="./js/scrollpage.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,117 @@
+/* 自訂樣式 */
+/* css原生變數 */
+:root{
+  /* 主題色 */
+  --coffee1:#000000 !important;
+  --coffee2:#3a3a3a !important;
+  --coffee3:#6c6c6c !important;
+  --coffee4:#7c7c7c !important;
+  --coffee5:#eeeeee !important;
+  --coffee6:#5f5f5f !important;
+
+  /* 黑色透明 */
+  --black25:rgba(0,0,0,0.25) !important;
+  --black50:rgba(0,0,0,0.5) !important;
+  --black75:rgba(0,0,0,0.75) !important;
+
+  /* 白色透明 */
+  --white25:rgba(255,255,255,0.25) !important;
+  --white50:rgba(255,255,255,0.5) !important;
+  --white75:rgba(255,255,255,0.75) !important;
+
+  /* 陰影 */
+  --shadow1: 0 0 5px var(--black25) !important;
+  --shadow2: 0 0 10px var(--black50) !important;
+  --shadow3: 0 0 15px var(--black75) !important;
+
+  /* 內距、外距 */
+  --s0:0 !important;
+  --s1:0.25rem !important;
+  --s2:0.5rem !important;
+  --s3:1rem !important;
+  --s4:1.5rem !important;
+  --s5:3rem !important;
+}
+
+.btn-coffee {
+  color: var(--coffee5);
+  background-color: var(--coffee3);
+}
+
+.btn-coffee:hover {
+  color: var(--coffee5);
+  background-color: var(--coffee2);
+}
+
+.btn-coffee:focus,
+.btn-coffee.focus {
+  box-shadow: var(--shadow1);
+}
+
+.btn-coffee.disabled,
+.btn-coffee:disabled {
+  color: var(--coffee5);
+  background-color: var(--coffee3);
+}
+
+.btn-coffee:not(:disabled):not(.disabled):active,
+.btn-coffee:not(:disabled):not(.disabled).active,
+.show > .btn-coffee.dropdown-toggle {
+  color: var(--coffee5);
+  background-color: var(--coffee3);
+}
+
+.btn-coffee:not(:disabled):not(.disabled):active:focus,
+.btn-coffee:not(:disabled):not(.disabled).active:focus,
+.show > .btn-coffee.dropdown-toggle:focus {
+  box-shadow: var(--shadow1);
+}
+
+body {
+  font-family:'微軟正黑體', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif; 
+  background: var(--coffee1);
+}
+/* 導覽列---------------------------------------------------------------------------- */
+#navbar {
+  background: var(--coffee1);
+  padding: var(--s1) 0;
+  transition: .5s;
+
+}
+
+#coffee-navbar .nav-link i {
+  margin-right: var(--s1);
+}
+
+#login_menu{
+  display: flex;
+  flex-direction: row;
+
+}
+/* 裝置斷點控制------------------------------------------------------------------------ */
+/* 575px 以下 */
+@media (max-width: 575px){
+
+}
+/* ㄕㄠ 992px 以下 */
+@media (min-width: 992px){
+  #section01,#section02,#section03,#section04,#section05,#section06{
+    height: 100vh;
+  }
+}
+
+section:nth-child(even) {
+  background: var(--coffee5);
+}
+
+/* modal */
+#login .modal-content,
+#register .modal-content {
+  box-shadow: var(--shadow3);
+}
+
+#login input.form-control:focus,
+#register input.form-control:focus{
+  border-color: var(--coffee3);
+  box-shadow: var(--shadow2);
+}
