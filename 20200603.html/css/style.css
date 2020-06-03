@@ -88,6 +88,89 @@ body {
   flex-direction: row;
 
 }
+
+/* section01 輪播圖 */
+.carousel-control-prev,
+.carousel-control-next{
+  transition: .5s;
+}
+
+.carousel-control-prev:hover{
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.8), transparent);
+  opacity: 1;
+}
+.carousel-control-next:hover{
+  background: linear-gradient(270deg, rgba(0, 0, 0, 0.8), transparent);
+  opacity: 1;
+}
+
+.carousel-item{
+  height: 100%;
+}
+.carousel-inner img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.img-scale{
+  animation: img-scale 20s 1s 1 ease forwards;
+}
+
+@keyframes img-scale{
+  from{
+    transform: scale(1);
+  }
+  to{
+    transform: scale(1.2);
+  }
+}
+
+#section01,
+#section02,
+#section03,
+#section04,
+#section05,
+#section06{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* section02 菜單餐點 */
+#section02{
+  background: var(--coffee4);
+}
+
+#section02 .container h1{
+  text-align: center;
+  padding-top: var(--s4);
+  color: var(--coffee1);
+}
+
+#section02> .container> .row{
+  padding: var(--s2);
+}
+
+#section02 .list-group{
+  font-size: 1rem;
+  margin: 1rem 0;
+}
+
+#section02 .list-group .nav-link{
+  color: var(--coffee2);
+  padding: 0.5rem;
+}
+
+#section02 .card{
+  border: 5px double var(--coffee5) !important;
+  transition: .3s;
+}
+#section02 .card:hover{
+  transform: translateY(-1rem);
+}
+
 /* 裝置斷點控制------------------------------------------------------------------------ */
 /* 575px 以下 */
 @media (max-width: 575px){
@@ -100,7 +183,7 @@ body {
   }
 }
 
-section:nth-child(even) {
+section:nth-child(odd) {
   background: var(--coffee5);
 }
 
