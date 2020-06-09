@@ -1,36 +1,35 @@
-/* 自訂樣式 */
-/* css原生變數 */
-:root{
+/* 自訂樣式 ----------------------------------------------------- */
+/* CSS 原生變數 */
+:root {
   /* 主題色 */
-  --coffee1:#000000 !important;
-  --coffee2:#3a3a3a !important;
-  --coffee3:#6c6c6c !important;
-  --coffee4:#7c7c7c !important;
-  --coffee5:#eeeeee !important;
-  --coffee6:#5f5f5f !important;
+  --coffee1: #000000 !important;
+  --coffee2: #3a3a3a !important;
+  --coffee3: #6c6c6c !important;
+  --coffee4: #c7c7c7 !important;
+  --coffee5: #eeeeee !important;
 
   /* 黑色透明 */
-  --black25:rgba(0,0,0,0.25) !important;
-  --black50:rgba(0,0,0,0.5) !important;
-  --black75:rgba(0,0,0,0.75) !important;
+  --black25: rgba(0, 0, 0, 0.25) !important;
+  --black50: rgba(0, 0, 0, 0.5) !important;
+  --black75: rgba(0, 0, 0, 0.75) !important;
 
   /* 白色透明 */
-  --white25:rgba(255,255,255,0.25) !important;
-  --white50:rgba(255,255,255,0.5) !important;
-  --white75:rgba(255,255,255,0.75) !important;
+  --white25: rgba(255, 255, 255, 0.25) !important;
+  --white50: rgba(255, 255, 255, 0.5) !important;
+  --white75: rgba(255, 255, 255, 0.75) !important;
 
   /* 陰影 */
   --shadow1: 0 0 5px var(--black25) !important;
   --shadow2: 0 0 10px var(--black50) !important;
   --shadow3: 0 0 15px var(--black75) !important;
 
-  /* 內距、外距 */
-  --s0:0 !important;
-  --s1:0.25rem !important;
-  --s2:0.5rem !important;
-  --s3:1rem !important;
-  --s4:1.5rem !important;
-  --s5:3rem !important;
+  /* 內距、外距級數 */
+  --s0: 0 !important;
+  --s1: 0.25rem !important;
+  --s2: 0.5rem !important;
+  --s3: 1rem !important;
+  --s4: 1.5rem !important;
+  --s5: 3rem !important;
 }
 
 .btn-coffee {
@@ -63,66 +62,69 @@
 
 .btn-coffee:not(:disabled):not(.disabled):active:focus,
 .btn-coffee:not(:disabled):not(.disabled).active:focus,
-.show > .btn-coffee.dropdown-toggle:focus {
+.show > .btn-primary.dropdown-toggle:focus {
   box-shadow: var(--shadow1);
 }
 
+/* body -------------------------------------------------------- */
 body {
-  font-family:'微軟正黑體', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif; 
-  background: var(--coffee1);
+  font-family: '微軟正黑體', 'Microsoft JhengHei', Arial, Helvetica, sans-serif;
+  background-color: var(--coffee1);
 }
-/* 導覽列---------------------------------------------------------------------------- */
+
+/* 導覽列 ------------------------------------------------------ */
 #navbar {
   background: var(--coffee1);
   padding: var(--s1) 0;
-  transition: .5s;
-
+  transition: 0.5s;
 }
 
 #coffee-navbar .nav-link i {
   margin-right: var(--s1);
 }
 
-#login_menu{
+/* 575px 最小尺寸，登入、註冊會呈現水平顯示 */
+#login_menu {
   display: flex;
   flex-direction: row;
-
 }
 
 /* section01 輪播圖 */
 .carousel-control-prev,
-.carousel-control-next{
-  transition: .5s;
+.carousel-control-next {
+  transition: 0.5s;
 }
 
-.carousel-control-prev:hover{
+.carousel-control-prev:hover {
   background: linear-gradient(90deg, rgba(0, 0, 0, 0.8), transparent);
   opacity: 1;
 }
-.carousel-control-next:hover{
+
+.carousel-control-next:hover {
   background: linear-gradient(270deg, rgba(0, 0, 0, 0.8), transparent);
   opacity: 1;
 }
 
-.carousel-item{
+.carousel-item {
   height: 100%;
 }
-.carousel-inner img{
+
+.carousel-inner img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-
-.img-scale{
+.img-scale {
   animation: img-scale 20s 1s 1 ease forwards;
 }
 
-@keyframes img-scale{
-  from{
+@keyframes img-scale {
+  from {
     transform: scale(1);
   }
-  to{
+
+  to {
     transform: scale(1.2);
   }
 }
@@ -132,59 +134,412 @@ body {
 #section03,
 #section04,
 #section05,
-#section06{
+#section06 {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-/* section02 菜單餐點 */
-#section02{
+
+/* section02 菜單餐點 ------------------------------------------- */
+#section02 {
   background: var(--coffee4);
 }
 
-#section02 .container h1{
+#section02 .container {
+  background: var(--coffee4);
+}
+
+#section02 .container h1 {
   text-align: center;
-  padding-top: var(--s4);
+  padding-top: 4rem;
+  margin-bottom: var(--s0);
   color: var(--coffee1);
 }
 
-#section02> .container> .row{
+#section02 > .container > .row {
   padding: var(--s2);
 }
 
-#section02 .list-group{
-  font-size: 1rem;
-  margin: 1rem 0;
+#section02 .col-lg-3 {
+  padding-left: var(--s2);
+  padding-right: var(--s2);
+  margin-bottom: var(--s3);
 }
 
-#section02 .list-group .nav-link{
+/* list-group */
+#section02 .list-group {
+  margin: var(--s3) 0;
+  margin-bottom: var(--s4);
+}
+
+#section02 .list-group-flush > .list-group-item:last-child {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+#section02 .list-group .nav-link {
   color: var(--coffee2);
-  padding: 0.5rem;
+  padding: var(--s2);
+  transition: 0.3s;
 }
 
-#section02 .card{
-  border: 5px double var(--coffee5) !important;
-  transition: .3s;
+#section02 .nav-item.active {
+  color: var(--coffee2);
+  background: var(--coffee4);
+  border: var(--s1) inset var(--coffee5);
 }
-#section02 .card:hover{
+
+/* card */
+#section02 .card {
+  transition: 0.3s;
+  border: 5px solid var(--coffee5) !important;
+  box-shadow: 0 0 0 1px var(--coffee4);
+  height: 100%;
+}
+#section02 .card:hover {
   transform: translateY(-1rem);
 }
 
-/* 裝置斷點控制------------------------------------------------------------------------ */
-/* 575px 以下 */
-@media (max-width: 575px){
-
+#section02 .card-body {
+  padding: var(--s2);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
-/* ㄕㄠ 992px 以下 */
-@media (min-width: 992px){
-  #section01,#section02,#section03,#section04,#section05,#section06{
-    height: 100vh;
+
+#section02 .card-body h5 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+#section02 .card-body p {
+  margin: 0;
+}
+
+/* section03 周邊景點 ------------------------------------------- */
+#section03 {
+  padding-bottom: var(--s4);
+}
+
+#section03 h1 {
+  text-align: center;
+  padding-top: var(--s5);
+  margin: var(--s3) 0;
+  color: var(--coffee5);
+}
+
+#section03 > .container > .row {
+  background: var(--black50);
+  padding: var(--s2);
+  padding-top: var(--s4);
+}
+
+#section03 .col-lg-3 {
+  padding-left: var(--s2);
+  padding-right: var(--s2);
+  margin-bottom: var(--s3);
+}
+
+#section03 .view {
+  position: relative;
+  overflow: hidden;
+}
+
+#section03 .view .text {
+  color: white;
+  background-color: var(--black50);
+  padding: 0 var(--s3);
+
+  /* 文字絕對定位在圖片上層 */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  transition: 1s;
+}
+
+#section03 .view .text p {
+  display: none;
+}
+
+#section03 .view img {
+  transition: 0.5s;
+}
+
+#section03 .view:hover img {
+  transform: scale(1.2);
+}
+
+#section03 .view:hover .text {
+  background-color: var(--black75);
+}
+
+/* section04 莊園位置 ------------------------------------------- */
+#section04 .embed-responsive {
+  position: absolute;
+  filter: brightness(50%);
+  transition: 1s;
+}
+
+#section04 .embed-responsive:hover {
+  filter: brightness(80%);
+}
+
+/* 交通資訊 */
+#section04 .infomation {
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  overflow-x: hidden;
+}
+
+#section04 .infomation h3 {
+  color: var(--primary);
+  text-align: center;
+  background: var(--coffee5);
+  border-radius: 0.25rem;
+  padding: var(--s3);
+  box-shadow: var(--shadow1);
+  position: relative;
+}
+
+#section04 .infomation .accordion {
+  box-shadow: var(--shadow1);
+  position: relative;
+}
+
+#section04 .infomation .card {
+  padding: 0 0.8rem;
+}
+
+/* 關閉按鈕 */
+#section04 .infomation_switch {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  z-index: 1;
+}
+
+#section04 .infomation_switch .close {
+  font-size: 2rem;
+  color: var(--primary);
+  padding: 0.8rem 0.2rem 0.2rem;
+  cursor: pointer;
+}
+
+#kaifu_accordion {
+  transition: 1s;
+}
+
+/* 利用 :checked 狀態，讓隔壁的元素去做動作 */
+#accordion:checked + #kaifu_accordion {
+  transform: translateX(98%);
+}
+
+/* 關閉左邊方向的箭頭 */
+.infomation_switch label .fa-angle-double-left {
+  display: none;
+}
+
+#accordion:checked + #kaifu_accordion .infomation_switch label .fa-angle-double-right {
+  display: none;
+}
+
+#accordion:checked + #kaifu_accordion .infomation_switch label .fa-angle-double-left {
+  display: block;
+}
+
+/* section05 聯絡我們 ------------------------------------------- */
+#section05 {
+  color: var(--coffee2);
+  background: var(--coffee4);
+  padding: 2rem 0;
+}
+
+#section05 .container {
+  width: 95%;
+}
+
+#section05 h1 {
+  text-align: center;
+  padding-top: 2.5rem;
+  padding-bottom: 0.5rem;
+}
+
+#section05 h5 {
+  font-size: 1.45rem;
+  text-align: center;
+  margin-bottom: 0.2rem;
+}
+
+#section05 small {
+  display: block;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+#section05 .row .col-12:first-child {
+  padding-bottom: 0.2rem;
+  margin-bottom: 1.5rem !important;
+  border-bottom: 1px solid var(--coffee3);
+}
+
+#section05 .row .col-12:last-child {
+  padding-top: 1.5rem;
+  margin-top: 1.5rem !important;
+  border-top: 1px solid var(--coffee3);
+}
+
+/* 表單 */
+#section05 input,
+#section05 textarea,
+#section05 select {
+  border: 1px solid var(--coffee3) !important;
+  transition: 1s;
+}
+
+#section05 input:focus,
+#section05 textarea:focus,
+#section05 select:focus {
+  box-shadow: var(--shadow2);
+  border: 1px solid var(--coffee3) !important;
+}
+
+/* section06 咖啡故事 ------------------------------------------- */
+#section06 {
+  padding: 2rem 0;
+}
+
+#section06 h1 {
+  text-align: center;
+  padding-top: var(--s5);
+  padding-bottom: var(--s2);
+  color: var(--coffee5);
+}
+
+#section06 a {
+  color: var(--coffee5);
+}
+
+#section06 a:hover {
+  color: var(--coffee1);
+  background-color: var(--coffee5);
+}
+
+#section06 a.active {
+  color: var(--coffee1);
+}
+
+#section06 #nav-img {
+  box-shadow: var(--shadow3);
+}
+
+/* footer ------------------------------------------- */
+#footer {
+  color: var(--coffee5);
+  padding: 1rem 0;
+  background: var(--coffee1);
+  /* box-shadow: -10px -10px 30px black; */
+}
+
+/* 裝置斷點控制區 ----------------------------------------------- */
+/* 575px 以下 */
+@media (max-width: 575px) {
+  #main_menu.navbar-nav {
+    padding-left: var(--s3);
+  }
+
+  #login_menu.navbar-nav {
+    padding-left: var(--s3);
+    padding-bottom: var(--s2);
+  }
+
+  /* 輪播圖長高 */
+  #section01 {
+    height: 330px;
   }
 }
 
-section:nth-child(odd) {
-  background: var(--coffee5);
+/* lg 992px 以上 */
+@media (min-width: 992px) {
+  #section01,
+  #section02,
+  #section03,
+  #section04,
+  #section05,
+  #section06 {
+    height: 100vh;
+  }
+
+  /* 992 section02 ------------------------------------------------- */
+  #section02 .container {
+    background: none;
+    padding: 0;
+  }
+
+  #section02 .container h1 {
+    padding-top: var(--s5);
+    padding-bottom: var(--s4);
+    color: var(--coffee1);
+  }
+
+  #section02 > .container > .row {
+    background-color: var(--white50);
+    padding-top: var(--s4);
+    border-radius: 1rem;
+    box-shadow: var(--shadow2);
+  }
+
+  #section02 .list-group {
+    margin: var(--s0);
+  }
+  /* 992 section03 ------------------------------------------------- */
+  #section03 .container h1 {
+    padding-bottom: var(--s4);
+  }
+
+  #section03 > .container > .row {
+    border-radius: 1rem;
+    box-shadow: var(--shadow3);
+  }
+
+  #section03 .text p {
+    display: block;
+  }
+
+  /* 992 section04 ------------------------------------------------- */
+  #section04 .infomation .accordion {
+    width: 40%;
+  }
+  #section04 .infomation {
+    align-items: flex-end;
+  }
+
+  /* 992 section05 ------------------------------------------------- */
+  #section05 h5 {
+    font-size: 1.6rem;
+    text-align: left;
+  }
+  #section05 small {
+    text-align: left;
+    font-size: 1rem;
+  }
+}
+
+section:nth-of-type(even) {
+  background: var(--coffee4);
 }
 
 /* modal */
@@ -194,7 +549,29 @@ section:nth-child(odd) {
 }
 
 #login input.form-control:focus,
-#register input.form-control:focus{
+#register input.form-control:focus {
   border-color: var(--coffee3);
   box-shadow: var(--shadow2);
+}
+
+/* 回到頂端 */
+#go_top_page {
+  width: 50px;
+  height: 50px;
+  background: var(--coffee3);
+  border-radius: 50%;
+  position: fixed;
+  right: 20px;
+  bottom: 0;
+  z-index: 9999;
+  box-shadow: inset 0 0 0 2px var(--coffee3), inset 0 0 0 4px var(--coffee5);
+}
+
+#go_top_page a {
+  display: block;
+  font-size: 1.5rem;
+  text-align: center;
+  line-height: 50px;
+  color: var(--coffee5);
+  text-decoration: none;
 }
