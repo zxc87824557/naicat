@@ -170,6 +170,16 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
+    <div id="textillate">
+      <ul class="textillate_texts">
+        <li>香濃原味，伴您悠閒享生活</li>
+        <li>輕鬆愉悅，重溫浪漫時光</li>
+        <li>與您相約，戀上幸福好味道</li>
+        <li>用對待人生的態度，對待一杯咖啡</li>
+        <li>簡單即是美，一杯一世界</li>
+      </ul>
+    </div>
+
   </section>
 
   <!-- section02  菜單餐點 -->
@@ -1016,6 +1026,10 @@
   <script src="js/particles_app.js"></script>
   <!-- wow.js -->
   <script src="js/wow.min.js"></script>
+  <!-- textillate.js -->
+  <script src="js/jquery.textillate.js"></script>
+  <script src="js/jquery.fittext.js"></script>
+  <script src="js/jquery.lettering.js"></script>
 
   <script>
     var scene1 = document.getElementById('scene1');
@@ -1073,6 +1087,50 @@
 
     // wow.js
     new WOW().init();
+
+    // textillate.js
+  $('#textillate').textillate({
+    // 被選擇到的子選擇器，在它裡面的多行文字會逐一播放動畫
+    selector: '.textillate_texts',
+    // 重複播放
+    loop: true,
+    // 每段文字顯示的時間長度
+    minDisplayTime: 4000,
+    // 延遲多久開始執行動畫
+    initialDelay: 500,
+    autoStart: true,
+    inEffects: [],
+    outEffects: [ 'hinge' ],
+    // 進場動畫設定
+    in: {
+      // 動畫名稱
+      effect: 'zoomIn',
+      // 每個字元延遲的倍率
+      delayScale: 1.5,
+      // 每個字元延遲的時間
+      delay: 50,
+      // 同步出現
+      sync: false,
+      // 隨機出現
+      shuffle: true,
+      // 反轉出現
+      reverse: false,
+      callback: function () {}
+  },
+  // 離場動畫設定
+  out: {
+    effect: 'zoomOut',
+    delayScale: 1.5,
+    delay: 50,
+    sync: false,
+    shuffle: true,
+    reverse: false,
+    callback: function () {}
+  },
+  callback: function () {},
+  // char每個字元 word每個單字
+  type: 'char'
+});
   </script>
 </body>
 
