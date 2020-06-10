@@ -13,12 +13,13 @@
   <!-- Favicon -->
   <link rel="shortcut icon" href="images/favicon.ico" />
   <!-- FontAwesome CSS -->
-  <link rel="stylesheet" href="css/fontawesome.min.css" />
+  <link rel="stylesheet" href="css/font.min.css" />
   <!--  magnific-popup -->
   <link rel="stylesheet" href="css/magnific-popup.css" />
   <link rel="stylesheet" href="css/magnific-popup-single.css" />
   <!-- animate.css -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.min.css" />
+  <!-- wow.js 需要用舊版 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" />
   <!-- my style css -->
   <link rel="stylesheet" href="./css/style.css" />
@@ -29,14 +30,16 @@
 <body data-spy="scroll" data-target="#coffee-navbar">
   <!-- 導覽列區 -->
   <nav id="navbar" class="navbar navbar-expand-lg navbar-dark fixed-top">
-    <a class="navbar-brand" href="#section01"><img src="images/logo.png" alt="泰山咖啡莊園" width="40" />
-      <span class="ml-2 align-middle">泰山咖啡莊園</span>
-    </a>
+    <div class="menu-left">
+      <a class="navbar-brand" href="#section01"><img src="images/logo.png" alt="泰山咖啡莊園" width="40" />
+        <span class="ml-2 align-middle">泰山咖啡莊園</span>
+      </a>
+    </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#coffee-navbar">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div id="coffee-navbar" class="collapse navbar-collapse justify-content-lg-end">
-      <ul id="main_menu" class="navbar-nav">
+      <ul id="main_menu" class="navbar-nav menu-left">
         <li class="nav-item">
           <a class="nav-link" href="#section02"><i class="fas fa-hamburger"></i>菜單餐點</a>
         </li>
@@ -54,7 +57,7 @@
         </li>
       </ul>
 
-      <ul id="login_menu" class="navbar-nav">
+      <ul id="login_menu" class="navbar-nav menu-left">
         <li class="nav-item">
           <a id="btn-login" class="nav-link" href="#login" data-toggle="modal"><i class="fas fa-user"></i>登入</a>
         </li>
@@ -172,7 +175,7 @@
   <!-- section02  菜單餐點 -->
   <section id="section02">
     <div class="container">
-      <h1>菜單餐點</h1>
+      <h1 class="wow heartBeat" data-wow-offset="300">菜單餐點</h1>
       <div class="row">
         <div class="col-12 col-lg-2">
           <!-- 列表清單（list group）+ 導覽（Navs） -->
@@ -581,8 +584,16 @@
 
   <!-- section03 周邊景點 -->
   <section id="section03">
+    <!-- parallax視差 -->
+    <div id="scene1" class="position-absolute" style="z-index: -1;">
+      <div class="layer" data-depth="0.5">
+        <div class="bg1 bleed"></div>
+      </div>
+    </div>
+    <!-- particles 粒子 -->
+    <div id="particles-js" class="position-absolute h-100 w-100" style="z-index:1; pointer-events: none;"></div>
     <div class="container">
-      <h1>周邊景點</h1>
+      <h1 class="wow heartBeat" data-wow-offset="300">周邊景點</h1>
       <div class="row">
         <div class="col-6 col-lg-3">
           <a class="image-popup-no-margins" href="https://picsum.photos/1920/1080/?random=1">
@@ -714,7 +725,7 @@
             <i class="close fas fa-angle-double-left"></i>
           </label>
         </div>
-        <h3>交通資訊</h3>
+        <h3 class="wow heartBeat" data-wow-offset="300">交通資訊</h3>
         <div class="card">
           <div class="card-header" id="heading1">
             <h2 class="mb-0">
@@ -805,7 +816,7 @@
   <!-- section05 聯絡我們 -->
   <section id="section05">
     <div class="container">
-      <h1>聯絡我們</h1>
+      <h1 class="wow heartBeat" data-wow-offset="300">聯絡我們</h1>
       <form>
         <div class="row">
           <div class="col-12">
@@ -884,8 +895,13 @@
 
   <!-- section06 咖啡故事 -->
   <section id="section06">
+    <div id="scene2" class="position-absolute" style="z-index: -1;">
+      <div class="layer" data-depth="0.5">
+        <div class="bg2 bleed"></div>
+      </div>
+    </div>
     <div class="container">
-      <h1>咖啡故事</h1>
+      <h1 class="wow heartBeat" data-wow-offset="300">咖啡故事</h1>
       <div class="row">
         <div class="col-lg-6">
           <img id="nav-img" class="h-100 w-100" src="images/section02_01.jpg"
@@ -899,7 +915,7 @@
               <a id="coffee3" class="nav-item nav-link" data-toggle="tab" href="#coffee-03">咖啡壞處</a>
             </div>
           </nav>
-          <div class="tab-content bg-white overflow-auto p-3" data-spy="scroll" data-target="#nav-tab" data-offset="0"
+          <div class="tab-content bg-white overflow-auto p-3" data-target="#nav-tab" data-offset="0"
             style="height: 500px;">
             <div id="coffee-01" class="tab-pane fade show active">
               <h2>咖啡起源</h2>
@@ -981,20 +997,32 @@
     </div>
   </footer>
   <!-- 回到頂端 -->
-  <div id="go_top_page">
+  <div id="go_top_page" class="animated bounce" style="animation-duration: 2s;">
     <a href="#section01"><i class="fas fa-chevron-up"></i></a>
   </div>
   <script src="./js/jquery-3.5.1.min.js"></script>
   <script src="./js/popper.min.js"></script>
   <script src="./js/bootstrap.min.js"></script>
   <!-- scrollpage -->
-  <script src="js/jquery.easing.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
   <script src="js/scrollpage.js"></script>
   <!--  magnific-popup -->
   <script src="js/jquery.magnific-popup.min.js"></script>
   <script src="js/magnific-popup-single.js"></script>
+  <!-- parallax 視差 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+  <!-- particles 粒子 -->
+  <script src="js/particles.min.js"></script>
+  <script src="js/particles_app.js"></script>
+  <!-- wow.js -->
+  <script src="js/wow.min.js"></script>
 
   <script>
+    var scene1 = document.getElementById('scene1');
+    var parallaxInstance = new Parallax(scene1);
+    var scene2 = document.getElementById('scene2');
+    var parallaxInstance = new Parallax(scene2);
+
     $('.carousel-control-prev, .carousel-control-next, #btn-login, #btn-register,[data-toggle="pill"],[data-toggle="tab"]').on('click', function (event) {
       event.preventDefault();
       $('html,body').stop();
@@ -1011,8 +1039,40 @@
       $('#nav-img').attr('src', 'images/section02_03.jpg');
     });
 
+    // 回到頂點按鈕
+    $('#go_top_page').css({display:'none'})
+
+    $(window).on('scroll', function(){
+      nowloc = $(window).scrollTop()
+      if(nowloc > 500){
+        $('#go_top_page').fadeIn(1000)
+        $('#go_top_page').css({'animation-iteration-count': 10})
+      }else{
+        $('#go_top_page').fadeOut(1000)
+        $('#go_top_page').css({'animation-iteration-count': 'none'})
+      }
+
+      if(nowloc<=300){
+      $('#navbar').css({
+        background:'transparent'
+      })
+      }else{
+      $('#navbar').css({
+        background:'var(--coffee1)'
+      })
+      }
+    })
+
+    $('.navbar-toggler').on('click', function(){
+      $('#navbar').toggleClass('toggle_black')
+    })
+    
+
     // 工具提示框
     $('[data-toggle="tooltip"]').tooltip();
+
+    // wow.js
+    new WOW().init();
   </script>
 </body>
 

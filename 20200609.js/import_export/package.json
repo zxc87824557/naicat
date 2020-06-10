@@ -1,8 +1,9 @@
 {
-  "name": "20200609.js",
+  "type": "module",
+  "name": "import_export",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "export.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

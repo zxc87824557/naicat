@@ -120,7 +120,6 @@ app.delete('/delete', async (req, res) => {
       res.send({ success: true, message: '' })
     }
   } catch (error) {
-    console.log(error)
     res.status(500)
     res.send({ success: false, message: '發生錯誤' })
   }

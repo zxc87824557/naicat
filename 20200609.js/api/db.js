@@ -8,6 +8,7 @@ import validator from 'validator'
 const Schema = mongoose.Schema
 
 mongoose.set('useCreateIndex', true)
+mongoose.set('useFindAndModify', false)
 // 連線到本機的 mongodb 的 user 資料庫
 mongoose.connect('mongodb://127.0.0.1:27017/user', { useNewUrlParser: true, useUnifiedTopology: true })
 // 使用插件
