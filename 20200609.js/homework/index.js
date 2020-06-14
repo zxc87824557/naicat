@@ -1,6 +1,6 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-// import db from '../api/db.js'
+// import db from '../api/db.js' <====== 這個
 import db from './db.js'
 
 const app = express()
@@ -143,7 +143,7 @@ app.get('/instock', async (req, res) => {
     return
   }
   try {
-    // (>=) 大于等于 - $gte
+    // (>=) 大于等于 - $gte  _id: 0, __v: 0 0 = false  1 = true
     const result = await db.find({ count: { $gte: 10 } }).select({ _id: 0, __v: 0 })
     res.send({ sucess: true, message: '', products: result })
   } catch (error) {
