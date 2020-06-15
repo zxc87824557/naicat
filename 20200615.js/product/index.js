@@ -2,11 +2,11 @@ import express from 'express'
 import bodyParser from 'body-parser'
 // 檔案上傳套件
 import multer from 'multer'
-// node.js內建路徑套件 不用npm
+// Nodejs 預設的路徑套件
 import path from 'path'
-// node.js內建檔案套件 不用npm
+// Nodejs 預設的檔案套件
 import fs from 'fs'
-// express 處理跨域的請求
+// Express 處理跨網域要求
 import cors from 'cors'
 // 登入狀態
 import session from 'express-session'
@@ -14,12 +14,14 @@ import session from 'express-session'
 import connectMongo from 'connect-mongo'
 
 import db from './db.js'
+
 const MongoStore = connectMongo(session)
 const app = express()
 
 app.use(session({
   // 密鑰，加密認證資料用
-  secret: 'zxc87824557',
+  secret: 'sdlddlkfg',
+  // 登入狀態有效毫秒
   cookie: {
     maxAge: 1000 * 60 * 30
   },
@@ -32,7 +34,6 @@ app.use(session({
     mongooseConnection: db.connection
   })
 }))
-
 app.use(cors({
   // origin 來源網域
   // callback(錯誤, 是否允許)
@@ -42,7 +43,6 @@ app.use(cors({
   // 是否允許認證資訊
   credentials: true
 }))
-
 app.use(bodyParser.json())
 
 // 檔案上傳設定
@@ -111,7 +111,7 @@ app.post('/new', async (req, res) => {
     } else {
       // 成功，寫入資料庫
       try {
-        const result = await db.shop.create(
+        const result = await db.product.create(
           {
             name: req.body.name,
             price: req.body.price,
@@ -123,7 +123,6 @@ app.post('/new', async (req, res) => {
         res.status(200)
         res.send({ success: true, message: '', id: result._id })
       } catch (error) {
-        console.log(error)
         const key = Object.keys(error.errors)[0]
         const message = error.errors[key].message
         res.status(400)
@@ -132,60 +131,7 @@ app.post('/new', async (req, res) => {
     }
   })
 })
-// 修改
-app.patch('/update/:type', async (req, res) => {
-  if (req.headers['content-type'] !== 'application/json') {
-    res.status(400)
-    res.send({ sucess: false, message: '請回傳 json 格式' })
-    return
-  }
 
-  if (
-    req.params.type !== 'name' &&
-    req.params.type !== 'price' &&
-    req.params.type !== 'description' &&
-    req.params.type !== 'count'
-  ) {
-    res.status(400)
-    res.send({ sucess: false, message: '更新欄位不符' })
-    return
-  }
-
-  try {
-    const type = req.params.type
-    await db.findByIdAndUpdate(req.body.id, {
-      [type]: req.body.data
-    }, { new: true })
-    res.send({ success: true, message: '' })
-  } catch (error) {
-    console.log(error.msg)
-    res.status(500)
-    res.send({ success: false, message: '發生錯誤' })
-  }
-})
-// 刪除
-app.delete('/delete', async (req, res) => {
-  if (req.headers['content-type'] !== 'application/json') {
-    res.status(400)
-    res.send({ sucess: false, message: '請回傳 json 格式' })
-    return
-  }
-
-  try {
-    const result = await db.findOneAndDelete(req.body.id)
-    if (result === null) {
-      res.status(404)
-      res.send({ success: false, message: '找不到資料' })
-    } else {
-      res.send({ success: true, message: '' })
-    }
-  } catch (error) {
-    res.status(200)
-    res.status(500)
-    res.send({ success: false, message: '發生錯誤' })
-  }
-})
-// 查詢商品
 app.get('/product', async (req, res) => {
   if (req.session.user) {
     let products = await db.product.find()
@@ -218,41 +164,6 @@ app.get('/image/:file', async (req, res) => {
   }
 })
 
-// 查詢所有商品
-app.get('/all', async (req, res) => {
-  if (req.headers['content-type'] !== 'application/json') {
-    res.status(400)
-    res.send({ sucess: false, message: '請回傳 json 格式' })
-    return
-  }
-  try {
-    const result = await db.find().select({ _id: 0, __v: 0 })
-    console.log(result)
-    res.send({ sucess: true, message: '', products: result })
-  } catch (error) {
-    console.log(error)
-    res.status(404)
-    res.send({ success: false, message: '目前無任何資料' })
-  }
-})
-// 查詢庫存商品
-app.get('/instock', async (req, res) => {
-  if (req.headers['content-type'] !== 'application/json') {
-    res.status(400)
-    res.send({ sucess: false, message: '請回傳 json 格式' })
-    return
-  }
-  try {
-    // (>=) 大于等于 - $gte  _id: 0, __v: 0 0 = false  1 = true
-    const result = await db.find({ count: { $gte: 10 } }).select({ _id: 0, __v: 0 })
-    res.send({ sucess: true, message: '', products: result })
-  } catch (error) {
-    res.status(404)
-    res.send({ success: false, message: '目前無任何資料' })
-  }
-})
-
-// 帳號登入
 app.post('/login', async (req, res) => {
   if (!req.headers['content-type'].includes('application/json')) {
     res.status(400)
@@ -260,14 +171,12 @@ app.post('/login', async (req, res) => {
     return
   }
   try {
-    console.log(req.body)
     const result = await db.user.find(
       {
         account: req.body.account,
         password: req.body.password
       }
     )
-    console.log(result)
     if (result.length > 0) {
       const account = result[0].account
       req.session.user = result[0]
@@ -304,6 +213,5 @@ app.get('/logout', async (req, res) => {
 })
 
 app.listen(3000, () => {
-  console.log('網頁伺服器已啟動')
   console.log('http://localhost:3000')
 })

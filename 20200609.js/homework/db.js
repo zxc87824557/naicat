@@ -13,7 +13,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/shop', {
 
 mongoose.plugin(beautifyUnique)
 
-const userSchema = new Schema({
+const shopSchema = new Schema({
   name: {
     type: String,
     required: [true, '名稱必填'],
@@ -23,7 +23,8 @@ const userSchema = new Schema({
   },
   price: {
     type: Number,
-    required: [true, '價格必填']
+    required: [true, '價格必填'],
+    min: [0, '最小0元']
   },
   description: {
     type: String,
@@ -33,9 +34,31 @@ const userSchema = new Schema({
   },
   count: {
     type: Number,
-    required: [true, '數量必填']
+    required: [true, '數量必填'],
+    min: [0, '最少0個']
+  },
+  image: {
+    type: String,
+    required: [true, '圖片必填']
   }
 })
 
-const shop = mongoose.model('shop', userSchema)
-export default shop
+const userSchema = new Schema(
+  {
+    account: {
+      type: String
+    },
+    password: {
+      type: String
+    }
+  }
+)
+
+const shop = mongoose.model('shops', shopSchema)
+const user = mongoose.model('users', userSchema)
+const connection = mongoose.connection
+export default {
+  shop,
+  user,
+  connection
+}
