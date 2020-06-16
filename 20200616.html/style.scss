@@ -1,0 +1,467 @@
+*{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: '微軟正黑體';
+  box-sizing: border-box;
+}
+
+.container{
+  width: 75%;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: auto;
+}
+
+section{
+  margin-bottom: 2rem !important;
+}
+
+// 單行註解不會被編譯到style.css裡
+/*
+  多行註解
+  會被編譯到
+  style.css裡
+*/ 
+
+:root{
+  --primary: #007bff;
+  --secondary: #6c757d;
+  --success: #28a745;
+  --info: #17a2b8;
+  --waring: #ffc107;
+  --danger: #dc3545;
+  --white: #ffffff;
+}
+
+/*1. variables (變數)*/ 
+// 變數可以用來控制網站的一致性，例如顏色、間距、寬度、高度、動畫轉場數值等等...
+$primary: #007bff;
+$secondary: #6c757d;
+$success: #28a745;
+$info: #17a2b8;
+$waring: #ffc107;
+$danger: #dc3545;
+$white: #ffffff;
+$gradient: linear-gradient(0deg, rgba(4, 0, 74, 0) 0%, rgba(0, 12, 198, 0) 54%, rgba(0, 23, 255, 1) 100%);
+$border: 5px solid #fff;
+$border-radius: 0.5rem;
+$padding: 0.5rem;
+$margin-bottom: 1rem;
+$shadow:0 0 5px rgba(0, 0, 0, 0.8);
+
+h1{
+  background: $primary $gradient;
+  color: $white;
+  border: $border;
+  border-radius: $border-radius;
+  padding: $padding;
+  box-shadow: $shadow;
+  margin-bottom: $margin-bottom;
+}
+
+/*2. Nested (崁套)*/ 
+// 改善 css 重複寫選擇器的工作，減少重工
+#section02{
+  .menu{
+    margin-top: 1rem;
+    font-size: 0;
+    li{
+      display: inline-block;
+      width: 100px;
+      text-align: center;
+      font-size: 1rem;
+      a{
+        display: block;
+        background: black;
+        color: white;
+        text-decoration: none;
+        padding: 0.5rem;
+        // &佔位符號可以替換父層選擇器
+        &:hover{
+          color: yellow;
+          background: #aaa
+        }
+      }
+    }
+    li+li{
+      border-left: 1px solid #fff;
+    }
+  }
+}
+
+.clearfix{
+  &:after{
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
+// 崁套屬性
+nav{
+  font: {
+    family: '微軟正黑體';
+    size: 1rem;
+    weight: bolder;
+  }
+  border: {
+    style: solid;
+    width: 1px;
+    color: #ccc;
+  }
+}
+
+#exercise{
+  .row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .col{
+    width: 31.3333%;
+    margin: 1%;
+    background: #fff;
+    padding: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: .5s;
+    &:hover{
+      transform: translateY(-20px);
+    }
+  }
+  img{
+    object-fit: cover;
+    width: 100%;
+  }
+  a{
+    text-decoration: none;
+    color: black;
+    &:hover{
+      color: #28a745;
+    }
+  }
+}
+
+/*3. Extend (繼承)*/ 
+// 1.先寫好 %extend
+// 2.在要繼承的樣式打@extend %extend;
+%extend{
+  width: 50px;
+  height: 50px;
+  float: left;
+}
+
+#extend{
+  margin-top: 1rem;
+  overflow: auto;
+}
+
+.box1{
+  @extend %extend;
+  background: red;
+}
+
+.box2{
+  @extend %extend;
+  background: green;
+}
+
+.box3{
+  @extend %extend;
+  background: blue;
+}
+
+/*4. sass 的數學計算*/ 
+$w: 500px;
+$a: 10;
+.box4{
+  background: #000;
+  // 加法
+  width: 50px + 50px;
+  height: 50px + 50px;
+  // 減法
+  width: 100px - 50px;
+  height: 100px - 50px;
+  // 乘法
+  width: 50px * 2;
+  height: 50px * 2;
+  // 除法 要加括號
+  width: (100px / 2);
+  // 除法 變數不需要括號
+  height: $w/$a;
+  // 餘數
+  margin-top: 20px % 100;
+}
+
+/*5. function(函式)*/ 
+$baseSize: 14px;
+$size: 2px;
+$lineHeightLevel:1.4;
+
+@function fontSize($level:0) {
+  @if $level<0 {
+    $level: 0;
+  }
+  // round 內建函式 四捨五入
+  @return $baseSize + $size * round($level);
+}
+
+@function lineHeight($fontSize){
+  // ceil 內建函式 無條件進位
+  @return ceil($fontSize * $lineHeightLevel);
+}
+// 計算欄位寬度
+@function col-width($col-count) {
+  @return (100% / $col-count);
+}
+// 灰階計算
+@function gray($level:0){
+  // darken 內建函式
+  @return darken(#fff, $level);
+}
+
+#section05{
+  .container{
+    p{
+      font-size: fontSize(3);
+      line-height: lineHeight(fontSize(2));
+    }
+  }
+  .row{
+    display: flex;
+    .col{
+      border: 1px solid #333;
+      padding: 1%;
+      margin: 1% 0;
+      width: col-width(3);
+      // 可以這樣套上面的function
+      background: gray(10%);
+      // 也可以直接打在darken(裡面)
+      // background: darken(#fff, 20%);
+      color: lighten(black, 30%);
+    }
+  }
+}
+
+/*6. mixin(混合)*/
+@mixin btn-set($bgcolor){
+  &{
+    background-color: $bgcolor;
+  }
+  &:hover{
+    @if $bgcolor == #000{
+      background-color: lighten($bgcolor, 10%);
+    } @else {
+      background-color: darken($bgcolor, 10%);
+    }
+  }
+}
+
+@mixin boxshadow {
+  box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.6);
+}
+
+.btn{
+  display: inline-block;
+  color: #fff;
+  padding: 0.3rem 0.75rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  margin: 0 0.2rem;
+  @include boxshadow()
+}
+
+.btn-primary{
+  @include btn-set($primary);
+}
+.btn-success{
+  @include btn-set($success);
+}
+.btn-danger{
+  @include btn-set($danger);
+}
+
+.btn-black{
+  @include btn-set(#000)
+}
+// @unclude 多個引數，mixin引數可以用...表示
+@mixin box-shadow2($shadow...){
+  box-shadow: $shadow;
+}
+
+.box-shdow{
+  @include box-shadow2(0 0 10px blue, 0 0 20px red);
+}
+
+@mixin flex($main, $cross) {
+  display: flex;
+  justify-content: $main;
+  align-items: $cross;
+}
+
+.flex{
+  @include flex(center, center);
+}
+
+%box{
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  border: 1px solid #000;
+}
+
+@mixin build-step($selectors...) {
+  @for $i from 1 through length($selectors){
+    // #{}插值語法，向 js 的${}
+    .#{nth($selectors, $i)}{
+      @extend %box;
+      background: rgb(random(255), random(255), random(255));
+    }
+  }
+}
+
+@include build-step('b1', 'b2', 'b3', 'b4', 'b5');
+
+/*7. 使用 @mixin + @content 來設計 RWD*/
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+@mixin sm {
+  @media (min-width: $breakpoint-sm) {
+    @content;
+  }
+}
+@mixin md {
+  @media (min-width: $breakpoint-md) {
+    @content;
+  }
+}
+@mixin lg {
+  @media (min-width: $breakpoint-lg) {
+    @content;
+  }
+}
+@mixin xl {
+  @media (min-width: $breakpoint-xl) {
+    @content;
+  }
+}
+
+#section07{
+  .container{
+    width: 100%;
+  }
+  .row{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .col{
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #333;
+  }
+  @include sm{
+    .container{
+      width: 75%;
+    }
+    .col{
+      width: 50%;
+    }
+  }
+  @include md{
+    .col{
+      width: 33.3333%;
+    }
+  }
+  @include lg{
+    .col{
+      width: 25%;
+    }
+  }
+  @include xl{
+    .col{
+      width: 20%;
+    }
+  }
+}
+
+/* 資料型態 */
+$width: 100px, 200px, 300px;
+$bgColor:red, green, blue;
+$margin: 10px 10px 15px 15px;
+
+.list{
+  // 取出元素的值
+  width: nth($width, 1);
+  width: nth($width, 2);
+  width: nth($width, 3);
+  background-color: nth($bgColor, 1);
+  background-color: nth($bgColor, 2);
+  background-color: nth($bgColor, 3);
+}
+
+.index{
+  // 取出位置索引值
+  line-height: index($width, 100px);
+  line-height: index($width, 200px);
+  line-height: index($width, 300px);
+  z-index: index($bgColor, red);
+  z-index: index($bgColor, green);
+  z-index: index($bgColor, blue);
+}
+
+.length{
+  // list 的長度
+  z-index: length($width);
+}
+
+$list: 'red', 'blue', 'green';
+// 使用 @each 疊代 list 取出值
+// @each 式 sass 疊代 list 或 map 物件，逐一取出 key/value 的方法
+@each $value in $list{
+  .bg-color-#{value}{
+    background-color: $value;
+  }
+}
+
+/* map 式 sass 物件，就好像 js 的物件，有key/vaule存值方式 */
+// map
+$map1:(
+  color1: 'red',
+  color2: 'blue',
+  color3: 'green',
+);
+
+/* 對 map 物件去取出 key/value */ 
+@each $key, $value in $map1{
+  .#{$key}{
+    color: $value;
+  }
+}
+// map2 物件包物件
+$map2:(
+  default:(
+    width: 100px,
+    height: 100px
+  ),
+  box1:(
+    width: 200px,
+    height: 200px
+  ),
+  box2:(
+    width: 300px,
+    height: 300px
+  )
+);
+
+@each $key,$value in $map2 {
+  $width:map-get($value, width);
+  $height:map-get($value, height);
+  .btn-#{$key}{
+    width: $width;
+    height: $height;
+  }
+}
