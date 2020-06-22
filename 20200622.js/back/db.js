@@ -43,8 +43,9 @@ const fileSchema = new Schema({
 
 const users = mongoose.model('process.env.COLLECTION_USER', userSchema)
 const files = mongoose.model('process.env.COLLECTION_FILE', fileSchema)
-
+const connection = mongoose.connection
 export default {
   users,
-  files
+  files,
+  connection
 }
