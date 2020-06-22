@@ -1,0 +1,21 @@
+@function fontSize($level:0) {
+  @if $level<0 {
+    $level: 0;
+  }
+  // round 內建函式 四捨五入
+  @return $baseSize + $size * round($level);
+}
+
+@function lineHeight($fontSize){
+  // ceil 內建函式 無條件進位
+  @return ceil($fontSize * $lineHeightLevel);
+}
+// 計算欄位寬度
+@function col-width($col-count) {
+  @return (100% / $col-count);
+}
+// 灰階計算
+@function gray($level:0){
+  // darken 內建函式
+  @return darken(#fff, $level);
+}
