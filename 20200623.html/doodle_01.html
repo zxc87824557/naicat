@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      html,body{
+         height:100%;
+      }
+      body{
+         display:flex;
+         justify-content: center;
+         align-items: center;
+         overflow:hidden;
+      }
+   </style>
+</head>
+<body>
+   <css-doodle>
+      :doodle{
+         @grid:5x5/100vw;
+         gap:10px;
+      }
+      background-color:rgb(@rand(255),@rand(255),@rand(255));
+      @shape:star;
+      @size:@calc(10 + 10 * @index)px;
+      @place-cell:@rand(100%) @rand(100%);
+      opacity:0.2;
+
+      animation:rotate 10s linear infinite @calc(0.1 * @index)s;
+      @keyframes rotate {
+         100%{
+            transform:rotate(@calc(360+30*@index)deg);
+         }
+      }
+   </css-doodle>
+   <script src="./js/css-doodle.min.js"></script>
+</body>
+</html>

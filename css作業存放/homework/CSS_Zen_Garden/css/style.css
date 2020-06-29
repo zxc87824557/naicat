@@ -1,0 +1,56 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-sizing: border-box;
+  font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+  }
+
+#css-zen-garden {
+  background: rgb(255, 235, 180);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+#zen-intro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#banner{
+  background-color: #dd3b2a;
+  width: 100%;
+}
+
+header h1 {
+  color: #00374f;
+  display: inline-block;
+  font-size: 90px;
+  text-align: center;
+  min-height: 70px;
+  margin: 55px auto 0;
+  padding: 0 10px;
+  z-index: 2;
+}
+
+header h1:after {
+  background-color: #dd3b2a;
+  content: '';
+  height: 2px;
+  left: 0;
+  margin-top: -3px;
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+}
+
+header h2 {
+  text-align: right;
+  max-width: 695px;
+  margin: -10px auto 0;
+  width: 100%;
+}
