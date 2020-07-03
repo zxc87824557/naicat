@@ -7,7 +7,7 @@ import Photoswipe from 'vue-pswipe'
 import VuePageTransition from 'vue-page-transition'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faBars, faCartPlus } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faCartPlus, faUser } from '@fortawesome/free-solid-svg-icons'
 
 import './plugins/bootstrap-vue'
 import './registerServiceWorker'
@@ -21,7 +21,7 @@ axios.defaults.withCredentials = true
 Vue.use(VueAxios, axios)
 Vue.use(Photoswipe)
 Vue.use(VuePageTransition)
-library.add(faBars, faCartPlus)
+library.add(faBars, faCartPlus, faUser)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.config.productionTip = false
 

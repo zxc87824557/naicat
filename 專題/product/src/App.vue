@@ -9,6 +9,8 @@
           b-nav-item(to='/size') 尺寸指南
           b-nav-item(to='/cart')
             font-awesome-icon.size(:icon="['fas', 'cart-plus']")
+          b-nav-item(to='/login')
+            font-awesome-icon.size(:icon="['fas', 'user']")
           b-nav-form
             b-form-input.mr-sm-2(size='sm' placeholder='Search')
             b-button.my-2.my-sm-0(size='sm' type='submit') Search
@@ -17,6 +19,7 @@
         b-nav-item(to='/product') 賣場商品
         b-nav-item(to='/size') 尺寸指南
         b-nav-item(to='/cart') 購物車
+        b-nav-item(to='/login') 會員登入
     vue-page-transition
       router-view
 </template>
