@@ -32,7 +32,14 @@
           b-col(cols="12" md="6" lg="3" v-for="(image, idx) in images" :key="idx")
             b-card
               b-card-img(:src="image.src" v-pswp="image")
-              b-card-body {{ image.title }}
+              b-card-body
+                b-btn(v-if="image.edit" variant="danger" @click="cancel(image)") 取消
+                b-btn(v-else variant="success" @click="edit(image)") 編輯
+                b-btn(v-if="image.edit" variant="success" @click="update(image)") 更新
+                b-btn(v-else variant="danger" @click="del(image, idx)") 刪除
+                hr
+                pre(v-if="!image.edit") {{ image.title }}
+                b-form-textarea(v-else v-model="image.model")
 </template>
 
 <script>
@@ -102,6 +109,13 @@ export default {
           alert(error.response.data.message)
         })
       }
+    },
+    edit (image) {
+      image.edit = true
+      image.model = image.title
+    },
+    update (image) {
+      this.axios.patch(process.env.VUE_APP_APIURL + '/file')
     }
   },
   mounted () {
