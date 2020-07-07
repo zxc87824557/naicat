@@ -1,6 +1,6 @@
 <template lang="pug">
   #app
-    b-navbar(toggleable='lg' type='light' variant='light')
+    b-navbar.fixed-top(toggleable='lg' type='light' variant='light')
       b-navbar-brand(to='/') NavBar
       font-awesome-icon#click(:icon="['fas', 'bars']" v-b-toggle.sidebar-border) Click
       b-collapse#nav-collapse(is-nav)
@@ -26,13 +26,9 @@
 
 <script>
 export default {
-  name: 'app',
-  data () {
-    return {
-      show: false
-    }
-  }
+  name: 'app'
 }
+
 </script>
 <style>
 #click{
