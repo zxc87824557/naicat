@@ -7,6 +7,7 @@ import Photoswipe from 'vue-pswipe'
 import VuePageTransition from 'vue-page-transition'
 import ElementUI from 'element-ui'
 import VueCarousel from 'vue-carousel'
+import VueMarquee from 'vue-marquee-component'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faBars, faCartPlus, faUser } from '@fortawesome/free-solid-svg-icons'
@@ -24,6 +25,7 @@ axios.defaults.withCredentials = true
 Vue.use(VueAxios, axios)
 Vue.use(ElementUI)
 Vue.use(VueCarousel)
+Vue.use(VueMarquee)
 Vue.use(Photoswipe)
 Vue.use(VuePageTransition)
 library.add(faBars, faCartPlus, faUser)

@@ -1,5 +1,6 @@
 <template>
-  <b-container-fulid id="home">
+<div id="home">
+  <b-container-fulid id="main">
     <b-row class="m-0">
       <b-col>
         <b-carousel
@@ -15,60 +16,111 @@
         </b-carousel>
       </b-col>
     </b-row>
-    <h1 class="text-center">最新消息</h1>
-      <b-row class="m-0 justify-content-around">
-        <b-col class="d-flex justify-content-center">
+    <h1 class="text-center mt-5">最新商品</h1>
+      <b-row id="news" class="mb-5 justify-content-around">
+        <b-col class="d-flex justify-content-center col-12 col-lg-3">
           <b-card
-            title="Card Title"
-            img-src="https://picsum.photos/600/300/?image=25"
+            title="Travis Scott x Air Jordan 6"
+            img-src="../assets/shoesimg/nike/Travis Scott x Air Jordan 6「Cactus Jack」橄欖綠.png"
             img-alt="Image"
             img-top
             tag="article"
             style="max-width: 20rem;"
             class="mb-2 mt-5">
-          <b-card-text>Some quick example text to build on the card title and make up the bulk of the card's content.</b-card-text>
-            <b-button href="#" variant="primary">Go somewhere</b-button>
+            <b-button href="#" variant="primary" class="d-block align-middle">加入購物車</b-button>
           </b-card>
         </b-col>
-        <b-col class="d-flex justify-content-center">
+        <b-col class="d-flex justify-content-center col-12 col-lg-3">
           <b-card
-            title="Card Title"
-            img-src="https://picsum.photos/600/300/?image=25"
+            title="ADIDAS Yeezy Boost 700 "
+            img-src="../assets/shoesimg/adidas/ADIDAS Yeezy Boost 700 Wave Runner.png"
             img-alt="Image"
             img-top
             tag="article"
             style="max-width: 20rem;"
             class="mb-2 mt-5">
-          <b-card-text>Some quick example text to build on the card title and make up the bulk of the card's content.</b-card-text>
-            <b-button href="#" variant="primary">Go somewhere</b-button>
+            <b-button href="#" variant="primary" class="d-block align-middle">加入購物車</b-button>
           </b-card>
         </b-col>
-        <b-col class="d-flex justify-content-center">
+        <b-col class="d-flex justify-content-center col-12 col-lg-3">
           <b-card
-            title="Card Title"
-            img-src="https://picsum.photos/600/300/?image=25"
+            title="ADIDAS YEEZY BOOST 350 V2 "
+            img-src="../assets/shoesimg/adidas/ADIDAS YEEZY BOOST 350 V2 GID GLOW 螢光.png"
             img-alt="Image"
             img-top
             tag="article"
             style="max-width: 20rem;"
             class="mb-2 mt-5">
-          <b-card-text>Some quick example text to build on the card title and make up the bulk of the card's content.</b-card-text>
-            <b-button href="#" variant="primary">Go somewhere</b-button>
+            <b-button href="#" variant="primary" class="d-block align-middle">加入購物車</b-button>
           </b-card>
         </b-col>
-        <b-col class="d-flex justify-content-center">
+        <b-col class="d-flex justify-content-center col-12 col-lg-3">
           <b-card
-            title="Card Title"
-            img-src="https://picsum.photos/600/300/?image=25"
+            title="Travis Scott x Air Jordan 1 High 倒鉤"
+            img-src="../assets/shoesimg/nike/Travis Scott x Jordan 1 聯名款 倒鈎.png"
             img-alt="Image"
             img-top
             tag="article"
             style="max-width: 20rem;"
             class="mb-2 mt-5">
-          <b-card-text>Some quick example text to build on the card title and make up the bulk of the card's content.</b-card-text>
-            <b-button href="#" variant="primary">Go somewhere</b-button>
+            <b-button href="#" variant="primary" class="d-block align-middle">加入購物車</b-button>
           </b-card>
         </b-col>
       </b-row>
+      <div id="zen-preamble">
+        <div class="bg">
+          <h3>賣場介紹</h3>
+          <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, omnis optio! Atque labore, sint ducimus expedita, esse error deleniti, quos dicta totam fugit repellendus? Dolorem asperiores veniam voluptates qui assumenda?</a>
+        </div>
+      </div>
+      <vue-marquee style="height:200px" :showProgress="false" class="marquee" :duration="8000">
+        <vue-marquee-slide v-for="i in 1" :key="i">
+          <img src="../assets/shoesimg/nike/dunk-low-brazil-release-date.jpg" class="marquee-img">
+        </vue-marquee-slide>
+        <vue-marquee-slide v-for="i in 1" :key="i">
+          <img src="../assets/shoesimg/nike/air-jordan-5-fire-red-release-date.jpg" class="marquee-img">
+        </vue-marquee-slide>
+        <vue-marquee-slide v-for="i in 1" :key="i">
+          <img src="../assets/shoesimg/nike/air-jordan-7-retro-se-款-Hn4sV0.jpg" class="marquee-img">
+        </vue-marquee-slide>
+        <vue-marquee-slide v-for="i in 1" :key="i">
+          <img src="../assets/shoesimg/nike/dunk-low-champ-colors-release-date.jpg" class="marquee-img">
+        </vue-marquee-slide>
+        <vue-marquee-slide v-for="i in 1" :key="i">
+          <img src="../assets/shoesimg/nike/air-jordan-1-white-royal-release-date.jpg" class="marquee-img">
+        </vue-marquee-slide>
+        <vue-marquee-slide v-for="i in 1" :key="i">
+          <img src="../assets/shoesimg/nike/nike-x-travis-scott-air-max-270-cactus-trails-release-date.jpg" class="marquee-img">
+        </vue-marquee-slide>
+        <vue-marquee-slide v-for="i in 1" :key="i">
+          <img src="../assets/shoesimg/nike/dunk-low-brazil-release-date.jpg" class="marquee-img">
+        </vue-marquee-slide>
+        <vue-marquee-slide v-for="i in 1" :key="i">
+          <img src="../assets/shoesimg/nike/air-jordan-5-fire-red-release-date.jpg" class="marquee-img">
+        </vue-marquee-slide>
+        <vue-marquee-slide v-for="i in 1" :key="i">
+          <img src="../assets/shoesimg/nike/air-jordan-7-retro-se-款-Hn4sV0.jpg" class="marquee-img">
+        </vue-marquee-slide>
+        <vue-marquee-slide v-for="i in 1" :key="i">
+          <img src="../assets/shoesimg/nike/dunk-low-champ-colors-release-date.jpg" class="marquee-img">
+        </vue-marquee-slide>
+        <vue-marquee-slide v-for="i in 1" :key="i">
+          <img src="../assets/shoesimg/nike/air-jordan-1-white-royal-release-date.jpg" class="marquee-img">
+        </vue-marquee-slide>
+        <vue-marquee-slide v-for="i in 1" :key="i">
+          <img src="../assets/shoesimg/nike/nike-x-travis-scott-air-max-270-cactus-trails-release-date.jpg" class="marquee-img">
+        </vue-marquee-slide>
+      </vue-marquee>
   </b-container-fulid>
+</div>
 </template>
+
+<script>
+import { Marquee, Slide } from 'vue-marquee-component'
+export default {
+  components: {
+    [Marquee.name]: Marquee,
+    [Slide.name]: Slide
+  }
+}
+</script>

@@ -14,8 +14,72 @@
     font-size: 1.5rem;
   }
 }
+// 首頁部分------------------------------------------------------------------------------------------------
+#home{
+  position: relative;
+  background: url(../assets/shoesimg/bg2.png);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  #zen-preamble {
+    background: url(../assets/shoesimg/bg1.png)no-repeat center;
+    width: 100vw;
+    height: 75vh;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    .bg{
+      background-color: rgba($color: #fff, $alpha: 0.5);
+      box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.3);
+      width: 50%;
+      height: 80%;
+    }
+  }
+}
 
-#home #carousel-1 .w{
+#zen-preamble h3 {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  font-family: Playfair Display SC;
+  font-size: 2rem;
+  color: #888;
+}
+
+#zen-preamble p {
+  width: 80%;
+  color: #888;
+}
+
+#zen-preamble p:last-child {
+  margin-bottom: 2rem;
+}
+
+#main #carousel-1{
   width: 100%;
   height: 90%;
 }
+
+#main #news img{
+  height: 200px;
+}
+
+#main .marquee{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#main .marquee-img{
+  width: 200px;
+  height: 200px;
+}
+// 首頁結尾------------------------------------------------------------------------------------------------
+
