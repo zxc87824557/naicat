@@ -13,6 +13,12 @@
   .size{
     font-size: 1.5rem;
   }
+  .navflex{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
 }
 // 首頁部分------------------------------------------------------------------------------------------------
 #home{
@@ -24,7 +30,8 @@
   background-size: cover;
   #zen-preamble {
     background: url(../assets/shoesimg/bg1.png)no-repeat center;
-    width: 100vw;
+    position: relative;
+    // width: 100vw;
     height: 75vh;
     margin: auto;
     display: flex;
@@ -38,33 +45,108 @@
     .bg{
       background-color: rgba($color: #fff, $alpha: 0.5);
       box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.3);
-      width: 50%;
-      height: 80%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      left: 10%;
+      margin: auto;
+      width: 30%;
+      height: 40%;
+      transition: .5s;
+      h3 {
+        font-size: 3rem;
+        color: #888;
+      }
+      &:hover{
+        transform: scale(1.1);
+        text-decoration: none;
+      }
+    }
+    .bg1{
+      background-color: rgba($color: #fff, $alpha: 0.5);
+      box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      right: 10%;
+      margin: auto;
+      width: 30%;
+      height: 40%;
+      transition: .5s;
+      h3 {
+        font-size: 3rem;
+        color: #888;
+      }
+      &:hover{
+        transform: scale(1.1);
+        text-decoration: none;
+      }
     }
   }
 }
-
-#zen-preamble h3 {
-  display: flex;
-  align-self: center;
-  justify-content: center;
-  font-family: Playfair Display SC;
-  font-size: 2rem;
-  color: #888;
+@media(min-width:768px){
+  .bg{
+    background-color: rgba($color: #fff, $alpha: 0.5);
+    box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.3);
+    position: absolute;
+    left: 10%;
+    width: 30%;
+    height: 40%;
+  }
 }
-
-#zen-preamble p {
-  width: 80%;
-  color: #888;
-}
-
-#zen-preamble p:last-child {
-  margin-bottom: 2rem;
+@media(max-width:767px){
+  .bg{
+    background-color: rgba($color: #fff, $alpha: 0.5);
+    box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.3);
+    position: absolute;
+    left: 10%;
+    width: 300px;
+    height: 200px;
+  }
 }
 
 #main #carousel-1{
   width: 100%;
-  height: 90%;
+  height: 750px;
+  .carousel-item{
+    width: 100%;
+    height: 750px;
+    img{
+      object-fit: contain;
+    }
+  }
+}
+// @media(min-width:1200px){
+//   #main #carousel-1{
+//     width: 100%;
+//     height: 100vh;
+//     .carousel-item{
+//       width: 100%;
+//       height: 100vh;
+//     }
+//   }
+// }
+@media(max-width:768px){
+  #main #carousel-1{
+    width: 100%;
+    height: 100%;
+    .carousel-item{
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+@media(max-width:1024px){
+  #main #carousel-1{
+    width: 100%;
+    height: 100%;
+    .carousel-item{
+      width: 100%;
+      height: 100%;
+    }
+  }
 }
 
 #main #news img{

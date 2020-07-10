@@ -1,7 +1,7 @@
 <template>
 <div id="home">
-  <b-container-fulid id="main">
-    <b-row class="m-0">
+  <b-container-fulid id="main" class="p-0">
+    <b-row class="mx-0">
       <b-col>
         <b-carousel
         id="carousel-1"
@@ -17,8 +17,8 @@
       </b-col>
     </b-row>
     <h1 class="text-center mt-5">最新商品</h1>
-      <b-row id="news" class="mb-5 justify-content-around">
-        <b-col class="d-flex justify-content-center col-12 col-lg-3">
+      <b-row id="news" class="mb-5 mx-0 justify-content-around">
+        <b-col class="d-flex justify-content-center col-12 col-lg-3 p-0">
           <b-card
             title="Travis Scott x Air Jordan 6"
             img-src="../assets/shoesimg/nike/Travis Scott x Air Jordan 6「Cactus Jack」橄欖綠.png"
@@ -30,7 +30,7 @@
             <b-button href="#" variant="primary" class="d-block align-middle">加入購物車</b-button>
           </b-card>
         </b-col>
-        <b-col class="d-flex justify-content-center col-12 col-lg-3">
+        <b-col class="d-flex justify-content-center col-12 col-lg-3 p-0">
           <b-card
             title="ADIDAS Yeezy Boost 700 "
             img-src="../assets/shoesimg/adidas/ADIDAS Yeezy Boost 700 Wave Runner.png"
@@ -42,7 +42,7 @@
             <b-button href="#" variant="primary" class="d-block align-middle">加入購物車</b-button>
           </b-card>
         </b-col>
-        <b-col class="d-flex justify-content-center col-12 col-lg-3">
+        <b-col class="d-flex justify-content-center col-12 col-lg-3 p-0">
           <b-card
             title="ADIDAS YEEZY BOOST 350 V2 "
             img-src="../assets/shoesimg/adidas/ADIDAS YEEZY BOOST 350 V2 GID GLOW 螢光.png"
@@ -54,7 +54,7 @@
             <b-button href="#" variant="primary" class="d-block align-middle">加入購物車</b-button>
           </b-card>
         </b-col>
-        <b-col class="d-flex justify-content-center col-12 col-lg-3">
+        <b-col class="d-flex justify-content-center col-12 col-lg-3 p-0">
           <b-card
             title="Travis Scott x Air Jordan 1 High 倒鉤"
             img-src="../assets/shoesimg/nike/Travis Scott x Jordan 1 聯名款 倒鈎.png"
@@ -67,13 +67,7 @@
           </b-card>
         </b-col>
       </b-row>
-      <div id="zen-preamble">
-        <div class="bg">
-          <h3>賣場介紹</h3>
-          <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, omnis optio! Atque labore, sint ducimus expedita, esse error deleniti, quos dicta totam fugit repellendus? Dolorem asperiores veniam voluptates qui assumenda?</a>
-        </div>
-      </div>
-      <vue-marquee style="height:200px" :showProgress="false" class="marquee" :duration="8000">
+            <vue-marquee style="height:200px" :showProgress="false" class="marquee" :duration="8000">
         <vue-marquee-slide v-for="i in 1" :key="i">
           <img src="../assets/shoesimg/nike/dunk-low-brazil-release-date.jpg" class="marquee-img">
         </vue-marquee-slide>
@@ -111,6 +105,10 @@
           <img src="../assets/shoesimg/nike/nike-x-travis-scott-air-max-270-cactus-trails-release-date.jpg" class="marquee-img">
         </vue-marquee-slide>
       </vue-marquee>
+      <div id="zen-preamble" class="mr-0">
+        <a href="#" class="bg"><h3>限量商品</h3></a>
+        <a href="#" class="bg1"><h3>一般商品</h3></a>
+      </div>
   </b-container-fulid>
 </div>
 </template>

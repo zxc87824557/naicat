@@ -46,7 +46,7 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "cart" */ '../views/Cart.vue'),
     meta: {
-      title: '尺吋頁',
+      title: '尺寸頁',
       transition: 'fade'
     }
   },
@@ -59,6 +59,30 @@ const routes = [
     component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue'),
     meta: {
       title: '會員登入',
+      transition: 'fade'
+    }
+  },
+  {
+    path: '/buy',
+    name: 'Buy',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "buy" */ '../views/Buy.vue'),
+    meta: {
+      title: '購買流程',
+      transition: 'fade'
+    }
+  },
+  {
+    path: '/buyNeedToKnow',
+    name: 'BuyNeedToKnow',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "buyNeedToKnow" */ '../views/BuyNeedToKnow.vue'),
+    meta: {
+      title: '購買須知',
       transition: 'fade'
     }
   }
