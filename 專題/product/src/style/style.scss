@@ -16,11 +16,20 @@
   .navflex{
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
   }
 }
-// 首頁部分------------------------------------------------------------------------------------------------
+.opacity{
+  opacity: 0.5;
+}
+.bgdark{
+  background-color: #292929;
+}
+.textwhite{
+  color: white;
+}
+// home部分------------------------------------------------------------------------------------------------
 #home{
   position: relative;
   background: url(../assets/shoesimg/bg2.png);
@@ -163,5 +172,29 @@
   width: 200px;
   height: 200px;
 }
-// 首頁結尾------------------------------------------------------------------------------------------------
+// home結尾------------------------------------------------------------------------------------------------
+// product部分---------------------------------------------------------------------------------------------
+@media(max-width:767px){
+  #product #main ul{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+}
+@media(min-width:768px){
+  #product #main ul {
+    display: flex;
+    justify-content: space-evenly;
+  }
+}
 
+#product{
+  .imgbox{
+    width: 200px;
+    height: 200px;
+    img{
+      object-fit: cover;
+      max-width: 100%;
+    }
+  }
+}

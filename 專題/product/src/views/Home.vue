@@ -2,7 +2,7 @@
 <div id="home">
   <b-container-fulid id="main" class="p-0">
     <b-row class="mx-0">
-      <b-col>
+      <b-col class="p-0">
         <b-carousel
         id="carousel-1"
         v-model="slide"
@@ -27,7 +27,7 @@
             tag="article"
             style="max-width: 20rem;"
             class="mb-2 mt-5">
-            <b-button href="#" variant="primary" class="d-block align-middle">加入購物車</b-button>
+            <b-button href="#" variant="primary" class=" align-middle">加入購物車</b-button>
           </b-card>
         </b-col>
         <b-col class="d-flex justify-content-center col-12 col-lg-3 p-0">
@@ -106,8 +106,8 @@
         </vue-marquee-slide>
       </vue-marquee>
       <div id="zen-preamble" class="mr-0">
-        <a href="#" class="bg"><h3>限量商品</h3></a>
-        <a href="#" class="bg1"><h3>一般商品</h3></a>
+        <a href="#" class="bg d-flex col-12 col-md-6"><h3>限量商品</h3></a>
+        <a href="#" class="bg1 d-flex col-12 col-md-6"><h3>一般商品</h3></a>
       </div>
   </b-container-fulid>
 </div>
