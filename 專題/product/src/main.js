@@ -19,6 +19,8 @@ import './css/style.css'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import Vuesax from 'vuesax'
+import 'vuesax/dist/vuesax.css'
 
 // 預設傳送認證資訊
 axios.defaults.withCredentials = true
@@ -31,6 +33,7 @@ Vue.use(VuePageTransition)
 library.add(faBars, faCartPlus, faUser, faSearch)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.config.productionTip = false
+Vue.use(Vuesax)
 
 new Vue({
   router,

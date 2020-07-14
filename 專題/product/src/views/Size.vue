@@ -1,4 +1,7 @@
 <template lang="pug">
   #size
-    h1.text-center 尺寸指南
+    b-container
+      b-row
+        b-col.d-flex.justify-content-center
+          img(src="shoesimg/size.png")
 </template>

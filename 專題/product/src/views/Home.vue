@@ -27,7 +27,7 @@
             tag="article"
             style="max-width: 20rem;"
             class="mb-2 mt-5">
-            <b-button href="#" variant="primary" class=" align-middle">加入購物車</b-button>
+            <b-button href="#" variant="primary" class="d-block align-middle">加入購物車</b-button>
           </b-card>
         </b-col>
         <b-col class="d-flex justify-content-center col-12 col-lg-3 p-0">

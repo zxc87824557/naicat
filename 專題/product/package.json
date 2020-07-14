@@ -24,6 +24,7 @@
     "vue-pswipe": "^0.15.0",
     "vue-router": "^3.2.0",
     "vuejs-navbar": "^1.0.5",
+    "vuesax": "^3.11.17",
     "vuex": "^3.4.0"
   },
   "devDependencies": {

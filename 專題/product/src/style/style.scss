@@ -189,12 +189,27 @@
 }
 
 #product{
-  .imgbox{
-    width: 200px;
-    height: 200px;
-    img{
-      object-fit: cover;
-      max-width: 100%;
+  img{
+    object-fit: cover;
+    width: 100%;
+  }
+  #main{
+    .items{
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      height: 90px;
+      width: 90px;
+      transition: .3s;
+      &:hover{
+        border-bottom: 2px solid black;
+      }
+    }
+    .fade-enter-active, .fade-leave-active {
+      transition: opacity .5s;
+    }
+    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+      opacity: 0;
     }
   }
 }

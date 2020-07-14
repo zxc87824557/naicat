@@ -30,7 +30,7 @@
     vue-page-transition
       router-view
     #footer
-      b-container-fluid
+      b-container(fluid)
         b-row.mx-0
           b-col.d-flex.justify-content-center.align-items-center.bgdark
             h5.textwhite.size 奶貓鞋店歡迎光臨
