@@ -271,11 +271,15 @@
   border-bottom: 2px solid black;
 }
 
-#product #main .fade-enter-active, #product #main .fade-leave-active {
-  -webkit-transition: opacity .5s;
-  transition: opacity .5s;
+#product .imghover {
+  cursor: pointer;
+  -webkit-transition: .5s;
+  transition: .5s;
 }
 
-#product #main .fade-enter, #product #main .fade-leave-to {
-  opacity: 0;
+#product .imghover:hover {
+  -webkit-transform: translateY(-5px);
+          transform: translateY(-5px);
+  -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.466);
+          box-shadow: 0 3px 5px rgba(0, 0, 0, 0.466);
 }
