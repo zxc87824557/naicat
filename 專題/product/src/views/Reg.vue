@@ -1,14 +1,14 @@
 <template lang="pug">
-  #login
+  #reg
     b-container
       b-row
         b-col
-          h1.text-center 會員登入
+          h1.text-center 註冊
           b-form(@submit="submit")
             b-form-group(
               label="帳號"
               label-for="input-account"
-              description="帳號長度為 4 - 20 個字"
+              description="帳號長度為4 - 2個字"
               invalid-feedback="帳號格式不符"
               :state="state('account')"
             )
@@ -16,27 +16,21 @@
             b-form-group(
               label="密碼"
               label-for="input-password"
-              description="密碼長度為 4 - 20 個字"
+              description="密碼長度為4 - 20個字"
               invalid-feedback="密碼格式不符"
               :state="state('password')"
             )
               b-form-input#input-password(type="password" v-model="password" :state="state('password')")
-            div.d-flex.justify-content-center
-              b-button.mb-3(type="submit" variant="primary") 登入
-      b-row
-        b-col.d-flex.justify-content-center
-          p 沒有帳號嗎?
-          b-link(to='/reg') 註冊
+            b-button(type="submit" variant="primary") 註冊
 </template>
 
 <script>
 export default {
-  name: 'login',
+  name: 'reg',
   data () {
     return {
       account: '',
-      password: '',
-      link: '/reg'
+      password: ''
     }
   },
   methods: {
@@ -57,7 +51,7 @@ export default {
     },
     submit (event) {
       event.preventDefault()
-      if (this.account.length < 4 || this.account.length > 20) {
+      if (this.account < 4 || this.account.length > 20) {
         alert('帳號格式不符')
       } else if (this.password.length < 4 || this.password.length > 20) {
         alert('密碼格式不符')

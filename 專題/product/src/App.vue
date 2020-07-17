@@ -26,11 +26,11 @@
         b-nav-item(to='/product') 賣場商品
         b-nav-item(to='/size') 尺寸指南
         b-nav-item(to='/cart') 購物車
-        b-nav-item(to='/login') 會員登入
+        b-nav-item(to='/member') 會員登入
     vue-page-transition
       router-view
     #footer
-      b-container-fluid
+      div
         b-row.mx-0
           b-col.d-flex.justify-content-center.align-items-center.bgdark
             h5.textwhite.size 奶貓鞋店歡迎光臨

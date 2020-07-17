@@ -21,6 +21,7 @@ import router from './router'
 import store from './store'
 import Vuesax from 'vuesax'
 import 'vuesax/dist/vuesax.css'
+import Flipbook from 'flipbook-vue'
 
 // 預設傳送認證資訊
 axios.defaults.withCredentials = true
@@ -32,6 +33,7 @@ Vue.use(Photoswipe)
 Vue.use(VuePageTransition)
 library.add(faBars, faCartPlus, faUser, faSearch)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+Vue.component('flipbook', Flipbook)
 Vue.config.productionTip = false
 Vue.use(Vuesax)
 

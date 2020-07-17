@@ -85,6 +85,18 @@ const routes = [
       title: '購買須知',
       transition: 'fade'
     }
+  },
+  {
+    path: '/reg',
+    name: 'Reg',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "reg" */ '../views/Reg.vue'),
+    meta: {
+      title: '註冊',
+      transition: 'fade'
+    }
   }
 ]
 
