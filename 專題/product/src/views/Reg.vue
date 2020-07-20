@@ -8,7 +8,7 @@
             b-form-group(
               label="帳號"
               label-for="input-account"
-              description="帳號長度為4 - 2個字"
+              description="帳號長度為4 - 20個字"
               invalid-feedback="帳號格式不符"
               :state="state('account')"
             )
@@ -21,7 +21,8 @@
               :state="state('password')"
             )
               b-form-input#input-password(type="password" v-model="password" :state="state('password')")
-            b-button(type="submit" variant="primary") 註冊
+            div.d-flex.justify-content-center
+              b-button.mb-5(type="submit" variant="primary") 註冊
 </template>
 
 <script>

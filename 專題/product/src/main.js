@@ -22,6 +22,7 @@ import store from './store'
 import Vuesax from 'vuesax'
 import 'vuesax/dist/vuesax.css'
 import Flipbook from 'flipbook-vue'
+import Page from 'v-page'
 
 // 預設傳送認證資訊
 axios.defaults.withCredentials = true
@@ -36,6 +37,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.component('flipbook', Flipbook)
 Vue.config.productionTip = false
 Vue.use(Vuesax)
+Vue.use(Page)
 
 new Vue({
   router,

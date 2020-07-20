@@ -13,6 +13,7 @@
           img(:src="menu.src" @click="menu.popupActivo=true").mb-3.p-0.d-flex.flex-wrap.justify-content-center
           p.text-center {{ menu.discription }}
           p.text-center {{ menu.count }}
+        b-pagination(v-model='current' :total-rows='rows' :per-page='perPage')
     vs-popup.holamundo(:active.sync="menu.popupActivo" v-for="menu in menus")
       img(:src="menu.src" :style="{objectFit:'cover',maxWidth:'100%'}")
       h5.text-center {{ menu.discription }}
@@ -32,11 +33,14 @@ export default {
       judge: 'ALL',
       number: 1,
       isActive: true,
+      current: 1,
+      perPage: 3,
+      pageArr: [],
       menus: [
         {
           src: 'shoesimg/nike/dunk-low-brazil-release-date.jpg',
           type: 'NIKE',
-          discription: 'nike sb dunk',
+          discription: 'nike sb dunk-low-brazil-release-date',
           count: 'NT$ 3680',
           link: '/',
           popupActivo: false
@@ -44,7 +48,7 @@ export default {
         {
           src: 'shoesimg/nike/dunk-low-champ-colors-release-date.jpg',
           type: 'NIKE',
-          discription: 'nike sb dunk',
+          discription: 'nike sb dunk-low-champ-colors',
           count: 'NT$ 3680',
           link: '/',
           popupActivo: false
@@ -58,9 +62,41 @@ export default {
           popupActivo: false
         },
         {
+          src: 'shoesimg/nike/Sacai x Nike LDV Waffle 藍紅 復古慢跑鞋.png',
+          type: 'NIKE',
+          discription: 'Sacai x Nike LDV Waffle 藍紅 復古慢跑鞋',
+          count: 'NT$ 15000',
+          link: '/',
+          popupActivo: false
+        },
+        {
+          src: 'shoesimg/nike/OFF-WHITE X NIKE AIR MAX 90 “BLACK”.png',
+          type: 'NIKE',
+          discription: 'OFF-WHITE X NIKE AIR MAX 90 “BLACK”',
+          count: 'NT$ 15000',
+          link: '/',
+          popupActivo: false
+        },
+        {
+          src: 'shoesimg/nike/Off-White x Nike Vapor Street 黑紫 釘鞋 女款.png',
+          type: 'NIKE',
+          discription: 'Off-White x Nike Vapor Street 黑紫 釘鞋',
+          count: 'NT$ 15000',
+          link: '/',
+          popupActivo: false
+        },
+        {
+          src: 'shoesimg/nike/space-hippie-03-this-is-trash-release-date.jpg',
+          type: 'NIKE',
+          discription: 'space-hippie-03-this-is-trash-release-date',
+          count: 'NT$ 15000',
+          link: '/',
+          popupActivo: false
+        },
+        {
           src: 'shoesimg/nike/air-jordan-1-white-royal-release-date.jpg',
           type: 'JORDAN',
-          discription: 'air jordan 1 white royal release',
+          discription: 'air-jordan-1-white-royal-release-date',
           count: 'NT$ 6300',
           link: '/',
           popupActivo: false
@@ -68,7 +104,23 @@ export default {
         {
           src: 'shoesimg/nike/air-jordan-5-fire-red-release-date.jpg',
           type: 'JORDAN',
-          discription: 'air jordan 5 fire red release',
+          discription: 'air jordan 5 fire red release-date',
+          count: 'NT$ 6300',
+          link: '/',
+          popupActivo: false
+        },
+        {
+          src: 'shoesimg/nike/Travis Scott x Air Jordan 6 GS「Cactus Jack」橄欖綠.png',
+          type: 'JORDAN',
+          discription: 'Travis Scott x Air Jordan 6 GS「Cactus Jack」橄欖綠',
+          count: 'NT$ 6300',
+          link: '/',
+          popupActivo: false
+        },
+        {
+          src: 'shoesimg/nike/Travis Scott x Jordan 1 聯名款 倒鈎.png',
+          type: 'JORDAN',
+          discription: 'Travis Scott x Jordan 1 聯名款 倒鈎',
           count: 'NT$ 6300',
           link: '/',
           popupActivo: false
@@ -76,23 +128,23 @@ export default {
         {
           src: 'shoesimg/nike/air-jordan-7-retro-se-款-Hn4sV0.jpg',
           type: 'JORDAN',
-          discription: 'air jordan 7 retro',
+          discription: 'air-jordan-7-retro-se-款-Hn4sV0',
           count: 'NT$ 6300',
           link: '/',
           popupActivo: false
         },
         {
-          src: 'shoesimg/adidas/Adidas Yeezy Boost 700 nertia 慣性 灰橘.png',
+          src: 'shoesimg/adidas/CONTINENTAL 80 經典鞋.jpg',
           type: 'ADIDAS',
-          discription: 'Adidas Yeezy Boost 700 nertia',
+          discription: 'ADIDAS CONTINENTAL 80 經典鞋',
           count: 'NT$ 8800',
           link: '/',
           popupActivo: false
         },
         {
-          src: 'shoesimg/adidas/ADIDAS Yeezy Boost 700 Wave Runner.png',
+          src: 'shoesimg/adidas/NMD_R1 PRIMEKNIT 經典鞋.jpg',
           type: 'ADIDAS',
-          discription: 'ADIDAS Yeezy Boost 700 Wave',
+          discription: 'ADIDAS NMD_R1 PRIMEKNIT 經典鞋',
           count: 'NT$ 8800',
           link: '/',
           popupActivo: false
@@ -100,7 +152,63 @@ export default {
         {
           src: 'shoesimg/adidas/ALPHAEDGE 4D SPACERACE 跑鞋.jpg',
           type: 'ADIDAS',
+          discription: 'ADIDAS ALPHAEDGE 4D SPACERACE 跑鞋',
+          count: 'NT$ 2980',
+          link: '/',
+          popupActivo: false
+        },
+        {
+          src: 'shoesimg/adidas/NMD_R1 V2 經典鞋.jpg',
+          type: 'ADIDAS',
+          discription: 'ADIDAS NMD_R1 V2 經典鞋',
+          count: 'NT$ 2980',
+          link: '/',
+          popupActivo: false
+        },
+        {
+          src: 'shoesimg/adidas/ULTRABOOST 跑鞋.jpg',
+          type: 'ADIDAS',
+          discription: 'ADIDAS ULTRABOOST 跑鞋',
+          count: 'NT$ 2980',
+          link: '/',
+          popupActivo: false
+        },
+        {
+          src: 'shoesimg/adidas/ALPHAEDGE 4D SPACERACE 跑鞋.jpg',
+          type: 'ADIDAS',
           discription: 'ADIDAS ALPHAEDGE 4D SPACERACE',
+          count: 'NT$ 2980',
+          link: '/',
+          popupActivo: false
+        },
+        {
+          src: 'shoesimg/adidas/ADIDAS Yeezy Boost 700 Wave Runner.png',
+          type: 'ADIDAS',
+          discription: 'ADIDAS Yeezy Boost 700 Wave Runner',
+          count: 'NT$ 2980',
+          link: '/',
+          popupActivo: false
+        },
+        {
+          src: 'shoesimg/adidas/Adidas Yeezy Boost 700 nertia 慣性 灰橘.png',
+          type: 'ADIDAS',
+          discription: 'ADIDAS Yeezy Boost 700 nertia 慣性 灰橘E',
+          count: 'NT$ 2980',
+          link: '/',
+          popupActivo: false
+        },
+        {
+          src: 'shoesimg/adidas/Yeezy Boost 350 V2 Cloud White.jpg',
+          type: 'ADIDAS',
+          discription: 'ADIDAS Yeezy Boost 350 V2 Cloud White',
+          count: 'NT$ 2980',
+          link: '/',
+          popupActivo: false
+        },
+        {
+          src: 'shoesimg/adidas/Yeezy Boost 700 V2 Vanta sneakers.jpg',
+          type: 'ADIDAS',
+          discription: 'ADIDAS Yeezy Boost 700 V2 Vanta sneakers',
           count: 'NT$ 2980',
           link: '/',
           popupActivo: false
@@ -125,6 +233,38 @@ export default {
           src: 'shoesimg/new balance/new balance_米白_ML373AC2-D楦.jpg',
           type: 'NEWBALANCE',
           discription: 'new balance ML373',
+          count: 'NT$ 2980',
+          link: '/',
+          popupActivo: false
+        },
+        {
+          src: 'shoesimg/new balance/new balance_淺綠_MS327SFA-D楦.jpg',
+          type: 'NEWBALANCE',
+          discription: 'new balance MS327',
+          count: 'NT$ 2980',
+          link: '/',
+          popupActivo: false
+        },
+        {
+          src: 'shoesimg/new balance/new balance_黑色_M992BL-D楦.jpg',
+          type: 'NEWBALANCE',
+          discription: 'new balance M992BL',
+          count: 'NT$ 2980',
+          link: '/',
+          popupActivo: false
+        },
+        {
+          src: 'shoesimg/new balance/new balance_粉藍_WL574SUO-B楦.jpg',
+          type: 'NEWBALANCE',
+          discription: 'new balance WL574',
+          count: 'NT$ 2980',
+          link: '/',
+          popupActivo: false
+        },
+        {
+          src: 'shoesimg/new balance/new balance_藍色_CM997HAK-D楦.jpg',
+          type: 'NEWBALANCE',
+          discription: 'new balance CM997',
           count: 'NT$ 2980',
           link: '/',
           popupActivo: false
@@ -185,8 +325,11 @@ export default {
       this.judge = x
       console.log(x)
     }
-    // add (index) {
-    // }
+  },
+  computed: {
+    rows () {
+      return this.menus.length
+    }
   }
 }
 </script>

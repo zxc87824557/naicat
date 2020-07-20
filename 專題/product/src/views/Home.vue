@@ -17,57 +17,9 @@
     </b-row>
     <h1 class="text-center mt-5">最新商品</h1>
       <b-row id="news" class="mb-5 mx-0 justify-content-center">
-        <b-col cols="12">
+        <b-col cols="12" class="d-flex justify-content-center align-items-center">
+          <flipbook class="flipbook" style="left: 1px; top: 0px; width: 956px; height: 717px; cursor: zoom-in;" :pages='array' :singlePage='false'></flipbook>
         </b-col>
-          <flipbook class="flipbook" :pages='array' :singlePage='false'></flipbook>
-        <!-- <b-col class="d-flex justify-content-center col-12 col-lg-3 p-0">
-          <b-card
-            title="Travis Scott x Air Jordan 6"
-            img-src="../assets/shoesimg/nike/Travis Scott x Air Jordan 6「Cactus Jack」橄欖綠.png"
-            img-alt="Image"
-            img-top
-            tag="article"
-            style="max-width: 20rem;"
-            class="mb-2 mt-5">
-            <b-button href="#" variant="primary" class="d-block align-middle">加入購物車</b-button>
-          </b-card>
-        </b-col>
-        <b-col class="d-flex justify-content-center col-12 col-lg-3 p-0">
-          <b-card
-            title="ADIDAS Yeezy Boost 700 "
-            img-src="../assets/shoesimg/adidas/ADIDAS Yeezy Boost 700 Wave Runner.png"
-            img-alt="Image"
-            img-top
-            tag="article"
-            style="max-width: 20rem;"
-            class="mb-2 mt-5">
-            <b-button href="#" variant="primary" class="d-block align-middle">加入購物車</b-button>
-          </b-card>
-        </b-col>
-        <b-col class="d-flex justify-content-center col-12 col-lg-3 p-0">
-          <b-card
-            title="ADIDAS YEEZY BOOST 350 V2 "
-            img-src="../assets/shoesimg/adidas/ADIDAS YEEZY BOOST 350 V2 GID GLOW 螢光.png"
-            img-alt="Image"
-            img-top
-            tag="article"
-            style="max-width: 20rem;"
-            class="mb-2 mt-5">
-            <b-button href="#" variant="primary" class="d-block align-middle">加入購物車</b-button>
-          </b-card>
-        </b-col>
-        <b-col class="d-flex justify-content-center col-12 col-lg-3 p-0">
-          <b-card
-            title="Travis Scott x Air Jordan 1 High 倒鉤"
-            img-src="../assets/shoesimg/nike/Travis Scott x Jordan 1 聯名款 倒鈎.png"
-            img-alt="Image"
-            img-top
-            tag="article"
-            style="max-width: 20rem;"
-            class="mb-2 mt-5">
-            <b-button href="#" variant="primary" class="d-block align-middle">加入購物車</b-button>
-          </b-card>
-        </b-col> -->
       </b-row>
             <vue-marquee style="height:200px" :showProgress="false" class="marquee" :duration="8000">
         <vue-marquee-slide>
@@ -127,11 +79,16 @@ export default {
   data () {
     return {
       array: [
-        '',
-        'https://cdna.artstation.com/p/assets/images/images/028/613/226/large/michal-sawtyruk-sketch-134-plaza.jpg?1594970869',
-        'https://cdnb.artstation.com/p/assets/images/images/028/576/283/large/james-w-cain-autumn-1.jpg?1594858559',
-        'https://www.instagram.com/static/images/homepage/screenshot3.jpg/f0c687aa6ec2.jpg',
-        'https://gc.meepcloud.com/meepshop/36b610b1-13ec-4e07-8f12-97130c4096fa/files/cd3dcd20-c44f-4e1a-b12c-52152f4c3855.jpeg?w=960'
+        'shoesimg/nike/air-jordan-1-white-royal-release-date.jpg',
+        'shoesimg/nike/nike-x-travis-scott-air-max-270-cactus-trails-release-date.jpg',
+        'shoesimg/nike/dunk-low-champ-colors-release-date.jpg',
+        'shoesimg/nike/dunk-low-brazil-release-date.jpg',
+        'shoesimg/nike/OFF-WHITE X NIKE AIR MAX 90 “BLACK”.png',
+        'shoesimg/nike/Off-White x Nike Vapor Street 黑紫 釘鞋 女款.png',
+        'shoesimg/nike/Sacai x Nike LDV Waffle 藍紅 復古慢跑鞋.png',
+        'shoesimg/nike/space-hippie-03-this-is-trash-release-date.jpg',
+        'shoesimg/nike/Travis Scott x Air Jordan 6 GS「Cactus Jack」橄欖綠.png',
+        'shoesimg/nike/Travis Scott x Jordan 1 聯名款 倒鈎.png'
       ]
     }
   }
@@ -140,7 +97,6 @@ export default {
 
 <style>
   .flipbook {
-    width: 200%;
     height: 60vh;
   }
 </style>
