@@ -2,19 +2,27 @@
   #product
     b-container#main
       b-row
+        //- 上面品牌選單
         b-col(cols="4" sm="2" v-for="item in items" @click="select(item.brand)").mb-5.p-1.d-flex.flex-wrap.justify-content-center.bg1
           b-link.items
             img(:src="item.src" :style="{objectFit: 'cover',maxWidth: '100%'}")
-        b-col(cols="3" v-for="(menu, index) in menus" :key="index" v-if="judge===menu.type").mb-5.p-1.d-flex.flex-wrap.justify-content-center.align-items-center.imghover
+        //- 商品
+        b-col(cols="3" v-if="judge===menu.type" v-for="menu in menus").mb-5.p-1.d-flex.flex-wrap.justify-content-center.align-items-center.imghover
           img(:src="menu.src" @click="menu.popupActivo=true").mb-3.p-0.d-flex.flex-wrap.justify-content-center
           p.text-center {{ menu.discription }}
           p.text-center {{ menu.count }}
-        b-col(cols="3" v-for="menu in menus" v-if="judge==='ALL'").mb-5.p-1.d-flex.flex-wrap.justify-content-center.align-items-center.imghover
+        //- 全部商品的if
+        b-col(cols="3" v-for="(menu,index) in paginatedmenus" v-if="judge==='ALL'").mb-5.p-1.d-flex.flex-wrap.justify-content-center.align-items-center.imghover
           img(:src="menu.src" @click="menu.popupActivo=true").mb-3.p-0.d-flex.flex-wrap.justify-content-center
           p.text-center {{ menu.discription }}
           p.text-center {{ menu.count }}
-        b-pagination(v-model='current' :total-rows='rows' :per-page='perPage')
-    vs-popup.holamundo(:active.sync="menu.popupActivo" v-for="menu in menus")
+        //- 頁碼
+        b-col(v-if="judge==='ALL'")
+          b-pagination(v-model='currentPage' :total-rows='rows' :per-page='perPage' @change="onPageChanged" :link-gen="linkGen" align="center" :number-of-pages="numberOfPages")
+        //- b-col
+        //-   b-pagination#pagination(v-if="judge==='ALL'" v-model='currentPage' :total-rows='rows' :per-page='perPage' @change="onPageChanged" :link-gen="linkGen" align="center" :number-of-pages="numberOfPages")
+    //- popup
+    vs-popup(:active.sync="menu.popupActivo" v-for="menu in menus")
       img(:src="menu.src" :style="{objectFit:'cover',maxWidth:'100%'}")
       h5.text-center {{ menu.discription }}
       h3.text-center {{ menu.count }}
@@ -33,9 +41,6 @@ export default {
       judge: 'ALL',
       number: 1,
       isActive: true,
-      current: 1,
-      perPage: 3,
-      pageArr: [],
       menus: [
         {
           src: 'shoesimg/nike/dunk-low-brazil-release-date.jpg',
@@ -294,6 +299,9 @@ export default {
           popupActivo: false
         }
       ],
+      paginatedmenus: this.menus,
+      perPage: 12,
+      currentPage: 1,
       items: [
         { src: 'shoesimg/商標/ALL.png', brand: 'ALL' },
         { src: 'shoesimg/商標/nike-logo.png', brand: 'NIKE' },
@@ -324,12 +332,29 @@ export default {
     select (x) {
       this.judge = x
       console.log(x)
+    },
+    paginate (pageSize, pageNumber) {
+      const menusToParse = this.menus
+      this.paginatedmenus = menusToParse.slice(pageNumber * pageSize, (pageNumber + 1) * pageSize)
+    },
+    onPageChanged (page) {
+      this.paginate(this.perPage, page - 1)
+      // window.scrollTo({ top: 0, behavior: 'smooth' })
     }
+    // linkGen (pageNum) {
+    //   return pageNum === 1 ? '?' : `=${pageNum}`
+    // }
   },
   computed: {
     rows () {
       return this.menus.length
+    },
+    numberOfPages () {
+      return parseInt(this.rows / this.perPage) + 1
     }
+  },
+  mounted () {
+    this.paginate(this.perPage, 0)
   }
 }
 </script>
