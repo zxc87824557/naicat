@@ -2,7 +2,7 @@
   #app
     b-navbar(toggleable='lg' type='light' variant='light')
       b-navbar-nav.navflex
-        img(src="../src/assets/shoesimg/白底貓.png" height="100px" @click="redirect" :style="{cursor:'pointer'}")
+        img.logo(src="../src/assets/shoesimg/白底貓.png" height="100px" @click="redirect" :style="{cursor:'pointer'}")
       b-collapse#nav-collapse(is-nav)
     b-navbar(toggleable='lg' type='light' variant='light')
       //- b-navbar-brand(to='/') NavBar

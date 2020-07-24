@@ -69,8 +69,10 @@ const commoditySchema = new Schema({
 
 const users = mongoose.model(process.env.COLLECTION_USER, userSchema)
 const commodity = mongoose.model(process.env.COLLECTION_commodity, commoditySchema)
+const connection = mongoose.connection
 
 export default {
   users,
-  commodity
+  commodity,
+  connection
 }

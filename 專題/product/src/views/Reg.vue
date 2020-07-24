@@ -21,8 +21,14 @@
               :state="state('password')"
             )
               b-form-input#input-password(type="password" v-model="password" :state="state('password')")
+          b-form-group(
+            label="e-mail"
+            label-for="input-email"
+            :state="state('email')"
+          )
+            b-form-input#input-password(type="email" v-model="email" :state="state('email')")
             div.d-flex.justify-content-center
-              b-button.mb-5(type="submit" variant="primary") 註冊
+              b-button.mt-5(type="submit" variant="primary") 註冊
 </template>
 
 <script>
@@ -31,23 +37,26 @@ export default {
   data () {
     return {
       account: '',
-      password: ''
+      password: '',
+      email: ''
     }
   },
   methods: {
     state (type) {
       if (type === 'account') {
         if (this.account.length < 4 || this.account.length > 20) {
-          return false
+          return null
         } else {
           return true
         }
       } else if (type === 'password') {
         if (this.password.length < 4 || this.password.length > 20) {
-          return false
+          return null
         } else {
           return true
         }
+      } else if (type === 'email') {
+        return this.email.includes('@')
       }
     },
     submit (event) {
@@ -57,6 +66,21 @@ export default {
       } else if (this.password.length < 4 || this.password.length > 20) {
         alert('密碼格式不符')
       }
+      this.axios.post(
+        process.env.VUE_APP_APIURL + '/users',
+        { account: this.account, password: this.password }
+      )
+        .then(response => {
+          const data = response.data
+          if (data.success) {
+            alert('註冊成功')
+          } else {
+            alert(data.message)
+          }
+        })
+        .catch(error => {
+          alert(error.response.data.message)
+        })
     }
   }
 }
