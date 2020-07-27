@@ -2,7 +2,7 @@
   #app
     b-navbar(toggleable='lg' type='light' variant='light')
       b-navbar-nav.navflex
-        img.logo(src="../src/assets/shoesimg/白底貓.png" height="100px" @click="redirect" :style="{cursor:'pointer'}")
+        img.logo(src="../src/assets/shoesimg/白底貓2.png" height="100px" @click="redirect" :style="{cursor:'pointer'}")
       b-collapse#nav-collapse(is-nav)
     b-navbar(toggleable='lg' type='light' variant='light')
       //- b-navbar-brand(to='/') NavBar
@@ -26,7 +26,7 @@
         b-nav-item(to='/product') 賣場商品
         b-nav-item(to='/size') 尺寸指南
         b-nav-item(to='/cart') 購物車
-        b-nav-item(to='/member') 會員登入
+        b-nav-item(to='/login') 會員登入
     vue-page-transition
       router-view
     #footer
@@ -34,8 +34,12 @@
         b-row.mx-0
           b-col.d-flex.justify-content-center.align-items-center.bgdark
             h5.textwhite.size 奶貓鞋店歡迎光臨
+            a(href="#")
+              font-awesome-icon.size.textwhite.mx-2(:icon="['fab', 'line']")
+              font-awesome-icon.size.textwhite.mx-2(:icon="['fab', 'facebook']")
+              font-awesome-icon.size.textwhite.mx-2(:icon="['fab', 'instagram']")
           b-col.d-flex.justify-content-center.align-items-center.bgdark
-            h6.textwhite.size Copyright © 2020 miniAttic All rights reserved
+            h6.textwhite.size Copyright © 2020 Naicat All rights reserved
 </template>
 
 <script>

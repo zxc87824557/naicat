@@ -18,7 +18,7 @@
           p.text-center {{ menu.count }}
         //- 頁碼
         b-col(v-if="judge==='ALL'")
-          b-pagination(v-model='currentPage' :total-rows='rows' :per-page='perPage' @change="onPageChanged" :link-gen="linkGen" align="center" :number-of-pages="numberOfPages")
+          b-pagination(v-model='currentPage' :total-rows='rows' :per-page='perPage' @change="onPageChanged" align="center" :number-of-pages="numberOfPages")
         //- b-col
         //-   b-pagination#pagination(v-if="judge==='ALL'" v-model='currentPage' :total-rows='rows' :per-page='perPage' @change="onPageChanged" :link-gen="linkGen" align="center" :number-of-pages="numberOfPages")
     //- popup
@@ -29,9 +29,8 @@
       h5 尺寸
       div.d-flex.flex-wrap
         b-button.mx-2.mb-2(v-for="size in sizes" variant="outline-dark" @click="e=>e.target.classList.toggle('active')" ) {{ size.us }}
-        vs-input-number(color="success" v-model="number")
       div.d-flex.justify-content-center
-        b-button(variant="primary") 加入購物車
+        b-button(variant="primary" @click="addCart(product, opt)") 加入購物車
 </template>
 
 <script>
@@ -39,7 +38,6 @@ export default {
   data () {
     return {
       judge: 'ALL',
-      number: 1,
       isActive: true,
       menus: [
         {
@@ -339,11 +337,7 @@ export default {
     },
     onPageChanged (page) {
       this.paginate(this.perPage, page - 1)
-      // window.scrollTo({ top: 0, behavior: 'smooth' })
     }
-    // linkGen (pageNum) {
-    //   return pageNum === 1 ? '?' : `=${pageNum}`
-    // }
   },
   computed: {
     rows () {

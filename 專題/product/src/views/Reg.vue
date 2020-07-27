@@ -28,7 +28,7 @@
           )
             b-form-input#input-password(type="email" v-model="email" :state="state('email')")
             div.d-flex.justify-content-center
-              b-button.mt-5(type="submit" variant="primary") 註冊
+              b-button.mt-5(type="submit" variant="primary" @click="submit") 註冊
 </template>
 
 <script>

@@ -32,47 +32,58 @@ const userSchema = new Schema({
   // 不要紀錄資料修改次數
   versionKey: false
 })
-
-const commoditySchema = new Schema({
-  // 商品名稱
+//商品
+const productSchema = new Schema({
+  item: {
+    type: String,
+    required: [true, '沒有商品item']
+  },
+  img: {
+    // 例如: /images/xxx.jpg 或 /miniattic/assets/img/xxx.jpg
+    type: String,
+    default: '/1594090312145.jpg'
+  },
   name: {
-    type: String,
-    minlength: [2, '商品名稱至少兩個字'],
-    required: [true, '商品名稱必填']
+    type: String
   },
-  // 價格
   price: {
-    type: Number,
-    min: [0, '商品價格最小 0 元'],
-    required: [true, '商品價格必填']
+    type: String
   },
-  // 商品說明
   description: {
-    type: String,
-    minlength: [2, '商品說明至少兩個字'],
-    required: [true, '商品說明必填']
+    type: String
   },
-  // 庫存
-  count: {
-    type: Number,
-    min: [0, '商品庫存最少 0 個'],
-    required: [true, '商品庫存必填']
+  show: {
+    type: Boolean,
+    default: false
+  }
+}, {
+  versionKey: false
+})
+
+const CartSchema = new mongoose.Schema({
+  customerID: {
+      type: String,
+      required: true
   },
-  // 圖片
-  image: {
-    type: String,
-    required: [true, '商品圖片必需要有']
+  cartContents: {
+      type: [Object]
+  },
+  date: {
+      type: Date,
+      default: Date.now
   }
 }, {
   versionKey: false
 })
 
 const users = mongoose.model(process.env.COLLECTION_USER, userSchema)
-const commodity = mongoose.model(process.env.COLLECTION_commodity, commoditySchema)
+const product = mongoose.model(process.env.COLLECTION_PRODUCT, productSchema)
+const cart = mongoose.model(process.env.COLLECTION_CART, CartSchema)
 const connection = mongoose.connection
 
 export default {
   users,
-  commodity,
+  product,
+  cart,
   connection
 }

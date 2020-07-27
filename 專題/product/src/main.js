@@ -11,6 +11,7 @@ import VueMarquee from 'vue-marquee-component'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faBars, faCartPlus, faUser, faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faFacebook, faLine, faInstagram } from '@fortawesome/free-brands-svg-icons'
 
 import 'element-ui/lib/theme-chalk/index.css'
 import './plugins/bootstrap-vue'
@@ -32,7 +33,7 @@ Vue.use(VueCarousel)
 Vue.use(VueMarquee)
 Vue.use(Photoswipe)
 Vue.use(VuePageTransition)
-library.add(faBars, faCartPlus, faUser, faSearch)
+library.add(faBars, faCartPlus, faUser, faSearch, faFacebook, faLine, faInstagram)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.component('flipbook', Flipbook)
 Vue.config.productionTip = false

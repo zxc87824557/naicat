@@ -135,7 +135,13 @@ const upload = multer({
   }
 })
 
-// 註冊設定(前台)
+// 監聽
+app.listen(process.env.PORT, () => {
+  console.log('已啟動')
+  console.log('http://localhost:3000')
+})
+
+// 註冊
 app.post('/users', async (req, res) => {
   // 判斷是否為json格式
   if (!req.headers['content-type'].includes('application/json')) {
@@ -148,8 +154,8 @@ app.post('/users', async (req, res) => {
     // 新增資料
     await db.users.create({
       account: req.body.account,
-      password: md5(req.body.password)
-      // email: req.body.email
+      password: md5(req.body.password),
+      email: req.body.email
     })
     res.status(200)
     res.send({ success: true, message: '註冊成功' })
@@ -168,7 +174,7 @@ app.post('/users', async (req, res) => {
   }
 })
 
-// 登入設定(前台)
+// 登入驗證
 app.post('/login', async (req, res) => {
   // 判斷是否為json格式
   if (!req.headers['content-type'].includes('application/json')) {
@@ -209,50 +215,11 @@ app.post('/login', async (req, res) => {
   }
 })
 
-// 登出設定(前台)
-app.delete('/logout', async (req, res) => {
-  req.session.destroy(error => {
-    if (error) {
-      res.status(500)
-      res.send({ success: false, message: '伺服器錯誤' })
-    } else {
-      res.clearCookie()
-      res.status(200)
-      res.send({ success: true, message: '登出成功' })
-    }
-  })
-})
-
-// 修改密碼(會員後台)
-app.patch('/usersupdate/:id', async (req, res) => {
-  // 檢查是否有登錄
-  if (req.session.user === undefined) {
-    res.status(401)
-    res.send({ success: false, message: '未登入' })
-    return
+app.get('/heartbeat', async (req, res) => {
+  let isLogin = false
+  if (req.session.user !== undefined) {
+    isLogin = true
   }
-  // 拒絕不是 json 的資料格式
-  if (!req.headers['content-type'].includes('application/json')) {
-    // 回傳錯誤狀態碼
-    res.status(400)
-    res.send({ success: false, message: '格式不符' })
-    return
-  }
-  try {
-    // 尋找後修改
-    await db.users.findByIdAndUpdate(req.params.id, { password: md5(req.body.password) }, { new: true })
-    res.status(200)
-    res.send({ success: true, message: '密碼修改成功' })
-    return
-  } catch (error) {
-    console.log(error)
-    res.status(500)
-    res.send({ success: false, message: '發生錯誤' })
-  }
-})
-
-// 監聽
-app.listen(process.env.PORT, () => {
-  console.log('已啟動')
-  console.log('http://localhost:3000')
+  res.status(200)
+  res.send(isLogin)
 })

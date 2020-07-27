@@ -22,7 +22,7 @@
             )
               b-form-input#input-password(type="password" v-model="password" :state="state('password')")
             div.d-flex.justify-content-center
-              b-button.mb-3(type="submit" variant="primary") 登入
+              b-button.mb-3(type="submit" variant="primary" @click="submit") 登入
       b-row
         b-col.d-flex.justify-content-center
           p 沒有帳號嗎?
@@ -43,13 +43,13 @@ export default {
     state (type) {
       if (type === 'account') {
         if (this.account.length < 4 || this.account.length > 20) {
-          return false
+          return null
         } else {
           return true
         }
       } else if (type === 'password') {
         if (this.password.length < 4 || this.password.length > 20) {
-          return false
+          return null
         } else {
           return true
         }
