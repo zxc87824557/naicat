@@ -62,6 +62,29 @@ export default {
       } else if (this.password.length < 4 || this.password.length > 20) {
         alert('密碼格式不符')
       }
+      this.axios.post(
+        process.env.VUE_APP_APIURL + '/login',
+        { account: this.account, password: this.password }
+      )
+        .then(response => {
+          const data = response.data
+          if (data.success) {
+            // 如果回來的資料 success 是 true
+            alert('登入成功')
+            // 呼叫 vuex 的登入
+            this.$store.commit('login', this.account)
+            console.log(this.account)
+            // 跳到登入後的相簿頁
+            this.$router.push('/')
+          } else {
+            // 不是就顯示回來的 message
+            alert(data.message)
+          }
+        })
+        .catch(error => {
+          // 如果回來的狀態不是 200，顯示回來的 message
+          alert(error.response.data.message)
+        })
     }
   }
 }

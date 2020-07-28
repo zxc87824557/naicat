@@ -17,6 +17,7 @@ body{
 }
 
 #app {
+  position: relative;
   #click{
   font-size: 2rem;
   }
@@ -29,6 +30,11 @@ body{
     justify-content: space-evenly;
     align-items: center;
     position: relative;
+  }
+  .pos{
+    position: absolute;
+    top: 0;
+    right: 10px;
   }
 }
 .opacity{

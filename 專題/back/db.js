@@ -34,43 +34,51 @@ const userSchema = new Schema({
 })
 //商品
 const productSchema = new Schema({
-  item: {
-    type: String,
-    required: [true, '沒有商品item']
-  },
-  img: {
-    // 例如: /images/xxx.jpg 或 /miniattic/assets/img/xxx.jpg
-    type: String,
-    default: '/1594090312145.jpg'
-  },
+  // 商品名稱
   name: {
-    type: String
+    type: String,
+    minlength: [2, '商品名稱至少兩個字'],
+    // required 才是正確的，須改
+    required: [true, '商品名稱必填']
   },
+  // 價格
   price: {
-    type: String
+    type: Number,
+    min: [0, '商品價格最小 0 元'],
+    required: [true, '商品價格必填']
   },
+  // 商品說明
   description: {
-    type: String
+    type: String,
+    minlength: [2, '商品說明至少兩個字'],
+    required: [true, '商品說明必填']
   },
-  show: {
-    type: Boolean,
-    default: false
+  // 庫存
+  count: {
+    type: Number,
+    min: [0, '商品庫存最少 0 個'],
+    required: [true, '商品庫存必填']
+  },
+  // 圖片
+  image: {
+    type: String,
+    required: [true, '商品圖片必需要有']
   }
 }, {
   versionKey: false
 })
 
 const CartSchema = new mongoose.Schema({
-  customerID: {
-      type: String,
-      required: true
+  ID: {
+    type: String,
+    required: true
   },
   cartContents: {
-      type: [Object]
+    type: Array
   },
   date: {
-      type: Date,
-      default: Date.now
+    type: Date,
+    default: Date.now
   }
 }, {
   versionKey: false

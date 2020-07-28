@@ -56,7 +56,11 @@ export default {
           return true
         }
       } else if (type === 'email') {
-        return this.email.includes('@')
+        if (this.email.includes('@')) {
+          return true
+        } else {
+          return null
+        }
       }
     },
     submit (event) {

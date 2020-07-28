@@ -7,17 +7,21 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     user: '',
+    account: '',
     cart: []
   },
   mutations: {
     login (state, data) {
-      state.user = data
+      state.account = data
     },
     addCart (state, data) {
       state.cart.push(data)
     },
     delCart (state, data) {
       state.cart.splice(data, 1)
+    },
+    logout (state, data) {
+      state.account = ''
     }
   },
   getters: {
@@ -26,6 +30,9 @@ export default new Vuex.Store({
     },
     cart (state) {
       return state.cart
+    },
+    account (state) {
+      return state.account
     }
   },
   actions: {

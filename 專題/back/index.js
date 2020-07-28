@@ -215,6 +215,20 @@ app.post('/login', async (req, res) => {
   }
 })
 
+// 登出
+app.delete('/logout', async (req, res) => {
+  req.session.destroy(error => {
+    if (error) {
+      res.status(500)
+      res.send({ success: false, message: '伺服器錯誤' })
+    } else {
+      res.clearCookie()
+      res.status(200)
+      res.send({ success: true, message: '登出成功' })
+    }
+  })
+})
+
 app.get('/heartbeat', async (req, res) => {
   let isLogin = false
   if (req.session.user !== undefined) {
@@ -222,4 +236,69 @@ app.get('/heartbeat', async (req, res) => {
   }
   res.status(200)
   res.send(isLogin)
+})
+
+// 商品檔案上傳
+app.post('/product', async (req, res) => {
+  // multipart 有包含檔案
+  // form-data form 傳出的資料
+  if (!req.headers['content-type'].includes('multipart/form-data')) {
+    res.status(400)
+    res.send({ success: false, message: '格式不符' })
+    return
+  }
+
+  // 有一個上傳進來的檔案，欄位是 image
+  // req，進來的東西
+  // res，要出去的東西
+  // err，檔案上傳的錯誤
+  // upload.single(欄位)(req, res, 上傳完畢的 function)
+  upload.single('image')(req, res, async error => {
+    if (error instanceof multer.MulterError) {
+      // 上傳錯誤
+      let message = ''
+      if (error.code === 'LIMIT_FILE_SIZE') {
+        message = '檔案太大'
+      } else {
+        message = '格式不符'
+      }
+      res.status(400)
+      res.send({ success: false, message })
+    } else if (error) {
+      res.status(500)
+      res.send({ success: false, message: '伺服器錯誤' })
+    } else {
+      try {
+        let image = ''
+        if (process.env.FTP === 'true') {
+          image = path.basename(req.file.path)
+        } else {
+          image = req.file.filename
+        }
+        const result = await db.product.create(
+          {
+            name: req.body.name,
+            price: req.body.price,
+            description: req.body.description,
+            count: req.body.count,
+            image
+          }
+        )
+        res.status(200)
+        res.send({ success: true, message: '商品上傳成功', image, _id: result._id })
+      } catch (error) {
+        if (error.name === 'ValidationError') {
+          // 資料格式錯誤
+          const key = Object.keys(error.errors)[0]
+          const message = error.errors[key].message
+          res.status(400)
+          res.send({ success: false, message })
+        } else {
+          // 伺服器錯誤
+          res.status(500)
+          res.send({ success: false, message: '伺服器錯誤' })
+        }
+      }
+    }
+  })
 })

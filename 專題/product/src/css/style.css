@@ -23,6 +23,10 @@ body {
   margin: 0;
 }
 
+#app {
+  position: relative;
+}
+
 #app #click {
   font-size: 2rem;
 }
@@ -43,6 +47,12 @@ body {
       -ms-flex-align: center;
           align-items: center;
   position: relative;
+}
+
+#app .pos {
+  position: absolute;
+  top: 0;
+  right: 10px;
 }
 
 .opacity {
