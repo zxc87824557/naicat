@@ -3,11 +3,16 @@
     b-container
       b-row
         b-col
-          h1.text-center 購物車
+          h1 購物車
           b-table(:items="cart" :fields="fields")
             template(v-slot:cell(action)="data")
-              b-btn.text-danger(variant="link" @click="delCart(data.index)")
-                font-awesome-icon(:icon="['fas', 'times']")
+              b-btn(variant="danger" @click="delCart(data.index)") 刪除
+            template(v-slot:cell(index)="data")
+              p {{ index }}
+            template(v-slot:cell(src)="data")
+              img(controls :src="data.item.src" style="width:100px")
+              p {{index}}
+
 </template>
 
 <script>
@@ -28,8 +33,8 @@ export default {
           label: '價格'
         },
         {
-          key: 'id',
-          label: ''
+          key: 'action',
+          label: '刪除'
         }
       ]
     }
