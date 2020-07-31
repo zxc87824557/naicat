@@ -265,6 +265,7 @@ app.post('/product', async (req, res) => {
             price: req.body.price,
             description: req.body.description,
             count: req.body.count,
+            brand: req.body.brand,
             image
           }
         )

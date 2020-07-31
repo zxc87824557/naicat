@@ -63,6 +63,11 @@ const productSchema = new Schema({
   image: {
     type: String,
     required: [true, '商品圖片必需要有']
+  },
+  // 圖片
+  brand: {
+    type: String,
+    required: [true, '商品品牌必填']
   }
 }, {
   versionKey: false

@@ -23,10 +23,10 @@
         <vs-sidebar-item to="/back"  index="1">
           <h4>後台管理</h4>
         </vs-sidebar-item>
-        <vs-sidebar-item to="/back_user"  index="2">
+        <vs-sidebar-item to="/back-user"  index="2">
           <h4>會員管理</h4>
         </vs-sidebar-item>
-        <vs-sidebar-item to="/back_product"  index="3">
+        <vs-sidebar-item to="/back-product"  index="3">
           <h4>商品管理</h4>
         </vs-sidebar-item>
       </vs-sidebar>
@@ -41,23 +41,6 @@
 export default {
   data () {
     return {
-      menu: [
-        {
-          header: true,
-          title: '管理者介面',
-          hiddenOnCollapse: true
-        },
-        {
-          href: '/back-product',
-          title: '商品後台',
-          icon: 'fa fa-user'
-        },
-        {
-          href: '/back-user',
-          title: '會員後台',
-          icon: 'fa fa-chart-area'
-        }
-      ],
       active: false
     }
   }
