@@ -68,30 +68,13 @@ const productSchema = new Schema({
   versionKey: false
 })
 
-const CartSchema = new mongoose.Schema({
-  ID: {
-    type: String,
-    required: true
-  },
-  cartContents: {
-    type: Array
-  },
-  date: {
-    type: Date,
-    default: Date.now
-  }
-}, {
-  versionKey: false
-})
 
 const users = mongoose.model(process.env.COLLECTION_USER, userSchema)
 const product = mongoose.model(process.env.COLLECTION_PRODUCT, productSchema)
-const cart = mongoose.model(process.env.COLLECTION_CART, CartSchema)
 const connection = mongoose.connection
 
 export default {
   users,
   product,
-  cart,
   connection
 }

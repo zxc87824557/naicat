@@ -12,7 +12,9 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faBars, faCartPlus, faUser, faSearch } from '@fortawesome/free-solid-svg-icons'
 import { faFacebook, faLine, faInstagram } from '@fortawesome/free-brands-svg-icons'
+import VueSidebarMenu from 'vue-sidebar-menu'
 
+import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
 import 'element-ui/lib/theme-chalk/index.css'
 import './plugins/bootstrap-vue'
 import './registerServiceWorker'
@@ -33,6 +35,7 @@ Vue.use(VueCarousel)
 Vue.use(VueMarquee)
 Vue.use(Photoswipe)
 Vue.use(VuePageTransition)
+Vue.use(VueSidebarMenu)
 library.add(faBars, faCartPlus, faUser, faSearch, faFacebook, faLine, faInstagram)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.component('flipbook', Flipbook)

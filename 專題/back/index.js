@@ -135,12 +135,12 @@ const upload = multer({
   }
 })
 
-// 監聽
+// 監聽---------------------------------------------------------------------------------------------
 app.listen(process.env.PORT, () => {
   console.log('已啟動')
   console.log('http://localhost:3000')
 })
-
+// API Post 新增區 --------------------------------------------------------------------------------
 // 註冊
 app.post('/users', async (req, res) => {
   // 判斷是否為json格式
@@ -173,7 +173,6 @@ app.post('/users', async (req, res) => {
     }
   }
 })
-
 // 登入驗證
 app.post('/login', async (req, res) => {
   // 判斷是否為json格式
@@ -214,21 +213,7 @@ app.post('/login', async (req, res) => {
     }
   }
 })
-
-// 登出
-app.delete('/logout', async (req, res) => {
-  req.session.destroy(error => {
-    if (error) {
-      res.status(500)
-      res.send({ success: false, message: '伺服器錯誤' })
-    } else {
-      res.clearCookie()
-      res.status(200)
-      res.send({ success: true, message: '登出成功' })
-    }
-  })
-})
-
+// 延續登入狀態
 app.get('/heartbeat', async (req, res) => {
   let isLogin = false
   if (req.session.user !== undefined) {
@@ -247,7 +232,6 @@ app.post('/product', async (req, res) => {
     res.send({ success: false, message: '格式不符' })
     return
   }
-
   // 有一個上傳進來的檔案，欄位是 image
   // req，進來的東西
   // res，要出去的東西
@@ -299,6 +283,20 @@ app.post('/product', async (req, res) => {
           res.send({ success: false, message: '伺服器錯誤' })
         }
       }
+    }
+  })
+})
+// API Delete 刪除區 --------------------------------------------------------------------------------
+// 登出
+app.delete('/logout', async (req, res) => {
+  req.session.destroy(error => {
+    if (error) {
+      res.status(500)
+      res.send({ success: false, message: '伺服器錯誤' })
+    } else {
+      res.clearCookie()
+      res.status(200)
+      res.send({ success: true, message: '登出成功' })
     }
   })
 })

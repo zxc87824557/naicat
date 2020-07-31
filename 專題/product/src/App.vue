@@ -17,6 +17,7 @@
           b-nav-item.size(to='/size') 尺寸指南
           b-nav-item.size(to='/buy') 購買流程
           b-nav-item.size(to='/buyNeedToKnow') 購買須知
+          b-nav-item.size(v-if="account === 'zxc87824557'" to='/back') 後台管理
           b-nav-item.size(to='/cart')
             font-awesome-icon.size(:icon="['fas', 'cart-plus']")
           b-nav-item.size(v-if="account.length==0" to='/login')
@@ -31,6 +32,7 @@
         b-nav-item(to='/size') 尺寸指南
         b-nav-item(to='/cart') 購物車
         b-nav-item(v-if="account.length==0" to='/login') 會員登入
+        b-nav-item(to='/back') 後台管理
     vue-page-transition
       router-view
     #footer

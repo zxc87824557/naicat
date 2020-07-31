@@ -262,11 +262,19 @@ export default {
           src: 'shoesimg/new balance/new balance_藍色_CM997HAK-D楦.jpg',
           type: 'NEWBALANCE',
           discription: 'new balance CM997',
-          price: '3200',
+          price: '2300',
           popupActivo: false
         },
         {
           id: 29,
+          src: 'shoesimg/new balance/new balance_灰色_WL996WS-B楦.png',
+          type: 'NEWBALANCE',
+          discription: 'new balance WL996',
+          price: '2500',
+          popupActivo: false
+        },
+        {
+          id: 30,
           src: 'shoesimg/vans/BIG CHECK OLD SKOOL.png',
           type: 'VANS',
           discription: 'vans BIG CHECK OLD SKOOL',
@@ -274,7 +282,7 @@ export default {
           popupActivo: false
         },
         {
-          id: 30,
+          id: 31,
           src: 'shoesimg/vans/OLD SKOOL PLATFORM.png',
           type: 'VANS',
           discription: 'vans OLD SKOOL PLATFORM',
@@ -282,7 +290,7 @@ export default {
           popupActivo: false
         },
         {
-          id: 31,
+          id: 32,
           src: 'shoesimg/vans/ULTRARANGE EXO.png',
           type: 'VANS',
           discription: 'vans ULTRARANGE EXO',
