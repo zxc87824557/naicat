@@ -259,9 +259,10 @@ app.post('/product', async (req, res) => {
         } else {
           image = req.file.filename
         }
+        console.log(req.body)
         const result = await db.product.create(
           {
-            name: req.body.name,
+            name: req.body.title,
             price: req.body.price,
             description: req.body.description,
             count: req.body.count,
@@ -279,6 +280,7 @@ app.post('/product', async (req, res) => {
           res.status(400)
           res.send({ success: false, message })
         } else {
+          console.log(error)
           // 伺服器錯誤
           res.status(500)
           res.send({ success: false, message: '伺服器錯誤' })
@@ -286,6 +288,80 @@ app.post('/product', async (req, res) => {
       }
     }
   })
+})
+
+app.get('/product/:account', async (req, res) => {
+  if (req.session.user === undefined) {
+    res.status(401)
+    res.send({ success: false, message: '未登入' })
+    return
+  }
+  if (process.env.FTP === 'false') {
+    const path = process.cwd() + '/images/' + req.params.name
+    const exists = fs.existsSync(path)
+    if (exists) {
+      res.status(200)
+      res.sendFile(path)
+    } else {
+      res.status(404)
+      res.send({ success: false, message: '找不到圖片' })
+    }
+  } else {
+    res.redirect('http://' + process.env.FTP_HOST + '/' + process.env.FTP_USER + '/' + req.params.name)
+  }
+})
+
+app.get('/naicat/:account', async (req, res) => {
+  if (req.session.user === undefined) {
+    res.status(401)
+    res.send({ success: false, message: '未登入' })
+    return
+  }
+  if (req.session.user !== req.params.user) {
+    res.status(403)
+    res.send({ success: false, message: '無權限' })
+    return
+  }
+
+  try {
+    const result = await db.files.find({ user: req.params.user })
+    res.status(200)
+    res.send({ success: true, message: '', result })
+  } catch (error) {
+    res.status(500)
+    res.send({ success: false, message: '伺服器錯誤' })
+  }
+})
+// ---更動商品
+app.post('/changeproduct', async (req, res) => {
+  // 拒絕不是JSON的資料格式
+  if (!req.headers['content-type'].includes('application/json')) {
+    // 會回傳錯誤狀態碼(400)
+    res.status(400)
+    res.send({ success: false, message: '格式不符' })
+    return
+  }
+  // 新增資料
+  try {
+    const result = await db.product.findByIdAndUpdate(
+      { _id: req.body.id },
+      {
+        title: req.body.title,
+        price: req.body.price,
+        brand: req.body.brand,
+        count: req.body.count,
+        description: req.body.description
+      }
+    )
+    console.log(result)
+    res.status(200)
+    res.send({ success: true, message: '', id: result._id, result })
+  } catch (error) {
+    console.log(error)
+    const key = Object.keys(error.errors)[0]
+    const message = error.errors[key].message
+    res.send({ success: false, message: message })
+  }
 })
 // API Delete 刪除區 --------------------------------------------------------------------------------
 // 登出

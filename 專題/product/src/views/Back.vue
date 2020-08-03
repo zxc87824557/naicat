@@ -39,10 +39,8 @@
 
 <script>
 export default {
-  data () {
-    return {
-      active: false
-    }
-  }
+  data: () => ({
+    active: false
+  })
 }
 </script>

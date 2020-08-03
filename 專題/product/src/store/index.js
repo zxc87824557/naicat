@@ -20,6 +20,9 @@ export default new Vuex.Store({
     delCart (state, data) {
       state.cart.splice(data, 1)
     },
+    delProduct (state) {
+      return state.delProduct
+    },
     logout (state, data) {
       state.account = ''
     }

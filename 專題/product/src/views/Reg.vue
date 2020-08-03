@@ -72,7 +72,7 @@ export default {
       }
       this.axios.post(
         process.env.VUE_APP_APIURL + '/users',
-        { account: this.account, password: this.password }
+        { account: this.account, password: this.password, email: this.email }
       )
         .then(response => {
           const data = response.data

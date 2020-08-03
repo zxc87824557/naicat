@@ -27,6 +27,11 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: [true, '請輸入密碼']
+  },
+  email: {
+    type: String,
+    required: [true, '信箱必填'],
+    unique: '此信箱已經被註冊'
   }
 }, {
   // 不要紀錄資料修改次數

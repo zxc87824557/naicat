@@ -351,8 +351,25 @@ export default {
       return parseInt(this.rows / this.perPage) + 1
     }
   },
-  mounted () {
+  mounted: function () {
     this.paginate(this.perPage, 0)
+    this.axios.post('http://localhost:3000/product')
+      .then(res => {
+        this.product = res.data.result.map(data => {
+          return {
+            title: data.title,
+            price: data.price,
+            count: data.count,
+            description: data.description,
+            src: 'http://localhost:3000' + '/images/' + data.src,
+            brand: data.brand,
+            popupActivo: false
+          }
+        })
+      })
+      .catch(error => {
+        console.log(error.response.data.message)
+      })
   }
 }
 </script>
