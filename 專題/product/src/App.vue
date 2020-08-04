@@ -41,7 +41,7 @@
           b-dropdown-item(to="/back-cart") 購物車管理
     vue-page-transition
       router-view
-    #footer
+    #footer.fixed-bottom
       div
         b-row.mx-0
           b-col.d-flex.justify-content-center.align-items-center.bgdark

@@ -6,6 +6,12 @@
           h1.text-center 註冊
           b-form(@submit="submit")
             b-form-group(
+              label="名字"
+              label-for="input-name"
+              :state="state('name')"
+            )
+              b-form-input#input-name(type="text" v-model="name" :state="state('name')")
+            b-form-group(
               label="帳號"
               label-for="input-account"
               description="帳號長度為4 - 20個字"
@@ -28,7 +34,7 @@
           )
             b-form-input#input-password(type="email" v-model="email" :state="state('email')")
             div.d-flex.justify-content-center
-              b-button.mt-5(type="submit" variant="primary" @click="submit") 註冊
+              b-button.mt-5(type="submit" variant="primary" @click="submit" to="/login") 註冊
 </template>
 
 <script>
@@ -36,6 +42,7 @@ export default {
   name: 'reg',
   data () {
     return {
+      name: '',
       account: '',
       password: '',
       email: ''
@@ -72,7 +79,7 @@ export default {
       }
       this.axios.post(
         process.env.VUE_APP_APIURL + '/users',
-        { account: this.account, password: this.password, email: this.email }
+        { account: this.account, password: this.password, email: this.email, name: this.name }
       )
         .then(response => {
           const data = response.data

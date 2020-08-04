@@ -23,7 +23,7 @@ export default {
           label: '商品圖片'
         },
         {
-          key: 'discription',
+          key: 'name',
           label: '商品名稱'
         },
         {

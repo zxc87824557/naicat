@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faBars, faCartPlus, faUser, faSearch } from '@fortawesome/free-solid-svg-icons'
 import { faFacebook, faLine, faInstagram } from '@fortawesome/free-brands-svg-icons'
 import VueSidebarMenu from 'vue-sidebar-menu'
+import Photoswipe from 'vue-pswipe'
 
 import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
 import 'element-ui/lib/theme-chalk/index.css'
@@ -32,6 +33,7 @@ axios.defaults.withCredentials = true
 Vue.use(VueAxios, axios)
 Vue.use(ElementUI)
 Vue.use(VueCarousel)
+Vue.use(Photoswipe)
 Vue.use(VueMarquee)
 Vue.use(VuePageTransition)
 Vue.use(VueSidebarMenu)

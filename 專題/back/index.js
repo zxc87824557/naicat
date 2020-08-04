@@ -140,7 +140,7 @@ app.listen(process.env.PORT, () => {
   console.log('已啟動')
   console.log('http://localhost:3000')
 })
-// API Post 新增區 --------------------------------------------------------------------------------
+// API 區 --------------------------------------------------------------------------------
 // 註冊
 app.post('/users', async (req, res) => {
   // 判斷是否為json格式
@@ -153,6 +153,7 @@ app.post('/users', async (req, res) => {
   try {
     // 新增資料
     await db.users.create({
+      name: req.body.name,
       account: req.body.account,
       password: md5(req.body.password),
       email: req.body.email
@@ -213,6 +214,7 @@ app.post('/login', async (req, res) => {
     }
   }
 })
+
 // 延續登入狀態
 app.get('/heartbeat', async (req, res) => {
   let isLogin = false
@@ -221,6 +223,74 @@ app.get('/heartbeat', async (req, res) => {
   }
   res.status(200)
   res.send(isLogin)
+})
+
+// 登出
+app.delete('/logout', async (req, res) => {
+  req.session.destroy(error => {
+    if (error) {
+      res.status(500)
+      res.send({ success: false, message: '伺服器錯誤' })
+    } else {
+      res.clearCookie()
+      res.status(200)
+      res.send({ success: true, message: '登出成功' })
+    }
+  })
+})
+// 修改密碼(會員後台)
+app.patch('/usersupdate/:id', async (req, res) => {
+  // 檢查是否有登錄
+  // if (req.session.user === undefined) {
+  //   res.status(401)
+  //   res.send({ success: false, message: '未登入' })
+  //   return
+  // }
+  // 拒絕不是 json 的資料格式
+  if (!req.headers['content-type'].includes('application/json')) {
+    // 回傳錯誤狀態碼
+    res.status(400)
+    res.send({ success: false, message: '格式不符' })
+    return
+  }
+  try {
+    // 尋找後修改
+    // findByIdAndUpdate 預設回傳的是更新前的資料
+    // 設定 new true 後會變成回傳新的資料
+    await db.users.findByIdAndUpdate(req.params.id, { password: md5(req.body.password) }, { new: true })
+    res.status(200)
+    res.send({ success: true, message: '密碼修改成功' })
+    return
+  } catch (error) {
+    console.log(error)
+    res.status(500)
+    res.send({ success: false, message: '發生錯誤' })
+  }
+})
+
+// 會員資料刪除(管理員後台)
+app.delete('/usersupdate/:id', async (req, res) => {
+  try {
+    let result = ''
+    result = await db.users.findByIdAndDelete(req.params.id)
+    if (result === null) {
+      res.status(404)
+      res.send({ success: true, message: '找不到資料' })
+    } else {
+      res.status(200)
+      res.send({ success: true, message: '會員資料刪除成功' })
+    }
+  } catch (error) {
+    if (error.name === 'CastError') {
+      // ID 格式不是 MongoDB 的格式
+      res.status(400)
+      res.send({ success: false, message: 'ID 格式錯誤' })
+    } else {
+      // 伺服器錯誤
+      res.status(500)
+      res.send({ success: false, message: '伺服器錯誤' })
+    }
+  }
 })
 
 // 商品檔案上傳
@@ -262,7 +332,7 @@ app.post('/product', async (req, res) => {
         console.log(req.body)
         const result = await db.product.create(
           {
-            name: req.body.title,
+            name: req.body.name,
             price: req.body.price,
             description: req.body.description,
             count: req.body.count,
@@ -270,6 +340,7 @@ app.post('/product', async (req, res) => {
             image
           }
         )
+        console.log(req.body)
         res.status(200)
         res.send({ success: true, message: '商品上傳成功', image, _id: result._id })
       } catch (error) {
@@ -290,14 +361,93 @@ app.post('/product', async (req, res) => {
   })
 })
 
-app.get('/product/:account', async (req, res) => {
-  if (req.session.user === undefined) {
-    res.status(401)
-    res.send({ success: false, message: '未登入' })
+// 商品檔案修改
+app.patch('/product/:id', async (req, res) => {
+  if (!req.headers['content-type'].includes('application/json')) {
+    res.status(400)
+    res.send({ success: false, message: '格式不符' })
     return
   }
+  try {
+    // findByIdAndUpdate 預設回傳的是更新前的資料
+    // 設定 new true 後會變成回傳新的資料
+    await db.product.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    res.status(200)
+    res.send({ success: true, message: '商品修改成功' })
+  } catch (error) {
+    console.log(error)
+    if (error.name === 'CastError') {
+      // ID 格式不是 MongoDB 的格式
+      res.status(400)
+      res.send({ success: false, message: 'ID 格式錯誤' })
+    } else if (error.name === 'ValidationError') {
+      // 資料格式錯誤
+      const key = Object.keys(error.errors)[0]
+      const message = error.errors[key].message
+      res.status(400)
+      res.send({ success: false, message })
+    } else {
+      // 伺服器錯誤
+      res.status(500)
+      res.send({ success: false, message: '伺服器錯誤' })
+    }
+  }
+})
+
+// 商品檔案刪除(管理員後台)
+app.delete('/product/:id', async (req, res) => {
+  try {
+    let result = ''
+    result = await db.product.findByIdAndDelete(req.params.id)
+    if (result === null) {
+      res.status(404)
+      res.send({ success: true, message: '找不到資料',result })
+    } else {
+      res.status(200)
+      res.send({ success: true, message: '商品檔案刪除成功' ,result})
+    }
+  } catch (error) {
+    if (error.name === 'CastError') {
+      // ID 格式不是 MongoDB 的格式
+      res.status(400)
+      res.send({ success: false, message: 'ID 格式錯誤' })
+    } else {
+      // 伺服器錯誤
+      res.status(500)
+      res.send({ success: false, message: '伺服器錯誤' })
+    }
+  }
+})
+
+// 商品檔案-找檔案資料(前台-目錄)
+app.get('/product', async (req, res) => {
+  try {
+    const result = await db.product.find()
+    console.log(result);
+    res.status(200)
+    res.send({ success: true, message: '', result })
+  } catch (error) {
+    res.status(500)
+    res.send({ success: false, message: '伺服器錯誤' })
+  }
+})
+
+// 商品檔案-找檔案資料(前台-商品)
+app.get('/menu/:id', async (req, res) => {
+  try {
+    const result = await db.product.findById(req.params.id)
+    res.status(200)
+    res.send({ success: true, message: '', result })
+  } catch (error) {
+    res.status(500)
+    res.send({ success: false, message: '伺服器錯誤' })
+  }
+})
+
+// 商品檔案-給檔案(前台)
+app.get('/product/:image', async (req, res) => {
   if (process.env.FTP === 'false') {
-    const path = process.cwd() + '/images/' + req.params.name
+    const path = process.cwd() + '/images/' + req.params.image
     const exists = fs.existsSync(path)
     if (exists) {
       res.status(200)
@@ -307,73 +457,48 @@ app.get('/product/:account', async (req, res) => {
       res.send({ success: false, message: '找不到圖片' })
     }
   } else {
-    res.redirect('http://' + process.env.FTP_HOST + '/' + process.env.FTP_USER + '/' + req.params.name)
+    res.redirect('http://' + process.env.FTP_HOST + '/' + process.env.FTP_USER + '/' + req.params.image)
   }
 })
 
-app.get('/naicat/:account', async (req, res) => {
-  if (req.session.user === undefined) {
-    res.status(401)
-    res.send({ success: false, message: '未登入' })
-    return
-  }
-  if (req.session.user !== req.params.user) {
-    res.status(403)
-    res.send({ success: false, message: '無權限' })
-    return
-  }
-
+// ---用戶清單
+app.post('/alluser', async (req, res) => {
   try {
-    const result = await db.files.find({ user: req.params.user })
-    res.status(200)
-    res.send({ success: true, message: '', result })
+    const result = await database.users.find()
+    console.log(result)
+    if (result !== null) {
+      res.status(200)
+      res.send({ success: true, message: '', result })
+    } else {
+      res.status(404)
+      res.send({ success: false, message: '不存在用戶資訊' })
+    }
   } catch (error) {
     res.status(500)
-    res.send({ success: false, message: '伺服器錯誤' })
+    console.log(error)
+    res.send({ success: false, message: error })
   }
 })
-// ---更動商品
-app.post('/changeproduct', async (req, res) => {
-  // 拒絕不是JSON的資料格式
+// ---刪除用戶
+app.post('/deleteuser', async (req, res) => {
   if (!req.headers['content-type'].includes('application/json')) {
-    // 會回傳錯誤狀態碼(400)
     res.status(400)
-    res.send({ success: false, message: '格式不符' })
+    res.send({ success: false, message: '格式錯誤' })
     return
   }
-  // 新增資料
   try {
-    const result = await db.product.findByIdAndUpdate(
-      { _id: req.body.id },
-      {
-        title: req.body.title,
-        price: req.body.price,
-        brand: req.body.brand,
-        count: req.body.count,
-        description: req.body.description
-      }
-    )
+    const result = await database.users.findOneAndRemove({ account: req.body.account })
     console.log(result)
-    res.status(200)
-    res.send({ success: true, message: '', id: result._id, result })
-  } catch (error) {
-    console.log(error)
-    const key = Object.keys(error.errors)[0]
-    const message = error.errors[key].message
-    res.send({ success: false, message: message })
-  }
-})
-// API Delete 刪除區 --------------------------------------------------------------------------------
-// 登出
-app.delete('/logout', async (req, res) => {
-  req.session.destroy(error => {
-    if (error) {
-      res.status(500)
-      res.send({ success: false, message: '伺服器錯誤' })
-    } else {
-      res.clearCookie()
+    if (result !== null) {
       res.status(200)
-      res.send({ success: true, message: '登出成功' })
+      res.send({ success: true, message: '' })
+    } else {
+      res.status(404)
+      res.send({ success: false, message: '不存在用戶資訊' })
     }
-  })
+  } catch (error) {
+    res.status(500)
+    console.log(error)
+    res.send({ success: false, message: error })
+  }
 })

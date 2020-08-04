@@ -9,7 +9,7 @@
             hr
             h2 檔案上傳
             br
-            b-form-input(type="text", placeholder="商品名稱", v-model="title")
+            b-form-input(type="text", placeholder="商品名稱", v-model="name")
             br
             b-form-input(type="text", placeholder="商品價錢", v-model="price")
             br
@@ -41,21 +41,30 @@
         b-row
           b-col.d-flex.justify-content-center.my-5
             b-button(type="submit", variant="primary") 上傳
-      b-row
-        b-col
-          b-table(:fields="fields")
-            template(v-slot:cell(action)="data")
-              b-btn(variant="danger" @click='delProduct(data.index)') 刪除
-            template(v-slot:cell(index)="data")
-            template(v-slot:cell(src)="data")
-              img(controls :src="data.item.src" style="width:100px")
+      Photoswipe
+        b-row
+          b-col(cols="12" md="6" lg="3" v-for="(product, idx) in products" :key="idx")
+            b-card
+              b-card-img(:src="product.src")
+              b-card-body
+                b-btn(v-if="product.edit" variant="danger" @click="cancel(product)") 取消
+                b-btn(v-else variant="success" @click="edit(product)") 編輯
+                b-btn(v-if="product.edit" variant="success" @click="update(product)") 更新
+                b-btn(v-else variant="danger" @click="del(product, idx)") 刪除
+                hr
+                pre(v-if="!product.edit")
+                  p 名稱: {{ product.name }}
+                  p 庫存: {{ product.count}}
+                  p 品牌: {{ product.brand}}
+                  p 敘述: {{ product.description }}
+                b-form-textarea(v-else v-model="product.model")
 </template>
 
 <script>
 export default {
   data () {
     return {
-      title: '',
+      name: '',
       price: '',
       state: null,
       textstate: null,
@@ -70,29 +79,7 @@ export default {
       ],
       count: '',
       description: '',
-      fields: [
-        {
-          key: 'src',
-          label: '商品圖片'
-        },
-        {
-          key: 'title',
-          label: '商品名稱'
-        },
-        {
-          key: 'price',
-          label: '價格'
-        },
-        {
-          key: 'count',
-          label: '庫存'
-        },
-        {
-          key: 'action',
-          label: '操作'
-        }
-      ],
-      images: []
+      products: []
     }
   },
   computed: {
@@ -101,9 +88,6 @@ export default {
     }
   },
   methods: {
-    delProduct () {
-      return this.$store.commit
-    },
     validateFile () {
       if (this.src != null) {
         if (this.src.size >= 1024 * 1024 * 5 || !this.src.type.includes('image')) {
@@ -132,7 +116,7 @@ export default {
           this.state = true
         }
       }
-      if (this.title.length < 1) {
+      if (this.name.length < 1) {
         alert('商品名稱未填')
       } else if (this.price.length < 1) {
         alert('商品價格未填')
@@ -142,7 +126,7 @@ export default {
         alert('商品無描述')
       } else {
         const fd = new FormData()
-        fd.append('title', this.title)
+        fd.append('name', this.name)
         fd.append('image', this.file)
         fd.append('price', this.price)
         fd.append('count', this.count)
@@ -154,67 +138,95 @@ export default {
             'Content-Type': 'multipart/form-data'
           }
         })
-          .then(res => {
-            this.images.push(
+          .then(response => {
+            this.products.push(
               {
-                type: this.brand,
-                title: this.description,
-                src: process.env.VUE_APP_APIURL + '/product/' + res.data.name,
-                _id: res.data._id,
-                edit: false,
-                model: res.data.name
+                _id: response.data._id,
+                name: this.name,
+                price: this.price,
+                count: this.count,
+                brand: this.brandtype,
+                description: this.description,
+                src: process.env.VUE_APP_APIURL + '/product/' + response.data.image,
+                edit: false
               }
             )
+            this.file = null
+            this.name = ''
+            this.price = ''
+            this.count = ''
+            this.brand = null
+            this.src = ''
+            this.description = ''
           }).catch(error => {
             console.log(error)
+            alert(error.response.data.message)
           })
       }
-      this.title = ''
+    },
+    edit (product) {
+      product.edit = true
+      product.model = product.title
+      this.name = product.name
+      this.price = product.price
+      this.count = product.count
+      this.brand = product.brandtype
+      this.description = product.description
+    },
+    update (product) {
+      this.axios.patch(process.env.VUE_APP_APIURL + '/product/' + product._id, { name: this.name, price: this.price, count: this.count, brand: this.brandtype, description: this.description })
+        .then(response => {
+          product.edit = false
+          product.name = this.name
+          product.price = this.price
+          product.count = this.count
+          product.brand = this.brandtype
+          product.description = this.description
+          this.file = null
+          this.name = ''
+          this.price = ''
+          this.count = ''
+          this.brand = null
+          this.src = null
+          this.description = ''
+        })
+        .catch(() => {
+          alert('發生錯誤')
+        })
+    },
+    cancel (product) {
+      product.edit = false
+      this.file = null
+      this.name = ''
       this.price = ''
       this.count = ''
       this.brand = null
       this.src = null
       this.description = ''
     },
-    edit (image) {
-      image.edit = true
-      image.model = image.title
-    },
-    update (image) {
-      this.axios.patch(process.env.VUE_APP_APIURL + '/product/' + image._id, { description: image.model })
+    del (product, idx) {
+      this.axios.delete(process.env.VUE_APP_APIURL + '/product/' + product._id)
         .then(response => {
-          image.edit = false
-          image.title = image.model
+          this.products.splice(idx, 1)
         })
-        .catch(() => {
-          alert('發生錯誤')
-        })
-    },
-    cancel (image) {
-      image.edit = false
-      image.model = image.title
-    },
-    del (image, idx) {
-      this.axios.delete(process.env.VUE_APP_APIURL + '/product/' + image._id)
-        .then(response => {
-          this.images.splice(idx, 1)
-        })
-        .catch(() => {
-          alert('發生錯誤')
+        .catch(error => {
+          alert(error)
         })
     }
   },
   mounted () {
-    this.axios.get(process.env.VUE_APP_APIURL + '/naicat/' + this.account)
+    this.axios.get(process.env.VUE_APP_APIURL + '/product/')
       .then(response => {
-        this.images = response.data.result.map(d => {
+        this.products = response.data.result.map(d => {
           return {
-            type: d.brand,
-            title: d.description,
-            src: process.env.VUE_APP_APIURL + '/product/' + d.name,
             _id: d._id,
-            edit: false,
-            model: d.name
+            name: d.name,
+            price: d.price,
+            count: d.count,
+            brand: d.brand,
+            description: d.description,
+            src: process.env.VUE_APP_APIURL + '/product/' + d.image,
+            edit: false
           }
         })
       }).catch(() => {

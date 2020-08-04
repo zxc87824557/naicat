@@ -17,6 +17,12 @@ mongoose.connect(process.env.DBURL)
 mongoose.plugin(beautifyUnique)
 // 會員資料
 const userSchema = new Schema({
+  name: {
+    type: String,
+    minlength: [1, '名字必須1個字以上'],
+    required: [true, '請輸入名字'],
+    unique: '名字已使用'
+  },
   account: {
     type: String,
     minlength: [4, '帳號必須4個字以上'],
