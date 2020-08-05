@@ -28,7 +28,7 @@
       div.d-flex.flex-wrap
         b-button.mx-2.mb-2(v-for="size in sizes" variant="outline-dark" @click="e=>e.target.classList.toggle('active')" ) {{ size.us }}
       div.d-flex.justify-content-center
-        b-button(variant="primary" @click="addCart(data)") 加入購物車
+        b-button(variant="primary" @click="addCart(product)") 加入購物車
 </template>
 
 <script>
@@ -42,224 +42,224 @@ export default {
           src: 'shoesimg/nike/dunk-low-brazil-release-date.jpg',
           brand: 'NIKE',
           name: 'nike sb dunk-low-brazil-release-date',
-          price: '3680',
+          price: 3680,
           popupActivo: false
         },
         {
           src: 'shoesimg/nike/dunk-low-champ-colors-release-date.jpg',
           brand: 'NIKE',
           name: 'nike sb dunk-low-champ-colors',
-          price: '3680',
+          price: 3680,
           popupActivo: false
         },
         {
           src: 'shoesimg/nike/nike-x-travis-scott-air-max-270-cactus-trails-release-date.jpg',
-          type: 'NIKE',
+          brand: 'NIKE',
           name: 'nike-x-travis-scott-air-max-270',
-          price: '16000',
+          price: 16000,
           popupActivo: false
         },
         {
           src: 'shoesimg/nike/Sacai x Nike LDV Waffle 藍紅 復古慢跑鞋.png',
-          type: 'NIKE',
+          brand: 'NIKE',
           name: 'Sacai x Nike LDV Waffle 藍紅 復古慢跑鞋',
-          price: '22000',
+          price: 22000,
           popupActivo: false
         },
         {
           src: 'shoesimg/nike/OFF-WHITE X NIKE AIR MAX 90 “BLACK”.png',
-          type: 'NIKE',
+          brand: 'NIKE',
           name: 'OFF-WHITE X NIKE AIR MAX 90 “BLACK”',
-          price: '11000',
+          price: 11000,
           popupActivo: false
         },
         {
           src: 'shoesimg/nike/Off-White x Nike Vapor Street 黑紫 釘鞋 女款.png',
-          type: 'NIKE',
+          brand: 'NIKE',
           name: 'Off-White x Nike Vapor Street 黑紫 釘鞋',
-          price: '10000',
+          price: 10000,
           popupActivo: false
         },
         {
           src: 'shoesimg/nike/space-hippie-03-this-is-trash-release-date.jpg',
-          type: 'NIKE',
+          brand: 'NIKE',
           name: 'space-hippie-03-this-is-trash-release-date',
-          price: '7000',
+          price: 7000,
           popupActivo: false
         },
         {
           src: 'shoesimg/nike/air-jordan-1-white-royal-release-date.jpg',
-          type: 'JORDAN',
+          brand: 'JORDAN',
           name: 'air-jordan-1-white-royal-release-date',
-          price: '6800',
+          price: 6800,
           popupActivo: false
         },
         {
           src: 'shoesimg/nike/air-jordan-5-fire-red-release-date.jpg',
-          type: 'JORDAN',
+          brand: 'JORDAN',
           name: 'air jordan 5 fire red release-date',
-          price: '6300',
+          price: 6300,
           popupActivo: false
         },
         {
           src: 'shoesimg/nike/Travis Scott x Air Jordan 6 GS「Cactus Jack」橄欖綠.png',
-          type: 'JORDAN',
+          brand: 'JORDAN',
           name: 'Travis Scott x Air Jordan 6 GS「Cactus Jack」橄欖綠',
-          price: '23000',
+          price: 23000,
           popupActivo: false
         },
         {
           src: 'shoesimg/nike/Travis Scott x Jordan 1 聯名款 倒鈎.png',
-          type: 'JORDAN',
+          brand: 'JORDAN',
           name: 'Travis Scott x Jordan 1 聯名款 倒鈎',
-          price: '35000',
+          price: 35000,
           popupActivo: false
         },
         {
           src: 'shoesimg/nike/air-jordan-7-retro-se-款-Hn4sV0.jpg',
-          type: 'JORDAN',
+          brand: 'JORDAN',
           name: 'air-jordan-7-retro-se-款-Hn4sV0',
-          price: '6300',
+          price: 6300,
           popupActivo: false
         },
         {
           src: 'shoesimg/adidas/CONTINENTAL 80 經典鞋.jpg',
-          type: 'ADIDAS',
+          brand: 'ADIDAS',
           name: 'ADIDAS CONTINENTAL 80 經典鞋',
-          price: '3090',
+          price: 3090,
           popupActivo: false
         },
         {
           src: 'shoesimg/adidas/NMD_R1 PRIMEKNIT 經典鞋.jpg',
-          type: 'ADIDAS',
+          brand: 'ADIDAS',
           name: 'ADIDAS NMD_R1 PRIMEKNIT 經典鞋',
-          price: '4000',
+          price: 4000,
           popupActivo: false
         },
         {
           src: 'shoesimg/adidas/ALPHAEDGE 4D SPACERACE 跑鞋.jpg',
-          type: 'ADIDAS',
+          brand: 'ADIDAS',
           name: 'ADIDAS ALPHAEDGE 4D SPACERACE 跑鞋',
-          price: '3800',
+          price: 3800,
           popupActivo: false
         },
         {
           src: 'shoesimg/adidas/NMD_R1 V2 經典鞋.jpg',
-          type: 'ADIDAS',
+          brand: 'ADIDAS',
           name: 'ADIDAS NMD_R1 V2 經典鞋',
-          price: '4390',
+          price: 4390,
           popupActivo: false
         },
         {
           src: 'shoesimg/adidas/ULTRABOOST 跑鞋.jpg',
-          type: 'ADIDAS',
+          brand: 'ADIDAS',
           name: 'ADIDAS ULTRABOOST 跑鞋',
-          price: '3400',
+          price: 3400,
           popupActivo: false
         },
         {
           src: 'shoesimg/adidas/ADIDAS Yeezy Boost 700 Wave Runner.png',
-          type: 'ADIDAS',
+          brand: 'ADIDAS',
           name: 'ADIDAS Yeezy Boost 700 Wave Runner',
-          price: '11000',
+          price: 11000,
           popupActivo: false
         },
         {
           src: 'shoesimg/adidas/Adidas Yeezy Boost 700 nertia 慣性 灰橘.png',
-          type: 'ADIDAS',
+          brand: 'ADIDAS',
           name: 'ADIDAS Yeezy Boost 700 nertia 慣性 灰橘E',
-          price: '10000',
+          price: 10000,
           popupActivo: false
         },
         {
           src: 'shoesimg/adidas/Yeezy Boost 350 V2 Cloud White.jpg',
-          type: 'ADIDAS',
+          brand: 'ADIDAS',
           name: 'ADIDAS Yeezy Boost 350 V2 Cloud White',
-          price: '12800',
+          price: 12800,
           popupActivo: false
         },
         {
           src: 'shoesimg/adidas/Yeezy Boost 700 V2 Vanta sneakers.jpg',
-          type: 'ADIDAS',
+          brand: 'ADIDAS',
           name: 'ADIDAS Yeezy Boost 700 V2 Vanta sneakers',
-          price: '9000',
+          price: 9000,
           popupActivo: false
         },
         {
           src: 'shoesimg/new balance/new balance_灰色_M990GL5-2E楦_(美製鞋).jpg',
-          type: 'NEWBALANCE',
+          brand: 'NEWBALANCE',
           name: 'new balance M990',
-          price: '7850',
+          price: 7850,
           popupActivo: false
         },
         {
           src: 'shoesimg/new balance/new balance_白色_ML850YSF-D楦.jpg',
-          type: 'NEWBALANCE',
+          brand: 'NEWBALANCE',
           name: 'new balance ML850',
-          price: '2600',
+          price: 2600,
           popupActivo: false
         },
         {
           src: 'shoesimg/new balance/new balance_米白_ML373AC2-D楦.jpg',
-          type: 'NEWBALANCE',
+          brand: 'NEWBALANCE',
           name: 'new balance ML373',
-          price: '2300',
+          price: 2300,
           popupActivo: false
         },
         {
           src: 'shoesimg/new balance/new balance_淺綠_MS327SFA-D楦.jpg',
-          type: 'NEWBALANCE',
+          brand: 'NEWBALANCE',
           name: 'new balance MS327',
-          price: '3100',
+          price: 3100,
           popupActivo: false
         },
         {
           src: 'shoesimg/new balance/new balance_黑色_M992BL-D楦.jpg',
-          type: 'NEWBALANCE',
+          brand: 'NEWBALANCE',
           name: 'new balance M992BL',
-          price: '7850',
+          price: 7850,
           popupActivo: false
         },
         {
           src: 'shoesimg/new balance/new balance_粉藍_WL574SUO-B楦.jpg',
-          type: 'NEWBALANCE',
+          brand: 'NEWBALANCE',
           name: 'new balance WL574',
-          price: '2600',
+          price: 2600,
           popupActivo: false
         },
         {
           src: 'shoesimg/new balance/new balance_藍色_CM997HAK-D楦.jpg',
-          type: 'NEWBALANCE',
+          brand: 'NEWBALANCE',
           name: 'new balance CM997',
-          price: '2300',
+          price: 2300,
           popupActivo: false
         },
         {
           src: 'shoesimg/new balance/new balance_灰色_WL996WS-B楦.png',
-          type: 'NEWBALANCE',
+          brand: 'NEWBALANCE',
           name: 'new balance WL996',
-          price: '2500',
+          price: 2500,
           popupActivo: false
         },
         {
           src: 'shoesimg/vans/BIG CHECK OLD SKOOL.png',
-          type: 'VANS',
+          brand: 'VANS',
           name: 'vans BIG CHECK OLD SKOOL',
-          price: '2200',
+          price: 2200,
           popupActivo: false
         },
         {
           src: 'shoesimg/vans/OLD SKOOL PLATFORM.png',
-          type: 'VANS',
+          brand: 'VANS',
           name: 'vans OLD SKOOL PLATFORM',
-          price: '2200',
+          price: 2200,
           popupActivo: false
         },
         {
           src: 'shoesimg/vans/ULTRARANGE EXO.png',
-          type: 'VANS',
+          brand: 'VANS',
           name: 'vans ULTRARANGE EXO',
-          price: '2200',
+          price: 2200,
           popupActivo: false
         }
       ],
@@ -305,6 +305,7 @@ export default {
       this.paginate(this.perPage, page - 1)
     },
     addCart (data) {
+      data.popupActivo = false
       this.$store.commit('addCart', data)
     }
   },
@@ -318,7 +319,7 @@ export default {
   },
   mounted: function () {
     this.paginate(this.perPage, 0)
-    this.axios.post('http://localhost:3000/product')
+    this.axios.get('http://localhost:3000/product')
       .then(res => {
         this.product = res.data.result.map(d => {
           return {

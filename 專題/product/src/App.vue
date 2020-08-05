@@ -46,9 +46,11 @@
         b-row.mx-0
           b-col.d-flex.justify-content-center.align-items-center.bgdark
             h5.textwhite.size 奶貓鞋店歡迎光臨
-            a(href="#")
+            a(href="https://line.me/ti/p/JJDMoqS73M")
               font-awesome-icon.size.textwhite.mx-2(:icon="['fab', 'line']")
+            a(href="https://www.facebook.com/profile.php?id=100002840724131")
               font-awesome-icon.size.textwhite.mx-2(:icon="['fab', 'facebook']")
+            a(href="https://www.instagram.com/zxc87824557/")
               font-awesome-icon.size.textwhite.mx-2(:icon="['fab', 'instagram']")
           b-col.d-flex.justify-content-center.align-items-center.bgdark
             h6.textwhite.size Copyright © 2020 Naicat All rights reserved

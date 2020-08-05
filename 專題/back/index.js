@@ -464,7 +464,7 @@ app.get('/product/:image', async (req, res) => {
 // ---用戶清單
 app.post('/alluser', async (req, res) => {
   try {
-    const result = await database.users.find()
+    const result = await db.users.find()
     console.log(result)
     if (result !== null) {
       res.status(200)
@@ -487,7 +487,7 @@ app.post('/deleteuser', async (req, res) => {
     return
   }
   try {
-    const result = await database.users.findOneAndRemove({ account: req.body.account })
+    const result = await db.users.findOneAndRemove({ account: req.body.account })
     console.log(result)
     if (result !== null) {
       res.status(200)

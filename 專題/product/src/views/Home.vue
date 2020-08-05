@@ -60,8 +60,8 @@
         </vue-marquee-slide>
       </vue-marquee>
       <div id="zen-preamble" class="mr-0">
-        <a href="#" class="bg d-flex col-12 col-md-6"><h3>限量商品</h3></a>
-        <a href="#" class="bg1 d-flex col-12 col-md-6"><h3>一般商品</h3></a>
+        <router-link to="/product" class="bg d-flex col-12 col-md-6"><h3>限量商品</h3></router-link>
+        <router-link to="/product" class="bg1 d-flex col-12 col-md-6"><h3>一般商品</h3></router-link>
       </div>
   </div>
 </div>

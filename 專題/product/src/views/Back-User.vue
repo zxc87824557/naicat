@@ -3,7 +3,7 @@
     b-container
       b-row
         b-col
-          vs-table
+          vs-table(multiple v-model="selected" :data="this.datas")
             template(slot="header")
               h1.text-center 會員資訊
             template(slot="thead")
@@ -21,6 +21,12 @@
                   span {{data[indextr].password}}
                 vs-td(:data="data[indextr].email")
                   span {{data[indextr].email}}
+          div
+            vs-bttton(@click="openConfirm()" color="danger" type="filled") 刪除
+          //- b-table(:items="user" :fields="fields")
+          //-   template(v-slot:cell(action)="data")
+          //-     b-btn(variant="danger" @click="delCart(data.index)") 刪除
+          //-   template(v-slot:cell(index)="data")
 </template>
 
 <script>
@@ -29,7 +35,29 @@ export default {
     return {
       index: '',
       datas: [],
-      selected: []
+      selected: [],
+      fields: [
+        {
+          key: 'name',
+          label: '名字'
+        },
+        {
+          key: 'account',
+          label: '帳號'
+        },
+        {
+          key: 'password',
+          label: '密碼'
+        },
+        {
+          key: 'email',
+          label: '信箱'
+        },
+        {
+          key: 'action',
+          label: '操作'
+        }
+      ]
     }
   },
   methods: {
@@ -77,12 +105,17 @@ export default {
     }
   },
   mounted: function () {
-    this.axios.get(process.env.VUE_APP_APIURL + '/alluser')
+    this.axios.post(process.env.VUE_APP_APIURL + '/alluser')
       .then(res => {
         this.datas = res.data.result
       }).catch(error => {
         alert(error)
       })
+  },
+  computed: {
+    user () {
+      return this.$store.getters.user
+    }
   }
 }
 </script>

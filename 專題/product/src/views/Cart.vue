@@ -10,7 +10,9 @@
             template(v-slot:cell(index)="data")
             template(v-slot:cell(src)="data")
               img(controls :src="data.item.src" style="width:100px")
-
+          hr
+          h3.text-center 總金額:{{ totalprice }}
+          p.text-right 因時間技術關係購買後請截圖+粉專私訊
 </template>
 
 <script>
@@ -40,6 +42,13 @@ export default {
   computed: {
     cart () {
       return this.$store.getters.cart
+    },
+    totalprice () {
+      let result = 0
+      for (const i of this.cart) {
+        result += i.price
+      }
+      return result
     }
   },
   methods: {
